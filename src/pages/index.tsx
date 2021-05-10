@@ -17,6 +17,10 @@ const useStyles = makeStyles({
   },
   media: {
     height: 140
+  },
+
+  typography: {
+    fontWeight: 800
   }
 })
 
@@ -34,7 +38,7 @@ export default function Home(props) {
         />
 
         <CardContent>
-          <Typography gutterBottom component='h2' variant='h4'>
+          <Typography className={styles.typography} gutterBottom component='h2' variant='h4'>
             Civil Cultural
         </Typography>
         </CardContent>

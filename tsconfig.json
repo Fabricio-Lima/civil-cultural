@@ -24,6 +24,9 @@
       ],
       "Context/*": [
         "./context/*"
+      ],
+      "Hooks/*": [
+        "./hooks/*"
       ]
     },
     "lib": [

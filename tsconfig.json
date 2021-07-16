@@ -37,6 +37,7 @@
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
+    "strictNullChecks": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -53,5 +54,8 @@
   ],
   "exclude": [
     "node_modules"
+  ],
+  "files": [
+    "src/contracts/styled.d.ts"
   ]
 }

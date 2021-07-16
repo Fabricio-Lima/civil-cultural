@@ -1,27 +1,30 @@
 import { createContext, useState } from 'react'
+import { DefaultTheme, ThemeProvider } from 'styled-components'
 
-import { ThemeContextProps, ThemeProviderProps } from 'Contracts/ThemeContextProps'
+import { CustomThemeContextProps, CustomThemeProviderProps, ThemeStateProps } from 'Contracts/ThemeContext'
+import { usePersistedState } from 'Hooks/usePersistedState'
 import { ThemeStyle } from 'Styles/theme'
 
-export const ThemeContext = createContext({} as ThemeContextProps)
+export const ThemeContext = createContext({} as CustomThemeContextProps)
 
-export function ThemeProvider({ children }: ThemeProviderProps) {
+export function CustomThemeProvider({ children }: CustomThemeProviderProps) {
 
-  const [ theme, setTheme ] = useState(ThemeStyle.light)
+  const [theme, setTheme] = usePersistedState('theme', ThemeStyle.light)
   
-  
-  const defineTheme = (isThemeDark: boolean) => {
-    setTheme(isThemeDark ? ThemeStyle.dark : ThemeStyle.light)
+  const toggleTheme = (themeType: ThemeStateProps) => {
+    setTheme(ThemeStyle[themeType.toLowerCase()])
   }
 
-  const themeProps: ThemeContextProps = {
+  const themeProps: CustomThemeContextProps = {
     theme,
-    defineTheme
+    toggleTheme
   }
 
   return (
     <ThemeContext.Provider value={themeProps}>
-      children
+      <ThemeProvider theme={theme}>
+        {children}
+      </ThemeProvider>
     </ThemeContext.Provider>
   )
 }

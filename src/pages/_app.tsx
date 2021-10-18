@@ -2,8 +2,6 @@ import Head from 'next/head'
 import GlobalStyle from 'Styles/globalStyles'
 
 import { CustomThemeProvider, ThemeContext } from 'Context/ThemeContext'
-import { useTheme } from 'Hooks/useTheme'
-
 
 
 export default function App({ Component, pageProps }) {
@@ -15,8 +13,8 @@ export default function App({ Component, pageProps }) {
         <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
       </Head>
       <CustomThemeProvider>
-        <Component {...pageProps} />
         <GlobalStyle/>
+        <Component {...pageProps} />
       </CustomThemeProvider>
     </>
   )

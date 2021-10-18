@@ -1,7 +1,7 @@
 import styled, { keyframes, css } from 'styled-components'
 
-import { IoMdSearch, IoMdClose, IoMdMenu } from 'react-icons/io'
-import { AiFillAudio } from 'react-icons/ai'
+import { IoMdSearch, IoMdClose } from 'react-icons/io'
+import { AiFillAudio, AiOutlineMenuUnfold, AiOutlineMenuFold } from 'react-icons/ai'
 import { HiInformationCircle } from 'react-icons/hi'
 
 // Styles global Header
@@ -14,7 +14,7 @@ export const HeaderContainer = styled.header`
   padding: 0;
   top: 0;
   padding-bottom: .5rem;
-  box-shadow: 0 0 10px ${p => p.theme.type == 'light' ? 'rgba(51,51,51,.2)' : 'rgba(0, 0, 0, .4)'};
+  box-shadow: 0 0 10px ${p => p.theme.tons.primary};
 `
 
 export const FlexContainer = styled.div`
@@ -66,13 +66,9 @@ export const BoxIcon = styled.div`
 
 export const ButtonSearch = styled(Button)`
   height: 100%;
-  background-color: #3799F4;
+  background-color: var(--blue-500);
   padding: .7rem 1.2rem;
   border-radius: 0 .5rem .5rem 0;
-
-  &:hover {
-    filter: saturate(85%);
-  }
 `
 
 export const IconSearch = styled(IoMdSearch)`
@@ -83,6 +79,10 @@ export const IconSearch = styled(IoMdSearch)`
 
 export const ButtonAudio = styled(Button)`
   padding: 0 .5rem;
+
+  &:hover {
+    background-image: none;
+  }
 `
 
 export const IconAudio = styled(AiFillAudio)`
@@ -109,33 +109,28 @@ export const Search = styled.input.attrs(() => ({
   width: 28rem;
   padding: .85rem;
   border-radius: .5rem;
-  border: 0px solid;
+  border: 0px;
   background-color: ${p => p.theme.backgroundInput};
   color: ${p => p.theme.title};
+  font-size: 1.1rem;
+  font-size: 600;
 
   &::placeholder {
     color: ${p => p.theme.title};
+    font-weight: 800;
+    font-size: 1.2rem;
   }
 `
 /** ----------------------------- */
 
-
-//Styles from accessibility
-// export const AccessibilityContainer = styled.div`
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   gap: .5rem;
-// `
-
 export const SwitchContainer = styled(Button)`
   width: 3.3rem;
-  height: 1.5rem;
+  height: 1.68rem;
   position: relative;
   border-radius: 15px 15px;
   overflow: hidden;
 
-  background-color: ${(p: { background?: string }) => p.background};
+  background-color: ${p => p.theme.type == 'dark' ? 'var(--gray-400)' : 'var(--gray-600)'} ;
 `
 
 export const InputCheck = styled.input.attrs(() => ({
@@ -155,8 +150,8 @@ export const InputCheck = styled.input.attrs(() => ({
 `
 export const StateSwitch = styled.div`
   display: block;
-  width: 39%;
-  height: 84%;
+  width: 40%;
+  height: 82%;
   background: #c0c0c0;
   border-radius: 100%;
   transition: transform .4s ease; 
@@ -166,9 +161,17 @@ export const StateSwitch = styled.div`
   position: absolute;
   z-index: 2;
   left: 3px;
-  top: 2px;
+  top: 2.5px;
 
   background: linear-gradient(var(--purple-400), var(--purple-300));
+
+  &:hover {
+    filter: sepia(80%);
+  }
+
+  &.active-switch{
+    transform: translateX(125%);
+  }
 
   &::after {
     content: '';
@@ -180,15 +183,7 @@ export const StateSwitch = styled.div`
     width: 70%;
     height: 70%;
 
-    background: linear-gradient(120deg,var(--purple-600), var(--purple-300));
-  }
-
-  &.active-switch{
-    transform: translateX(125%);
-  }
-
-  &:hover {
-    box-shadow: 0 0 10px #73FF75;
+    background: linear-gradient(147deg,var(--purple-600), var(--purple-300));
   }
 `
 
@@ -227,25 +222,26 @@ export const DropdownMenuContainer = styled.div`
 
 export const DropdownButton = styled(Button)`
   font-size: .95rem;
-  font-weight: 500;
+  font-weight: 600;
   text-align: center;
   vertical-align: middle;
   color: ${p => p.theme.link};
 
   &:hover {
-    color: #729BD3;
+    background-image: none;
+    filter: ${ p => p.theme.type == 'dark' ? 'sepia(45%)' : 'brightness(60%)'};
   }
 `
 
 export const Dropdown = styled.div`
   width: 14rem;
-  background: ${p => p.theme.colors.gray};
+  background: ${p => p.theme.background};
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
   border-radius: .8rem;
 
   position: absolute;
-  top: 2rem;
-  right: 3rem;
+  top: 3.9rem;
+  right: 7rem;
   z-index: 900;
   
   opacity: 0;
@@ -268,85 +264,65 @@ export const Select = styled.div`
 `
 
 export const Option = styled.span`
-  border-bottom: 1px solid #DFDFDF;
   text-align: center;
   text-decoration: none;
-  color: #696969;
+  color: ${p => p.theme.title};
   padding: 1rem 1.5rem;
   display: block;
 
   &:hover {
-    color: #729BD3;
+    filter: blur(40%);
     cursor: pointer;
+  }
+
+  &:nth-child(n + 1):nth-child(-n + 2) {
+    border-bottom: 1px solid ${p => p.theme.type == 'dark' ? 'var(--gray-400)' : 'var(--gray-200)'};
   }
 `
 /** ----------------------------- */
 
 
 //Styles from navbar and logo
-const FadeIn = keyframes`
-    from{ 
-      opacity: 0;
-      transform: rotate(-35deg);
-    }
-    to{ 
-      transform: rotate(0deg);
-      opacity: 1;
-      display: inline-block; 
-    }
-`
-
-const Rotate = keyframes`
-  from{ 
-    transform: rotate(-45deg);
-  }
-  to{ 
-    transform: rotate(0deg);
-  }
-`
-const RotateInverse = keyframes`
-  from{ 
-    transform: rotate(45deg);
-  }
-  to{ 
-    transform: rotate(0deg);
-  }
-`
-
 export const BoxIconMenu = styled(BoxIcon)`
   border-radius:  4em;
   padding: .3em;
 
-  &:hover {
-    background: rgba(54, 54, 54,.1);
-  }
+  /* &:hover {
+    background: ${p => p.theme.tons.primary};
+  } */
 `
 
-export const IconMenu = styled(IoMdMenu)`
+const visible = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+
+`
+
+export const IconOpenMenu = styled(AiOutlineMenuFold)`
   ${Icon}
 
   &:hover {
     cursor: pointer;
   }
 
-  &.visible {
-    animation: 
-      ${FadeIn} .3s cubic-bezier(0.47, 0.21, 0.57, 0.51) both,
-      ${RotateInverse} .3s cubic-bezier(0.47, 0.21, 0.57, 0.51) both;
+  &.animation-open {
+    animation: ${visible} 1s both;
   }
 `
 
-export const IconMenuClose = styled(IoMdClose)`
+export const IconClosedMenu = styled(AiOutlineMenuUnfold)`
   ${Icon}
-
+  
   &:hover {
     cursor: pointer;
   }
 
-  &.visible {
-    animation: 
-      ${FadeIn} .3s cubic-bezier(0.47, 0.21, 0.57, 0.51) both,
-      ${Rotate} .3s cubic-bezier(0.47, 0.21, 0.57, 0.51) both;
+  &.animation-closed {
+    animation: ${visible} 1s both;
   }
 `
 /** ----------------------------- */
@@ -365,11 +341,11 @@ export const NavRow = styled.ul`
   align-content: stretch;
   justify-items: center;
   align-items: center;
+  list-style-type: none;
 `
 
 export const NavItem = styled.li`
   margin: .5rem;
-  list-style-type: none;
 `
 export const Link = styled.a`
   height: 100%;
@@ -391,11 +367,15 @@ export const ButtonLogin = styled(Link)`
   padding: .6rem .9rem;
   border-radius: 10px;
 
+  width: 90%;
+  height: 90%;
+
   &:hover {
     color: var(--white);
-    filter: saturate(80%);
+    background-image: linear-gradient(rgb(0 0 0 / 0%),rgb(0 0 0 / 5%) 40%,rgb(0 0 0 / 10%));
   }
 `
+/** ----------------------------- */
 
 /** Styles from Logo */
 export const LogoContainer = styled.div`

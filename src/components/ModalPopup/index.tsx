@@ -35,7 +35,7 @@ export const ModalPopup = forwardRef((modalProps: ModalPopupProps, ref?: Ref<Pop
 
   const closeModal = () => setOpenPopup(false)
 
-  const modalElements = () => {
+  const ModalElements = () => {
     return (
       <>
         {
@@ -87,7 +87,7 @@ export const ModalPopup = forwardRef((modalProps: ModalPopupProps, ref?: Ref<Pop
       {...props}
       {...theme}
     >
-      {children ?? modalElements}
+      {children ?? ModalElements}
     </PopupContainer>
   )
 })

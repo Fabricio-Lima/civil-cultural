@@ -5,8 +5,8 @@ import { useState, useEffect, Dispatch, SetStateAction } from 'react'
 export function usePersistedState<T>(key: string, initialProps: T): [T, SetStateAction<Dispatch<T>>]
 {
   const [state, setState] = useState<T>(() => {
-    const storageValue = Cookie.get(key)
-    return storageValue ? JSON.parse(storageValue): initialProps
+    const cookie = Cookie.get(key)
+    return cookie ? JSON.parse(cookie): initialProps
   })
 
   useEffect(() => {

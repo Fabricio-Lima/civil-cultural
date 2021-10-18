@@ -4,6 +4,7 @@ declare module  'styled-components' {
   export interface DefaultTheme {
     type: string;
     title: string;
+    text: string;
     link: string;
     background: string;
     backgroundInput: string;
@@ -16,6 +17,9 @@ declare module  'styled-components' {
       warn: string;
       error: string;
     },
+    tons: {
+      primary: string;
+    }
     popup: {
       background: string;
       color: string;

@@ -23,10 +23,21 @@ export function DropdownMenu() {
       }
     }
 
-    if (isActive)
-      document.querySelector('body')!.addEventListener('click', pageClick)
+    function pageKeyPress(evt: KeyboardEvent) {
+      if(evt?.key == 'Escape') setIsActive(false)
+    }
 
-    return () => { document.querySelector('body')!.addEventListener('click', pageClick) }
+    let doc = document.querySelector('body')
+
+    if (isActive) {
+      doc && doc.addEventListener('click', pageClick)
+      doc && doc.addEventListener('keydown', pageKeyPress)
+    }
+
+    return () => {
+      doc && doc.removeEventListener('click', pageClick)
+      doc && doc.removeEventListener('keydown', pageKeyPress)
+    }
 
   }, [isActive])
 
@@ -42,7 +53,7 @@ export function DropdownMenu() {
 
         <Dropdown
           ref={dropdownRef}
-          className={isActive ? 'active' : 'inactive'}
+          className={isActive ? 'active' : ''}
         >
           <form >
             <Select>

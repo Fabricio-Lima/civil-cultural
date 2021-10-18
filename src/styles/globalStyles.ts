@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components"
+import styled, { createGlobalStyle } from "styled-components"
 
 
 export default createGlobalStyle`  
@@ -21,6 +21,8 @@ export default createGlobalStyle`
     --green-400: #5DFFA5;
     --green-500: #04D361;
     --green-600: #00CF5D;
+    --green-800: #00BF2D;
+    --green-dark: #00711B;
   
     --purple-300: #9F75FF;
     --purple-400: #9164FA; 
@@ -64,6 +66,10 @@ export default createGlobalStyle`
   
   button, a {
     cursor: pointer;
+  }
+  
+  input[type=button], button:hover {
+    background-image: linear-gradient(rgb(0 0 0 / 0%),rgb(0 0 0 / 5%) 40%,rgb(0 0 0 / 10%));
   }
 
   a {

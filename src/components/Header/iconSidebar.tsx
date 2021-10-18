@@ -1,28 +1,29 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react'
+import { IconBaseProps } from 'react-icons/lib'
+
 import {
   BoxIconMenu,
-  IconMenu,
-  IconMenuClose
+  IconClosedMenu,
+  IconOpenMenu
 } from 'Components/Header/styles'
-import { useEffect } from 'react';
-
 
 
 export function IconSidebar() {
-  const [isActive, setIsActive] = useState(false)
-  
-  let visibleClose = isActive ? 'visible' : ''
-  let visibleMenu = !isActive ? 'visible' : ''
+  const [isActive, setIsActive] = useState(true)
+  let [isHandler, setIsHandler ] = useState(true)
 
-  useEffect(() => {
-    visibleMenu = ''
-    console.log(visibleMenu)
+  const menuToggle = () => {
+    setIsActive(!isActive)
+    if(isHandler) setIsHandler(false)
+  }
 
-  }, [])
+    const iconOpenMenu = (!isHandler && isActive) ? 
+      <IconOpenMenu className='animation-open' /> :
+      <IconOpenMenu />
 
   return (
-    <BoxIconMenu onClick={_=> setIsActive(!isActive)}>
-      { !isActive ?  <IconMenu { ...visibleMenu ? {className: visibleMenu } : '' }/> :  <IconMenuClose className={visibleClose}/>}
+    <BoxIconMenu onClick={menuToggle}>
+      {isActive ?  iconOpenMenu : <IconClosedMenu className='animation-closed' />}
     </BoxIconMenu>
   )
 }

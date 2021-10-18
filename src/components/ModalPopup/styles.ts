@@ -1,10 +1,8 @@
-import styled  from 'styled-components'
+import styled, { DefaultTheme }  from 'styled-components'
 import Popup from 'reactjs-popup'
 
-import { ThemeProps } from 'Contracts/ThemeContext'
 
-
-export const PopupContainer = styled(Popup).attrs((p: ThemeProps) => ({
+export const PopupContainer = styled(Popup).attrs((p: DefaultTheme) => ({
   ...p.popup
 }))`
   &-overlay {
@@ -23,7 +21,7 @@ export const PopupContainer = styled(Popup).attrs((p: ThemeProps) => ({
   }
 `
 
-export const PopupTitleContainer = styled.div.attrs((p: ThemeProps) => ({
+export const PopupTitleContainer = styled.div.attrs((p: DefaultTheme) => ({
   ...p.popup
 }))`
   padding: .5rem;

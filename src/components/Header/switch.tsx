@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 import { useTheme } from 'Hooks/useTheme'
 import { ThemeStyle } from 'Styles/theme'
@@ -16,11 +16,10 @@ import {
 
 export function Switch() {
   const { theme, toggleTheme } = useTheme()
-
-  const [isDark, setIsDark] = useState(theme.type == 'dark')
   const switchRef = useRef<HTMLInputElement>(null)
-
-  const themeStyle = ThemeStyle[isDark ? 'light' : 'dark']
+  const [isDark, setIsDark] = useState(false)
+  
+  useEffect(() => setIsDark(theme.type === 'dark'), [])
 
   const alternateTheme = () => {
     if (switchRef.current) {
@@ -31,17 +30,17 @@ export function Switch() {
   }
 
   return (
-    <SwitchContainer style={{background: themeStyle.background}} onClick={alternateTheme}>
-        <InputCheck ref={switchRef} />
+    <SwitchContainer onClick={alternateTheme}>
+        <InputCheck ref={switchRef} defaultChecked={isDark}/>
         <FlexSwitch>
           <ContainerMoon>
-            <Span>🌜</Span>
+              <Span>🌜</Span>
           </ContainerMoon>
           <ContainerSun>
             <Span>🌞</Span>
           </ContainerSun>
         </FlexSwitch>
-        <StateSwitch className={isDark  ? 'active-switch' : ''} />
+        <StateSwitch className={isDark  ? 'active-switch' : 'desative-switch'} />
     </SwitchContainer>
   )
 }

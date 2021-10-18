@@ -21,8 +21,8 @@ export function InputSearch() {
   const [hasText, setHasText] = useState(false)
   // const stateless = useState(false)
 
-  function hasSearch(changeEvent: ChangeEvent & { target: { value: string; } }) {
-    const changeText = changeEvent.target.value
+  function hasSearchChanger(evt: ChangeEvent & { target: { value: string; } }) {
+    const changeText = evt.target.value
 
     setHasText(changeText?.length > 0)
     setText(changeText)
@@ -37,9 +37,9 @@ export function InputSearch() {
         content='Seu navegador não tem suporte para audio'
         footer={'ok'}
         stateless={stateless}
-      /> } */}
+      />*/}
       <SearchContainer>
-        <Search placeholder='Pesquise aqui' onChange={hasSearch} value={text} />
+        <Search placeholder='Pesquise aqui' onChange={hasSearchChanger} value={text} />
         <BoxIcon
           width='2rem'
           height='2rem'

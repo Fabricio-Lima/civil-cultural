@@ -1,38 +1,31 @@
 import styled from 'styled-components'
 
-export const LoginContainer = styled.div`
-    width: 100vw;
-    height: 100vh;
-    display: flex;
+import {
+  Col,
+  FloatingLabel
+} from 'react-bootstrap'
+
+export const Logo = styled(Col)`
+
+`
+export const LogoTitle = styled.h4`
+    font-size: 1.5em;
+    font-weight: 600;
+    letter-spacing: 0.10rem;
+    line-height: .4rem;
+    margin-right: .9rem;
 `
 
-export const BoxImgIllustration = styled.section`
-    width: 50%;
-    height: 100%;
+export const ImgIllustration = styled(Col)`
+    background: url('knowledge_lillustration.png') no-repeat left top;
+    background-size: cover;
 `
 
-export const BoxLogin = styled.section`
-    width: 50%;
-`
+export const FloatLabel = styled(FloatingLabel)`
+    font-size: .94em;
+    color: var(--gray-400);
 
-export const ImgIllustration = styled.div`
-    width: 100%;
-    height: 100%;
-   /*  background: url('./astronaut-illustration.svg') no-repeat left top;
-    background-size: contain; */
-`
-
-export const Box = styled.div`
-    flex: 0 0 auto; 
-`
-
-export const BoxInput = styled.div`
-    flex: 0 0 auto;
-`
-
-export const Input = styled.input.attrs(props => ({
-    type: props.type
-})) `
-    
-
+    & > label {
+        bottom: -.8rem;
+    }
 `

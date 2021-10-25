@@ -3,7 +3,6 @@ import Head from "next/head"
 import Header from "Components/Header"
 import Sidebar from 'Components/Sidebar'
 import SidebarTopics from 'Components/SidebarTopics'
-import Footer from 'Components/Footer'
 
 
 import {
@@ -26,7 +25,6 @@ export default function Home() {
         </div>
       </Main>
       <SidebarTopics />
-      <Footer />
     </HomeContainer>
   )
 }

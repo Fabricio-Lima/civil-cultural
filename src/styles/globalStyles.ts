@@ -21,8 +21,8 @@ export default createGlobalStyle`
     --green-400: #5DFFA5;
     --green-500: #04D361;
     --green-600: #00CF5D;
-    --green-800: #00BF2D;
-    --green-dark: #00711B;
+    --green-800: #00B04F;
+    --green-dark: #00B024;
   
     --purple-300: #9F75FF;
     --purple-400: #9164FA; 
@@ -51,13 +51,8 @@ export default createGlobalStyle`
   }
 
   body, input, textArea, button, p {
-    font: 400 1rem 'Roboto', sans-serif;
-  }
-
-  h1, h2, h3, h4, h5, h6, title {
-    font-family: 'Fira Sans', sans-serif;
-    font-weight: 600;
-    color: ${p => p.theme.title}
+    font: 500 1rem 'Fira Sans', sans-serif;
+    color: ${p => p.theme.text};
   }
 
   input:focus, button:focus, textArea:focus, select:focus {
@@ -72,7 +67,29 @@ export default createGlobalStyle`
     background-image: linear-gradient(rgb(0 0 0 / 0%),rgb(0 0 0 / 5%) 40%,rgb(0 0 0 / 10%));
   }
 
+
+  .h-full {
+    height: 100vh;
+  }
+
+  .w-full {
+    width: 100vw;
+  }
+
+
+  // text
+  h1, h2, h3, h4, h5, h6, title {
+    font:  600 1.2rem 'Fira Sans', sans-serif;
+    color: ${p => p.theme.title};
+  }
+
   a {
     color: ${p => p.theme.link};
+  }
+
+  .text-error {
+    font-size: .9rem;
+    font-weight: 500;
+    color: var(--red-300);
   }
 `

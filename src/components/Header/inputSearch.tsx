@@ -31,13 +31,6 @@ export function InputSearch() {
 
   return (
     <>
-      {/* {<ModalPopup
-        icon={<IconInfo/>}
-        title='Aviso'
-        content='Seu navegador não tem suporte para audio'
-        footer={'ok'}
-        stateless={stateless}
-      />*/}
       <SearchContainer>
         <Search placeholder='Pesquise aqui' onChange={hasSearchChanger} value={text} />
         <BoxIcon
@@ -56,7 +49,7 @@ export function InputSearch() {
           }
         </BoxIcon>
         <BoxIcon>
-          <ButtonAudio title='Fale para escrever na caixa de pesquisa e pressione enter' >
+          <ButtonAudio title='Fale para escrever pesquisar' >
             <IconAudio />
           </ButtonAudio>
         </BoxIcon>

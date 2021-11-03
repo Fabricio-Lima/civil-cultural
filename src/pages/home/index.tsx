@@ -1,10 +1,12 @@
+/* Resources */
 import Head from "next/head"
 
+/* Components */
 import Header from "Components/Header"
 import Sidebar from 'Components/Sidebar'
 import SidebarTopics from 'Components/SidebarTopics'
 
-
+/* Styles */
 import {
   HomeContainer,
   Main

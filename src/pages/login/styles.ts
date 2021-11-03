@@ -23,9 +23,16 @@ export const ImgIllustration = styled(Col)`
 
 export const FloatLabel = styled(FloatingLabel)`
     font-size: .94em;
-    color: var(--gray-400);
+    color: ${t => t.theme.colors.grayLight};
 
     & > label {
         bottom: -.8rem;
+        padding-left: .5rem !important;
+        padding-right: .5rem !important;
     }
+`
+
+export const FormLink = styled.a`
+    font-size: .86em;
+    font-weight: 500;
 `

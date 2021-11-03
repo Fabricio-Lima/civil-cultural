@@ -14,7 +14,7 @@ export const HeaderContainer = styled.header`
   padding: 0;
   top: 0;
   padding-bottom: .5rem;
-  box-shadow: 0 0 10px ${p => p.theme.tons.primary};
+  box-shadow: 0 0 10px ${t => t.theme.tons.primary};
 `
 
 export const FlexContainer = styled.div`
@@ -32,7 +32,7 @@ export const BoxItem = styled.div`
 
 const Icon = css`
   font-size: 1.5rem;
-  color: ${p => p.theme.title};
+  color: ${t => t.theme.title};
   vertical-align: middle;
 `
 
@@ -55,7 +55,7 @@ export const SearchContainer = styled.div`
   align-items: center;
   padding-left: .2rem;  
   border-radius: .5rem;
-  background-color: ${p => p.theme.backgroundInput};
+  background-color: ${t => t.theme.backgroundInput};
 `
 
 export const BoxIcon = styled.div`
@@ -110,15 +110,15 @@ export const Search = styled.input.attrs(() => ({
   padding: .85rem;
   border-radius: .5rem;
   border: 0px;
-  background-color: ${p => p.theme.backgroundInput};
-  color: ${p => p.theme.title};
+  background-color: ${t => t.theme.backgroundInput};
+  color: ${t => t.theme.title};
   font-size: 1.1rem;
   font-size: 600;
 
   &::placeholder {
-    color: ${p => p.theme.title};
-    font-weight: 800;
-    font-size: 1.2rem;
+    color: ${t => t.theme.title};
+    font-weight: 600;
+    font-size: 1rem;
   }
 `
 /** ----------------------------- */
@@ -130,7 +130,7 @@ export const SwitchContainer = styled(Button)`
   border-radius: 15px 15px;
   overflow: hidden;
 
-  background-color: ${p => p.theme.type == 'dark' ? 'var(--gray-400)' : 'var(--gray-600)'} ;
+  background-color: ${t => t.theme.type == 'dark' ? 'var(--gray-400)' : 'var(--gray-600)'} ;
 `
 
 export const InputCheck = styled.input.attrs(() => ({
@@ -225,17 +225,17 @@ export const DropdownButton = styled(Button)`
   font-weight: 600;
   text-align: center;
   vertical-align: middle;
-  color: ${p => p.theme.link};
+  color: ${t => t.theme.link};
 
   &:hover {
     background-image: none;
-    filter: ${ p => p.theme.type == 'dark' ? 'sepia(45%)' : 'brightness(60%)'};
+    filter: ${ t => t.theme.type == 'dark' ? 'sepia(45%)' : 'brightness(60%)'};
   }
 `
 
 export const Dropdown = styled.div`
   width: 14rem;
-  background: ${p => p.theme.background};
+  background: ${t => t.theme.background};
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
   border-radius: .8rem;
 
@@ -266,7 +266,7 @@ export const Select = styled.div`
 export const Option = styled.span`
   text-align: center;
   text-decoration: none;
-  color: ${p => p.theme.title};
+  color: ${t => t.theme.title};
   padding: 1rem 1.5rem;
   display: block;
 
@@ -276,7 +276,7 @@ export const Option = styled.span`
   }
 
   &:nth-child(n + 1):nth-child(-n + 2) {
-    border-bottom: 1px solid ${p => p.theme.type == 'dark' ? 'var(--gray-400)' : 'var(--gray-200)'};
+    border-bottom: 1px solid ${t => t.theme.type == 'dark' ? 'var(--gray-400)' : 'var(--gray-200)'};
   }
 `
 /** ----------------------------- */
@@ -288,7 +288,7 @@ export const BoxIconMenu = styled(BoxIcon)`
   padding: .3em;
 
   /* &:hover {
-    background: ${p => p.theme.tons.primary};
+    background: ${t => t.theme.tons.primary};
   } */
 `
 

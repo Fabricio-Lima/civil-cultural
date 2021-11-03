@@ -30,6 +30,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang='pt-BR'>
         <Head>
+          <link rel="shortcut icon" href="/civil.png" type="image/x-icon" />
           <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com"/>

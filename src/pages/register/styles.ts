@@ -21,9 +21,27 @@ export const FormLink = styled.a`
 
 export const FormSelect = styled(Form.Select)`
     height: calc(3.40rem + 2px) !important;
+    background-color: ${t => t.theme.background};
+    color: ${t => t.theme.colors.grayLight};
 
     &:focus {
         border: 1px solid var(--green-600);
         box-shadow: 0 0 0 .25rem #00CF5D12;
+    }
+`
+
+export const FormTextarea = styled(Form).attrs({
+    className: 'form-control',
+    as: 'textarea'
+})`
+    height: 100px !important;
+    background: ${t => t.theme.background};
+    color: ${t => t.theme.colors.grayLight};
+
+    &:focus {
+        border: 1px solid var(--green-600);
+        box-shadow: 0 0 0 .25rem #00CF5D12 !important;
+        background: ${t => t.theme.background};
+        color: ${t => t.theme.colors.grayLight};
     }
 `

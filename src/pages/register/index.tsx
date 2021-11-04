@@ -28,7 +28,8 @@ interface CountryProps {
 import {
     FloatLabel,
     FormSelect,
-    FormLink
+    FormLink,
+    FormTextarea
 } from 'Pages/register/styles'
 
 
@@ -37,17 +38,26 @@ const schema = yup.object({
     email: yup.string().email().required(),
     password: yup.string().required(),
     currentPassword: yup.string().required().oneOf([yup.ref('password')]),
-    country: yup.string().required(),
     language: yup.string().required(),
+    phone_number: yup.number().required(),
+    phone_fix_number: yup.number(),
+    country: yup.string().required(),
+    cep: yup.number(),
+    state: yup.string().required(),
+    city: yup.string().required(),
+    address: yup.string().required(),
+    personal_identification: yup.string().required(),
 })
 
 export default function Register() {
     const [countries, setCountries] = useState<CountryProps[]>([])
+    const [countryUf, setCountryUf] = useState<string>('')
+
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
     })
 
-    const submit = (data) => console.table(data)
+    const submit = (data) => console.table(data.type_user = '2540')
 
     useEffect(() => {
         axios
@@ -64,14 +74,14 @@ export default function Register() {
                 <title>Cadastro</title>
             </Head>
 
-            <Col className='d-flex justify-content-center align-content-center align-items-center'>
+            <Col className='col-12 h-full mt-4'>
                 <Col xxl='8' xl='8' lg='10' md='10' sm='12' xs='12' className='mx-auto'>
                     <Form className='col-11 mx-auto'>
                         <Form.Group>
                             <Row>
                                 <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
                                     <FloatLabel
-                                        label='Name'
+                                        label='Nome'
                                     >
                                         <Input
                                             type='text'
@@ -107,11 +117,11 @@ export default function Register() {
                             <Row>
                                 <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
                                     <FloatLabel
-                                        label='Password'
+                                        label='Senha'
                                     >
                                         <Input
                                             type='password'
-                                            placeholder='Password'
+                                            placeholder='Senha'
                                             aria-label="Password"
                                             aria-required='true'
                                             {...register('password', { required: true })}
@@ -124,7 +134,7 @@ export default function Register() {
                                 </Col>
                                 <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
                                     <FloatLabel
-                                        label='Confirme Password'
+                                        label='Confirme a senha'
                                     >
                                         <Input
                                             type='password'
@@ -143,9 +153,65 @@ export default function Register() {
                             <Row>
                                 <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
                                     <FloatLabel
+                                        label='Telefone'
+                                    >
+                                        <Input
+                                            type='number'
+                                            placeholder='Telefone'
+                                            aria-label="Telefone"
+                                            aria-required='true'
+                                            onKeyPress={(e) => /[\d]+/.test(e.key) || e.preventDefault()}
+                                            {...register('phone_number', { required: true })}
+                                        />
+                                    </FloatLabel>
+                                    <Col className='col-12 mx-auto mt-2'>
+                                        {errors.phone_number && (<AlertError text='Telefone obrigatório' />)}
+                                    </Col>
+                                </Col>
+                                <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
+                                    <FloatLabel
+                                        label='Telefone Fixo'
+                                    >
+                                        <Input
+                                            type='number'
+                                            placeholder='Telefone Fixo'
+                                            aria-label="Telefone Fixo"
+                                            aria-required='false'
+                                            onKeyPress={(e) => /[\d]+/.test(e.key) || e.preventDefault()}
+                                            {...register('phone_fix_number')}
+                                        />
+                                    </FloatLabel>
+                                    <Col className='col-12 mx-auto mt-2'>
+                                        {errors.phone_fix_number && (<AlertError text='Por favor verifique esse número de telefone' />)}
+                                    </Col>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
+                                    <FloatLabel
+                                        label='Idioma'
+                                    >
+                                        <FormSelect placeholder='Idioma' aria-label='Idioma' aria-required='true' className='py-1' {...register('language')}>
+                                            <option value="" disabled></option>
+                                            <option value='pt-BR'>Português</option>
+                                            <option value='en'>Inglês</option>
+                                        </FormSelect>
+                                    </FloatLabel>
+                                    <Col className='col-12 mx-auto mt-2'>
+                                        {errors.language && (<AlertError text='Selecione o idioma principal' />)}
+                                    </Col>
+                                </Col>
+                                <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
+                                    <FloatLabel
                                         label='País'
                                     >
-                                        <FormSelect className='py-1' {...register('country')} >
+                                        <FormSelect 
+                                            placeholder='País' 
+                                            aria-label='País' 
+                                            aria-required='true' 
+                                            className='py-1' 
+                                            {...register('country')} 
+                                        >
                                             <option value="" disabled></option>
                                             {countries.map(country => <option key={country.id['ISO-ALPHA-2']} value={country.id['ISO-ALPHA-2']}>{country.nome}</option>)}
                                         </FormSelect>
@@ -154,18 +220,82 @@ export default function Register() {
                                         {errors.country && (<AlertError text='Selecione o país' />)}
                                     </Col>
                                 </Col>
+                            </Row>
+                            <Row>
                                 <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
                                     <FloatLabel
-                                        label='Idioma'
+                                        label='Estado'
                                     >
-                                        <FormSelect className='py-1' {...register('language')}>
-                                            <option value=""  disabled></option>
-                                            <option value='pt-BR'>Português</option>
-                                            <option value='en'>Inglês</option>
+                                        <FormSelect placeholder='Estado' aria-label='Estado' aria-required='true' className='py-1' {...register('state', { required: true })}>
+                                            <option value="" disabled></option>
                                         </FormSelect>
                                     </FloatLabel>
                                     <Col className='col-12 mx-auto mt-2'>
-                                        {errors.language && (<AlertError text='Selecione o idioma principal' />)}
+                                        {errors.state && (<AlertError text='Selecione o estado' />)}
+                                    </Col>
+                                </Col>
+                                <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
+                                    <FloatLabel
+                                        label='Cep'
+                                    >
+                                        <Input
+                                            type='text'
+                                            placeholder='Cep'
+                                            aria-label='Cep'
+                                            aria-required='false'
+                                            onKeyPress={(e) => /[\d]+/.test(e.key) || e.preventDefault()}
+                                            {...register('cep')}
+                                        />
+                                    </FloatLabel>
+                                    <Col className='col-12 mx-auto mt-2'>
+                                        {errors.cep && (<AlertError text='Erro ao buscar cep' />)}
+                                    </Col>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
+                                    <FloatLabel
+                                        label='Cidade'
+                                    >
+                                        <Input
+                                            type='text'
+                                            placeholder='Cidade'
+                                            aria-label='Cidade'
+                                            aria-required='true'
+                                            {...register('city', { required: true })}
+                                        />
+                                    </FloatLabel>
+                                    <Col className='col-12 mx-auto mt-2'>
+                                        {errors.city && (<AlertError text='Cidade obrigatória' />)}
+                                    </Col>
+                                </Col>
+                                <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
+                                    <FloatLabel
+                                        label='Endereço'
+                                    >
+                                        <Input
+                                            type='text'
+                                            placeholder='Endereço'
+                                            aria-label='Endereço'
+                                            aria-required='true'
+                                            {...register('address', { required: true })}
+                                        />
+                                    </FloatLabel>
+                                    <Col className='col-12 mx-auto mt-2'>
+                                        {errors.address && (<AlertError text='Campo endereço Obrigatório' />)}
+                                    </Col>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col xxl='12' xl='12' lg='12' md='12' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
+
+                                    <FloatLabel
+                                        label='Conte-nos sobre sua carreira até aqui'
+                                    >
+                                        <FormTextarea {...register('personal_identification')} />
+                                    </FloatLabel>
+                                    <Col className='col-12 mx-auto mt-2'>
+                                        {errors.personal_identification && (<AlertError text='Por favor preencha esse campo.' />)}
                                     </Col>
                                 </Col>
                             </Row>

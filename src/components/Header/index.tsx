@@ -33,7 +33,6 @@ export default function Header() {
         <BoxItem style={{ width: '50%' }} >
           <FlexContainer style={{ justifyContent: 'flex-start' }} >
             <IconSidebar />
-            {<Logo/>}
           </FlexContainer>
         </BoxItem>
         <BoxItem>

@@ -100,6 +100,7 @@ export const IconClear = styled(IoMdClose)`
 
   &:hover {
     color: #F45D4E;
+    background-image: transparent !important;
   }
 `
 
@@ -210,8 +211,11 @@ export const Span = styled.span`
   display: flex;
   align-content: center;
   justify-content: center;
-  flex-wrap: wrap;
-  margin: 2px -5px;
+  align-items: center;
+  justify-items: center;
+  flex-wrap: nowrap;
+  vertical-align: middle;
+  margin: .25em .2em;
   font-size: 1em;
 `
 

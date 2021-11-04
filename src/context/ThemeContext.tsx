@@ -1,5 +1,5 @@
-import { createContext, useState } from 'react'
-import { DefaultTheme, ThemeProvider } from 'styled-components'
+import { useEffect, createContext } from 'react'
+import { ThemeProvider } from 'styled-components'
 
 import { CustomThemeContextProps, CustomThemeProviderProps, ThemeStateProps } from 'Contracts/ThemeContext'
 import { usePersistedState } from 'Hooks/usePersistedState'
@@ -10,7 +10,7 @@ export const ThemeContext = createContext({} as CustomThemeContextProps)
 export function CustomThemeProvider({ children }: CustomThemeProviderProps) {
 
   const [theme, setTheme] = usePersistedState('theme', ThemeStyle.light)
-  
+
   const toggleTheme = (themeType: ThemeStateProps) => {
     setTheme(ThemeStyle[themeType.toLowerCase()])
   }

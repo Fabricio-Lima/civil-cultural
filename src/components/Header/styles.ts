@@ -271,8 +271,9 @@ export const Option = styled.span`
   text-align: center;
   text-decoration: none;
   color: ${t => t.theme.title};
-  padding: 1rem 1.5rem;
+  padding: .8rem 1.3rem;
   display: block;
+  box-sizing: content-box;
 
   &:hover {
     filter: blur(40%);

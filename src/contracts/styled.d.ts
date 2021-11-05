@@ -18,6 +18,7 @@ declare module  'styled-components' {
       success: string;
       warn: string;
       error: string;
+      purple: string;
     },
     tons: {
       primary: string;

@@ -2,6 +2,7 @@ import Head from 'next/head'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import GlobalStyle from 'Styles/globalStyles'
+import 'Pages/i18n'
 
 import { CustomThemeProvider, ThemeContext } from 'Context/ThemeContext'
 

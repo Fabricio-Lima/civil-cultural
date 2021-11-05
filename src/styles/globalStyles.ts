@@ -2,6 +2,7 @@ import styled, { createGlobalStyle } from "styled-components"
 
 
 export default createGlobalStyle`  
+/* Variable colors */
   :root {
     --white: #FFFFFF;
     --gray-50: #F7F8FA;
@@ -40,6 +41,7 @@ export default createGlobalStyle`
     --yellow-600: #F9E910;
   }
 
+/* Global styles */
   * {
     margin: 0;
     padding: 0;
@@ -55,9 +57,13 @@ export default createGlobalStyle`
     color: ${p => p.theme.text};
   }
 
+/* Inputs */
+
   input:focus, button:focus, textArea:focus, select:focus {
     outline: none;
   }
+
+/* Buttons */
   
   button, a {
     cursor: pointer;
@@ -67,7 +73,7 @@ export default createGlobalStyle`
     background-image: linear-gradient(rgb(0 0 0 / 0%),rgb(0 0 0 / 5%) 40%,rgb(0 0 0 / 10%));
   }
 
-
+/* Height and width */
   .h-full {
     height: 100vh;
   }
@@ -77,7 +83,7 @@ export default createGlobalStyle`
   }
 
 
-  // text
+/* Text */
   h1, h2, h3, h4, h5, h6, title {
     font:  600 1.2rem 'Fira Sans', sans-serif;
     color: ${p => p.theme.title};
@@ -91,5 +97,9 @@ export default createGlobalStyle`
     font-size: .9rem;
     font-weight: 500;
     color: var(--red-300);
+  }
+
+  .cursor-pointer {
+    cursor: pointer;
   }
 `

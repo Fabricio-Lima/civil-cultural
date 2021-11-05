@@ -1,4 +1,8 @@
-import { useRef, useState, useEffect } from "react";
+/* Resources */
+import { useRef, useState, useEffect, useMemo } from "react"
+import { useTranslation } from 'react-i18next'
+
+/* Styles */
 import {
   DropdownButton,
   DropdownMenuContainer,
@@ -12,6 +16,19 @@ export function DropdownMenu() {
   const dropdownRef = useRef<HTMLDivElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
   const [isActive, setIsActive] = useState(false)
+  const { t, i18n } = useTranslation()
+
+  const languages = useMemo(() => [
+    {language : t('portuguese') , value : 'pt'},
+    {language : t('english') , value : 'en'},
+  ], [t('portuguese'), t('english')])
+
+  function changeLanguage(lang: string) {
+    console.log(lang)
+    i18n.changeLanguage(lang)
+    setIsActive(false)
+  }
+  
 
   useEffect(() => {
     function pageClick(evt: MouseEvent) {
@@ -48,20 +65,18 @@ export function DropdownMenu() {
           ref={buttonRef}
           onClick={() => setIsActive(!isActive)}
         >
-          English
+          {t('english')}
         </DropdownButton>
 
         <Dropdown
           ref={dropdownRef}
           className={isActive ? 'active' : ''}
         >
-          <form >
             <Select>
-              <Option>Português</Option>
-              <Option>Espanhol</Option>
-              <Option>Alemão</Option>
+              {
+                languages.map(({ language, value }, index) => <Option key={index} onClick={() => changeLanguage(value)}>{language}</Option>)
+              }
             </Select>
-          </form>
         </Dropdown>
       </DropdownMenuContainer>
 

@@ -1,3 +1,4 @@
+/* Resources */
 import Head from 'next/head'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
@@ -29,7 +30,10 @@ import {
     FloatLabel,
     FormSelect,
     FormLink,
-    FormTextarea
+    FormTextarea,
+    BoxIcon,
+    IconEye,
+    IconEyeInvisible
 } from 'Pages/register/styles'
 
 
@@ -40,9 +44,9 @@ const schema = yup.object({
     currentPassword: yup.string().required().oneOf([yup.ref('password')]),
     language: yup.string().required(),
     phone_number: yup.number().required(),
-    phone_fix_number: yup.number(),
+    phone_fix_number: yup.number().nullable(),
     country: yup.string().required(),
-    cep: yup.number(),
+    cep: yup.number().nullable(),
     state: yup.string().required(),
     city: yup.string().required(),
     address: yup.string().required(),
@@ -51,6 +55,7 @@ const schema = yup.object({
 
 export default function Register() {
     const [countries, setCountries] = useState<CountryProps[]>([])
+    const [showPassword, setShowPassword] = useState<boolean>(false)
     const [countryUf, setCountryUf] = useState<string>('')
 
     const { register, handleSubmit, formState: { errors } } = useForm({
@@ -115,18 +120,22 @@ export default function Register() {
                                 </Col>
                             </Row>
                             <Row>
-                                <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
+                                <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4 position-relative">
                                     <FloatLabel
                                         label='Senha'
                                     >
                                         <Input
-                                            type='password'
+                                            type={showPassword ? 'text' : 'password'}
                                             placeholder='Senha'
                                             aria-label="Password"
                                             aria-required='true'
                                             {...register('password', { required: true })}
 
                                         />
+                                        
+                                        <BoxIcon className="cursor-pointer"  onClick={() => setShowPassword(x => !x)}>
+                                            {showPassword ?  <IconEyeInvisible /> : <IconEye />}
+                                        </BoxIcon>
                                     </FloatLabel>
                                     <Col className='col-12 mx-auto mt-2'>
                                         {errors.password && (<AlertError text='Senha obrigatória' />)}
@@ -137,7 +146,7 @@ export default function Register() {
                                         label='Confirme a senha'
                                     >
                                         <Input
-                                            type='password'
+                                            type={showPassword ? 'text' : 'password'}
                                             placeholder='Confirme Password'
                                             aria-label="Password"
                                             aria-required='true'
@@ -181,9 +190,6 @@ export default function Register() {
                                             {...register('phone_fix_number')}
                                         />
                                     </FloatLabel>
-                                    <Col className='col-12 mx-auto mt-2'>
-                                        {errors.phone_fix_number && (<AlertError text='Por favor verifique esse número de telefone' />)}
-                                    </Col>
                                 </Col>
                             </Row>
                             <Row>
@@ -226,12 +232,17 @@ export default function Register() {
                                     <FloatLabel
                                         label='Estado'
                                     >
-                                        <FormSelect placeholder='Estado' aria-label='Estado' aria-required='true' className='py-1' {...register('state', { required: true })}>
-                                            <option value="" disabled></option>
-                                        </FormSelect>
+                                       
+                                       <Input
+                                            type='text'
+                                            placeholder='Estado'
+                                            aria-label="Estado"
+                                            aria-required='true'
+                                            {...register('state', { required: true })}
+                                       />
                                     </FloatLabel>
                                     <Col className='col-12 mx-auto mt-2'>
-                                        {errors.state && (<AlertError text='Selecione o estado' />)}
+                                        {errors.state && (<AlertError text='Campo campo é obrigatório' />)}
                                     </Col>
                                 </Col>
                                 <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
@@ -290,7 +301,7 @@ export default function Register() {
                                 <Col xxl='12' xl='12' lg='12' md='12' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
 
                                     <FloatLabel
-                                        label='Conte-nos sobre sua carreira até aqui'
+                                        label='Conte-nos sobre sua carreira'
                                     >
                                         <FormTextarea {...register('personal_identification')} />
                                     </FloatLabel>

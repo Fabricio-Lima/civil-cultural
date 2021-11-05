@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
+import { useTranslation } from 'react-i18next'
 
 /* Components */
 import Button from 'Components/Button'
@@ -27,6 +28,7 @@ const schema = yup.object({
 })
 
 export default function Login () {
+    const { t } = useTranslation()
     const {
         handleSubmit,
         register,
@@ -76,7 +78,7 @@ export default function Login () {
                             </Col>
                             <Col xxl='6' xl='8' lg='8' md='10' sm='12' xs='12'  className="col-10 mx-auto mb-4">
                                 <FloatLabel
-                                        label="Senha"
+                                        label={t('password')}
                                 >
                                         <Input 
                                             type='password' 

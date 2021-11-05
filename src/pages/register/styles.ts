@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 import { FloatingLabel, Form } from 'react-bootstrap'
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 
 
 export const FloatLabel = styled(FloatingLabel)`
@@ -43,5 +44,29 @@ export const FormTextarea = styled(Form).attrs({
         box-shadow: 0 0 0 .25rem #00CF5D12 !important;
         background: ${t => t.theme.background};
         color: ${t => t.theme.colors.grayLight};
+    }
+`
+
+export const BoxIcon = styled.span`
+    position: absolute;
+    top: 1.5em;
+    right: 1px;
+`
+
+export const IconEye = styled(AiFillEye)`
+    width: 1.1rem;
+    height: 1.1rem;
+
+    &:active {
+        color: #4D4E51;
+    }
+`
+
+export const IconEyeInvisible = styled(AiFillEyeInvisible)`
+    width: 1.1rem;
+    height: 1.1rem;
+
+    &:active {
+        fill: #4D4E51;
     }
 `

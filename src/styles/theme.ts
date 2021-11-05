@@ -16,6 +16,7 @@ export const ThemeStyle = {
       success: 'var(--green-500)',
       warn: 'var(--yellow-400)',
       error: 'var(--red-400)',
+      purple: 'var(--purple-500)',
     },
     tons: {
       primary: 'rgba(50,50,50,.1)'
@@ -44,6 +45,7 @@ export const ThemeStyle = {
       success: 'var(--green-500)',
       warn: 'var(--yellow-400)',
       error: 'var(--red-400)',
+      purple: 'var(--purple-400)',
     },
     tons: {
       primary: 'rgba(0, 0, 0, .3)'

@@ -18,13 +18,17 @@ export function DropdownMenu() {
   const [isActive, setIsActive] = useState(false)
   const { t, i18n } = useTranslation()
 
-  const languages = useMemo(() => [
+  const languages = [
     {language : t('portuguese') , value : 'pt'},
     {language : t('english') , value : 'en'},
-  ], [t('portuguese'), t('english')])
+  ]
+
+  const LanguagesMemoized = useMemo(
+    () => languages.map(({ language, value }, index) => <Option key={index} onClick={() => changeLanguage(value)}>{language}</Option>), 
+    [languages]
+  )
 
   function changeLanguage(lang: string) {
-    console.log(lang)
     i18n.changeLanguage(lang)
     setIsActive(false)
   }
@@ -73,9 +77,7 @@ export function DropdownMenu() {
           className={isActive ? 'active' : ''}
         >
             <Select>
-              {
-                languages.map(({ language, value }, index) => <Option key={index} onClick={() => changeLanguage(value)}>{language}</Option>)
-              }
+              { LanguagesMemoized }
             </Select>
         </Dropdown>
       </DropdownMenuContainer>

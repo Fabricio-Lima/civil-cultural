@@ -1,22 +1,35 @@
-import i18n from 'i18next'
-import backend from 'i18next-http-backend'
-import languageDetector from 'i18next-browser-languagedetector'
-import { initReactI18next } from 'react-i18next'
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import Backend from 'i18next-http-backend';
+import LanguageDetector from 'i18next-browser-languagedetector';
 
-i18n
-    .use(backend)
-    .use(languageDetector)
-    .use(initReactI18next)
-    .init({
-        fallbackLng: 'pt',
-        debug: true,
-        detection: {
-            order: ['querystring', 'cookie', 'localStorage', 'navigator', 'htmlTag', 'path', 'subdomain'],
-            caches: ['cookie', 'localStorage'],
-        },
-        interpolation: {
-            escapeValue: false,
-        }
-    })
+const options = {
+  fallbackLng: 'pt',
+  defaultLocale: 'pt',
+  saveMissing: true,
+  debug: process.env.APP_ENV === 'dev',
+  interpolation: {
+    escapeValue: false,
+    format: (value, format, lng) => {
+      if (format === 'uppercase') return value.toUpperCase();
+      return value;
+    },
+  },
+  backend: {
+    loadPath: './locales/{{lng}}/{{ns}}.json',
+    addPath: './locales/add/{{lng}}/{{ns}}',
+    allowMultiLoading: false,
+  },
+  useSuspense: process && !process.release,
+};
+
+// initialize if not already initialized
+if (!i18n.isInitialized) {
+    i18n
+        .use(Backend)
+        .use(initReactI18next)
+        .use(LanguageDetector)
+        .init(options);
+}
 
 export default i18n

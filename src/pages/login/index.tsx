@@ -78,7 +78,7 @@ export default function Login () {
                             </Col>
                             <Col xxl='6' xl='8' lg='8' md='10' sm='12' xs='12'  className="col-10 mx-auto mb-4">
                                 <FloatLabel
-                                        label={t('password')}
+                                        label={t('forms.password')}
                                 >
                                         <Input 
                                             type='password' 
@@ -94,7 +94,7 @@ export default function Login () {
                             </Col>
                             <Col xxl='8' xl='8' lg='8' md='10' sm='12' xs='12' className="col-8 mx-auto pt-2 pb-3 mt-5 mb-4">
                                 <Link href='#' >
-                                    <FormLink className="link-primary float-end">Esqueceu a senha ?</FormLink>
+                                    <FormLink className="link-primary float-end">{t('pages.login.forgotpassword')}</FormLink>
                                 </Link>
                             </Col>
 
@@ -103,7 +103,7 @@ export default function Login () {
                             </Col>
                             <Col className='col-12 my-2 text-center clearfix'>
                                 <Link href='/register' >
-                                    <FormLink className="link-primary text-decoration-none text-center">Criar Conta</FormLink>
+                                    <FormLink className="link-primary text-decoration-none text-center">{t('pages.login.createaccount')}</FormLink>
                                 </Link>
                             </Col>
                         </Form.Group>

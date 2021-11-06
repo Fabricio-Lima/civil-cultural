@@ -1,8 +1,13 @@
 {
     "portuguese": "Portuguese",
     "english": "English",
-
     "forms": {
         "password": "Password"
+    },
+    "pages": {
+        "login": {
+            "forgotpassword": "Forgot password ?",
+            "createaccount": "Create an account"
+        }
     }
 }

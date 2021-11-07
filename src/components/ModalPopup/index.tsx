@@ -30,8 +30,9 @@ export const ModalPopup = forwardRef((modalProps: ModalPopupProps, ref?: Ref<Pop
     ...props
   } = modalProps
 
-  const [ openPopup, setOpenPopup ] = stateless ? stateless : useState(false)
   const { theme } = useContext(ThemeContext)
+  
+  const [ openPopup, setOpenPopup ] = stateless ? stateless : useState(false)
 
   const closeModal = () => setOpenPopup(false)
 

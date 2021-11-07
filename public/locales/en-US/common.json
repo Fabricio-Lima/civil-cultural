@@ -15,9 +15,12 @@
         "number": "Number"
     },
     "pages": {
+        "home": {
+            "popover_message": "This browser does not support speech recognition."
+        },
         "login": {
-            "forgotpassword": "Forgot password ?",
-            "createaccount": "Create an account"
+            "forgot_password": "Forgot password ?",
+            "create_account": "Create an account"
         },
         "register": {
             "title": "Register",

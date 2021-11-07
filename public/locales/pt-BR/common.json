@@ -15,9 +15,12 @@
         "number": "Número"
     },
     "pages": {
+        "home": {
+            "popover_message": "Este navegador não tem suporte a reconhecimento de fala."
+        },
         "login": {
-            "forgotpassword": "Esqueceu a senha ?",
-            "createaccount": "Criar Conta"
+            "forgot_password": "Esqueceu a senha ?",
+            "create_account": "Criar Conta"
         },
         "register": {
             "title": "Registro",

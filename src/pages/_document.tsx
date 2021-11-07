@@ -8,18 +8,18 @@ import { ServerStyleSheet } from 'styled-components'
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const sheet = new ServerStyleSheet();
-    const { renderPage } = ctx;
+    const { renderPage } = ctx
 
     try {
-      ctx.renderPage = () =>
-        renderPage({
-          enhanceApp: (App) => (props) => sheet.collectStyles( <App {...props} />)
-        });
+      ctx.renderPage({
+        enhanceApp: (App) => (props) => sheet.collectStyles(<App {...props} />)
+      });
 
-     const initialProps = await Document.getInitialProps(ctx);
+      const initialProps = await Document.getInitialProps(ctx);
+
       return {
         ...initialProps,
-        styles: [...React.Children.toArray(initialProps.styles), sheet.getStyleElement()]
+        styles: [sheet.getStyleElement(), ...React.Children.toArray(initialProps.styles)]
       };
     } finally {
       sheet.seal();
@@ -33,8 +33,8 @@ export default class MyDocument extends Document {
           <link rel="shortcut icon" href="/civil.png" type="image/x-icon" />
           <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com"/>
-          <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" /> 
+          <link rel="preconnect" href="https://fonts.gstatic.com" />
+          <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
         </Head>
         <body>
           <Main />

@@ -1,8 +1,9 @@
-import styled, { keyframes, css } from 'styled-components'
+import styled, { keyframes, css, Keyframes } from 'styled-components'
 
 import { IoMdSearch, IoMdClose } from 'react-icons/io'
 import { AiFillAudio, AiOutlineMenuUnfold, AiOutlineMenuFold } from 'react-icons/ai'
 import { HiInformationCircle } from 'react-icons/hi'
+import { Popover } from 'react-bootstrap'
 
 // Styles global Header
 export const HeaderContainer = styled.header`
@@ -39,6 +40,12 @@ const Icon = css`
 export const Button = styled.button`
   background: transparent;
   border: 0;
+`
+
+export const ButtonClear = styled(Button)`
+  &:hover{
+    background-image: none;
+  }
 `
 
 export const IconInfo = styled(HiInformationCircle)`
@@ -85,12 +92,29 @@ export const ButtonAudio = styled(Button)`
   }
 `
 
+const animationListening = keyframes`
+  from {
+    color: 'var(--gray-500)';
+    opacity: .6;
+  }
+
+  to {
+    color: var(--green-dark);
+    opacity: 1;
+  }
+`
+
 export const IconAudio = styled(AiFillAudio)`
   ${Icon}
   transition: color .3s ease-out;
+  color: ${t => t.theme.type == 'dark' ? 'var(--gray-100)' : 'var(--gray-400)'};
 
   &:hover {
     color: #729BD3;
+  }
+
+  &.listen {
+    animation: ${animationListening} 1.4s cubic-bezier(0.46, 0.18, 0.46, 0.6) infinite;
   }
 `
 
@@ -99,8 +123,7 @@ export const IconClear = styled(IoMdClose)`
   transition: color .3s ease-out;
 
   &:hover {
-    color: #F45D4E;
-    background-image: transparent !important;
+    color: #F45D4E; 
   }
 `
 
@@ -116,6 +139,7 @@ export const Search = styled.input.attrs(() => ({
   font-size: 1.1rem;
   font-size: 600;
 
+  
   &::placeholder {
     color: ${t => t.theme.title};
     font-weight: 600;
@@ -124,6 +148,7 @@ export const Search = styled.input.attrs(() => ({
 `
 /** ----------------------------- */
 
+/* SWITCH */
 export const SwitchContainer = styled(Button)`
   width: 3.3rem;
   height: 1.68rem;
@@ -162,16 +187,12 @@ export const StateSwitch = styled.div`
   position: absolute;
   z-index: 2;
   left: 3px;
-  top: 2.5px;
+  top: 2.4px;
 
   background: linear-gradient(var(--purple-400), var(--purple-300));
 
-  &:hover {
-    filter: sepia(80%);
-  }
-
   &.active-switch{
-    transform: translateX(125%);
+    transform: translateX(118%);
   }
 
   &::after {
@@ -219,7 +240,7 @@ export const Span = styled.span`
   font-size: 1em;
 `
 
-
+/* DROPDOWN */
 export const DropdownMenuContainer = styled.div`
   padding: .2rem;
 `
@@ -287,7 +308,7 @@ export const Option = styled.span`
 /** ----------------------------- */
 
 
-//Styles from navbar and logo
+/* ICON NAVBAR  */
 export const BoxIconMenu = styled(BoxIcon)`
   border-radius:  4em;
   padding: .3em;
@@ -396,3 +417,28 @@ export const Typography = styled.p`
   margin-left: .7rem;
 `
 /** ----------------------------- */
+
+
+/* Popover */
+
+export const PopoverContainer = styled(Popover)`
+  background: ${t => t.theme.popup.background};
+  border: transparent;
+  border-radius: 10px;
+
+  & > .popover-arrow::after {
+    border-bottom: 1px solid ${t => t.theme.type == 'dark' && console.log(t.theme.type) ? 'rgba(79, 82, 101)' : 'rgba(555, 555, 555)'};
+  }
+`
+
+export const PopoverBody = styled(Popover.Body)`
+  color: ${t => t.theme.text};
+  background: ${t => t.theme.popup.background};
+  padding: .7rem;
+  border: 1px solid #96969650;
+  border-radius: 10px;
+`
+
+export const PopoverTitle = styled.p`
+  font-size: .9rem,
+`

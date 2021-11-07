@@ -17,9 +17,7 @@ export function IconSidebar() {
     if(isHandler) setIsHandler(false)
   }
 
-    const iconOpenMenu = (!isHandler && isActive) ? 
-      <IconOpenMenu className='animation-open' /> :
-      <IconOpenMenu />
+    const iconOpenMenu = <IconOpenMenu className={ (!isHandler && isActive) ? 'animation-open' : ''} /> 
 
   return (
     <BoxIconMenu onClick={menuToggle}>

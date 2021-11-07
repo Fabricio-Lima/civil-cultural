@@ -9,7 +9,7 @@ export const HeaderContainer = styled.header`
   grid-area: header;
   position: fixed;
   width: 100%;
-  height: auto;
+  height: 5.5rem;
   margin: 0;
   padding: 0;
   top: 0;

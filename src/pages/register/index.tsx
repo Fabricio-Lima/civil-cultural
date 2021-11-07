@@ -1,4 +1,6 @@
 /* Resources */
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation } from 'next-i18next'
 import Head from 'next/head'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
@@ -29,7 +31,6 @@ interface CountryProps {
 import {
     FloatLabel,
     FormSelect,
-    FormLink,
     FormTextarea,
     BoxIcon,
     IconEye,
@@ -37,32 +38,39 @@ import {
 } from 'Pages/register/styles'
 
 
-const schema = yup.object({
-    name: yup.string().required(),
-    email: yup.string().email().required(),
-    password: yup.string().required(),
-    currentPassword: yup.string().required().oneOf([yup.ref('password')]),
-    language: yup.string().required(),
-    phone_number: yup.number().required(),
-    phone_fix_number: yup.number().nullable(),
-    country: yup.string().required(),
-    cep: yup.number().nullable(),
-    state: yup.string().required(),
-    city: yup.string().required(),
-    address: yup.string().required(),
-    personal_identification: yup.string().required(),
-})
+
 
 export default function Register() {
+    let schema
     const [countries, setCountries] = useState<CountryProps[]>([])
     const [showPassword, setShowPassword] = useState<boolean>(false)
-    const [countryUf, setCountryUf] = useState<string>('')
+    const { t } = useTranslation()
+
+    if(!schema) {
+        schema = yup.object({
+            name: yup.string().required(t('pages.register.message_error.required').replace(':FIELD', t('forms.name'))),
+            email: yup.string().email().required(t('pages.register.message_error.required').replace(':FIELD', 'email')),
+            password: yup.string().required(t('pages.register.message_error.required').replace(':FIELD', t('forms.password'))),
+            currentPassword: yup.string().required(t('pages.register.message_error.required').replace(':FIELD', t('forms.confirm_password'))).oneOf([yup.ref('password')], 'Senhas divergentes'),
+            language: yup.string().required(t('pages.register.message_error.required').replace(':FIELD', t('forms.language'))),
+            phone_cell: yup.number().required(t('pages.register.message_error.required').replace(':FIELD', t('forms.phone_cell'))),
+            phone_fix_number: yup.number().notRequired(),
+            country: yup.string().required(t('pages.register.message_error.required').replace(':FIELD', t('forms.country'))),
+            cep: yup.number().notRequired().max(8, t('pages.register.message_error.max').replace(':FIELD', t('forms.cep'))),
+            state: yup.string().required(t('pages.register.message_error.required').replace(':FIELD', t('forms.state'))),
+            city: yup.string().required(t('pages.register.message_error.required').replace(':FIELD', t('forms.city'))),
+            address: yup.string().required(t('pages.register.message_error.required').replace(':FIELD', t('forms.address'))),
+            personal_identification: yup.string().required(t('pages.register.message_error.required').replace(':FIELD', t('forms.personal_identification'))),
+        })
+        
+    }
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
     })
+    
 
-    const submit = (data) => console.table(data.type_user = '2540')
+    const submit = (data) => console.table(data)
 
     useEffect(() => {
         axios
@@ -73,20 +81,22 @@ export default function Register() {
             .catch(console.error)
     }, [])
 
+    console.log(errors)
+
     return (
         <Col className='col-12 p-0 m-0'>
             <Head>
                 <title>Cadastro</title>
             </Head>
 
-            <Col className='col-12 h-full mt-4'>
+            <Col className='col-12 h-full mt-4 mb-4'>
                 <Col xxl='8' xl='8' lg='10' md='10' sm='12' xs='12' className='mx-auto'>
                     <Form className='col-11 mx-auto'>
                         <Form.Group>
                             <Row>
                                 <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
                                     <FloatLabel
-                                        label='Nome'
+                                       label={t('forms.name')}
                                     >
                                         <Input
                                             type='text'
@@ -98,7 +108,7 @@ export default function Register() {
                                         />
                                     </FloatLabel>
                                     <Col className='col-12 mx-auto mt-2'>
-                                        {errors.name && (<AlertError text='Nome obrigatório' />)}
+                                        {errors.name && (<AlertError text={errors.name.message} />)}
                                     </Col>
                                 </Col>
                                 <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
@@ -115,14 +125,14 @@ export default function Register() {
                                         />
                                     </FloatLabel>
                                     <Col className='col-12 mx-auto mt-2'>
-                                        {errors.email && (<AlertError text='Email obrigatório' />)}
+                                        {errors.email && (<AlertError text={errors.email.message} />)}
                                     </Col>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4 position-relative">
                                     <FloatLabel
-                                        label='Senha'
+                                       label={t('forms.password')}
                                     >
                                         <Input
                                             type={showPassword ? 'text' : 'password'}
@@ -132,18 +142,18 @@ export default function Register() {
                                             {...register('password', { required: true })}
 
                                         />
-                                        
-                                        <BoxIcon className="cursor-pointer"  onClick={() => setShowPassword(x => !x)}>
-                                            {showPassword ?  <IconEyeInvisible /> : <IconEye />}
+
+                                        <BoxIcon className="cursor-pointer" onClick={() => setShowPassword(x => !x)}>
+                                            {showPassword ? <IconEyeInvisible /> : <IconEye />}
                                         </BoxIcon>
                                     </FloatLabel>
                                     <Col className='col-12 mx-auto mt-2'>
-                                        {errors.password && (<AlertError text='Senha obrigatória' />)}
+                                        {errors.password && (<AlertError text={errors.password.message} />)}
                                     </Col>
                                 </Col>
                                 <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
                                     <FloatLabel
-                                        label='Confirme a senha'
+                                       label={t('forms.confirm_password')}
                                     >
                                         <Input
                                             type={showPassword ? 'text' : 'password'}
@@ -155,14 +165,14 @@ export default function Register() {
                                         />
                                     </FloatLabel>
                                     <Col className='col-12 mx-auto mt-2'>
-                                        {errors.currentPassword && (<AlertError text='Senhas divergentes, por favor verifique' />)}
+                                        {errors.currentPassword && (<AlertError text={errors.currentPassword.message}/>)}
                                     </Col>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
                                     <FloatLabel
-                                        label='Telefone'
+                                       label={t('forms.phone_cell')}
                                     >
                                         <Input
                                             type='number'
@@ -170,16 +180,16 @@ export default function Register() {
                                             aria-label="Telefone"
                                             aria-required='true'
                                             onKeyPress={(e) => /[\d]+/.test(e.key) || e.preventDefault()}
-                                            {...register('phone_number', { required: true })}
+                                            {...register('phone_cell', { required: true })}
                                         />
                                     </FloatLabel>
                                     <Col className='col-12 mx-auto mt-2'>
-                                        {errors.phone_number && (<AlertError text='Telefone obrigatório' />)}
+                                        {errors.phone_cell && (<AlertError text={errors.phone_cell.message} />)}
                                     </Col>
                                 </Col>
                                 <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
                                     <FloatLabel
-                                        label='Telefone Fixo'
+                                       label={t('forms.landline')}
                                     >
                                         <Input
                                             type='number'
@@ -187,17 +197,26 @@ export default function Register() {
                                             aria-label="Telefone Fixo"
                                             aria-required='false'
                                             onKeyPress={(e) => /[\d]+/.test(e.key) || e.preventDefault()}
-                                            {...register('phone_fix_number')}
+                                            {...register('phone_fix_number', { required: false })}
                                         />
                                     </FloatLabel>
+                                    <Col className='col-12 mx-auto mt-2'>
+                                        {errors.phone_fix_number && (<AlertError text='Telefone obrigatório' />)}
+                                    </Col>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
                                     <FloatLabel
-                                        label='Idioma'
+                                       label={t('forms.language')}
                                     >
-                                        <FormSelect placeholder='Idioma' aria-label='Idioma' aria-required='true' className='py-1' {...register('language')}>
+                                        <FormSelect 
+                                            placeholder='Idioma' 
+                                            aria-label='Idioma' 
+                                            aria-required='true' 
+                                            className='py-1' 
+                                            {...register('language', { required: true })}
+                                        >
                                             <option value="" disabled></option>
                                             <option value='pt-BR'>Português</option>
                                             <option value='en'>Inglês</option>
@@ -209,14 +228,14 @@ export default function Register() {
                                 </Col>
                                 <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
                                     <FloatLabel
-                                        label='País'
+                                       label={t('forms.country')}
                                     >
-                                        <FormSelect 
-                                            placeholder='País' 
-                                            aria-label='País' 
-                                            aria-required='true' 
-                                            className='py-1' 
-                                            {...register('country')} 
+                                        <FormSelect
+                                            placeholder='País'
+                                            aria-label='País'
+                                            aria-required='true'
+                                            className='py-1'
+                                            {...register('country', { required: true })}
                                         >
                                             <option value="" disabled></option>
                                             {countries.map(country => <option key={country.id['ISO-ALPHA-2']} value={country.id['ISO-ALPHA-2']}>{country.nome}</option>)}
@@ -230,16 +249,16 @@ export default function Register() {
                             <Row>
                                 <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
                                     <FloatLabel
-                                        label='Estado'
+                                       label={t('forms.state')}
                                     >
-                                       
-                                       <Input
+
+                                        <Input
                                             type='text'
                                             placeholder='Estado'
                                             aria-label="Estado"
                                             aria-required='true'
                                             {...register('state', { required: true })}
-                                       />
+                                        />
                                     </FloatLabel>
                                     <Col className='col-12 mx-auto mt-2'>
                                         {errors.state && (<AlertError text='Campo campo é obrigatório' />)}
@@ -255,18 +274,15 @@ export default function Register() {
                                             aria-label='Cep'
                                             aria-required='false'
                                             onKeyPress={(e) => /[\d]+/.test(e.key) || e.preventDefault()}
-                                            {...register('cep')}
+                                            {...register('cep', { required: false })}
                                         />
                                     </FloatLabel>
-                                    <Col className='col-12 mx-auto mt-2'>
-                                        {errors.cep && (<AlertError text='Erro ao buscar cep' />)}
-                                    </Col>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
                                     <FloatLabel
-                                        label='Cidade'
+                                       label={t('forms.city')}
                                     >
                                         <Input
                                             type='text'
@@ -282,7 +298,7 @@ export default function Register() {
                                 </Col>
                                 <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
                                     <FloatLabel
-                                        label='Endereço'
+                                       label={t('forms.address')}
                                     >
                                         <Input
                                             type='text'
@@ -301,9 +317,9 @@ export default function Register() {
                                 <Col xxl='12' xl='12' lg='12' md='12' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
 
                                     <FloatLabel
-                                        label='Conte-nos sobre sua carreira'
+                                       label={t('pages.register.about_you')}
                                     >
-                                        <FormTextarea {...register('personal_identification')} />
+                                        <FormTextarea {...register('personal_identification', { required: true })} />
                                     </FloatLabel>
                                     <Col className='col-12 mx-auto mt-2'>
                                         {errors.personal_identification && (<AlertError text='Por favor preencha esse campo.' />)}
@@ -322,4 +338,12 @@ export default function Register() {
             </Col>
         </Col>
     )
+}
+
+export async function getStaticProps({ locale }) {
+    return {
+        props: {
+            ...(await serverSideTranslations(locale, ['common']))
+        }
+    }
 }

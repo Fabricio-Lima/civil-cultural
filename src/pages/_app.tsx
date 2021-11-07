@@ -1,13 +1,16 @@
+/* Resources */
 import Head from 'next/head'
+import { CustomThemeProvider } from 'Context/ThemeContext'
+import { appWithTranslation } from 'next-i18next'
 
+/* Styles */
 import 'bootstrap/dist/css/bootstrap.min.css'
 import GlobalStyle from 'Styles/globalStyles'
-import 'Pages/i18n'
-
-import { CustomThemeProvider, ThemeContext } from 'Context/ThemeContext'
 
 
-export default function App({ Component, pageProps }) {
+
+export default function App(props) {
+  const CustomTranslation = appWithTranslation(({Component, pageProps}) =>  <Component {...pageProps} />)
   return (
     <>
       <Head>
@@ -17,7 +20,7 @@ export default function App({ Component, pageProps }) {
       </Head>
       <CustomThemeProvider>
         <GlobalStyle/>
-        <Component {...pageProps} />
+       <CustomTranslation {...props} />
       </CustomThemeProvider>
     </>
   )

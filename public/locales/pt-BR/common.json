@@ -1,0 +1,33 @@
+{
+    "portuguese": "Português",
+    "english": "Inglês",
+    "forms": {
+        "password": "Senha",
+        "name": "Nome",
+        "confirm_password": "Confirme a senha",
+        "phone_cell": "Celular",
+        "landline": "Telefone fixo",
+        "language": "Idioma",
+        "country": "País",
+        "state": "Estado",
+        "city": "Cidade",
+        "address": "Endereço",
+        "number": "Número"
+    },
+    "pages": {
+        "login": {
+            "forgotpassword": "Esqueceu a senha ?",
+            "createaccount": "Criar Conta"
+        },
+        "register": {
+            "title": "Registro",
+            "about_you": "Conte-nos sobre sua carreira",
+            "message_error": {
+                "required": "Campo :FIELD obrigatório",
+                "confirm_password": "Senhas divergentes",
+                "number": "Por favor, insira apenas número",
+                "max": "No máximo :NUM caracteres"
+            }
+        }
+    }
+}

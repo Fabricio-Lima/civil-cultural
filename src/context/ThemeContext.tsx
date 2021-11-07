@@ -1,18 +1,19 @@
-import { useEffect, createContext } from 'react'
+import { createContext } from 'react'
+import { useCookie } from 'react-use'
 import { ThemeProvider } from 'styled-components'
 
 import { CustomThemeContextProps, CustomThemeProviderProps, ThemeStateProps } from 'Contracts/ThemeContext'
-import { usePersistedState } from 'Hooks/usePersistedState'
 import { ThemeStyle } from 'Styles/theme'
 
 export const ThemeContext = createContext({} as CustomThemeContextProps)
 
 export function CustomThemeProvider({ children }: CustomThemeProviderProps) {
+  const [cookieTheme, updateCookieTheme] = useCookie('theme')
 
-  const [theme, setTheme] = usePersistedState('theme', ThemeStyle.light)
+  const theme = cookieTheme ? JSON.parse(cookieTheme) :  ThemeStyle.light
 
   const toggleTheme = (themeType: ThemeStateProps) => {
-    setTheme(ThemeStyle[themeType.toLowerCase()])
+    updateCookieTheme(JSON.stringify(ThemeStyle[themeType.toLowerCase()]))
   }
 
   const themeProps: CustomThemeContextProps = {

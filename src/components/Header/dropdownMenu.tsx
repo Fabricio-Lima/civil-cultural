@@ -1,6 +1,6 @@
 /* Resources */
 import { useRef, useState, useEffect, useMemo } from "react"
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'next-i18next'
 
 /* Styles */
 import {
@@ -19,20 +19,19 @@ export function DropdownMenu() {
   const { t, i18n } = useTranslation()
 
   const languages = [
-    {language : t('portuguese') , value : 'pt'},
-    {language : t('english') , value : 'en'},
+    {language : t('portuguese') , value : 'pt-BR'},
+    {language : t('english') , value : 'en-US'},
   ]
-
-  const LanguagesMemoized = useMemo(
-    () => languages.map(({ language, value }, index) => <Option key={index} onClick={() => changeLanguage(value)}>{language}</Option>), 
-    [languages]
-  )
 
   function changeLanguage(lang: string) {
     i18n.changeLanguage(lang)
     setIsActive(false)
   }
-  
+
+  const LanguagesMemoized = useMemo(
+    () => languages.map(({ language, value }, index) => <Option key={index} onClick={() => changeLanguage(value)}>{language}</Option>), 
+    [languages]
+  )
 
   useEffect(() => {
     function pageClick(evt: MouseEvent) {

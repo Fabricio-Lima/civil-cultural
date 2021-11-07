@@ -1,7 +1,8 @@
-import { ChangeEvent, useState, useEffect } from 'react';
+/* Resources */
+import { ChangeEvent, useState, useEffect } from 'react'
+import { useSpeech } from 'react-use'
 
-import { ModalPopup } from 'Components/ModalPopup'
-
+/* Components */
 import {
   SearchContainer,
   BoxIcon,
@@ -11,22 +12,25 @@ import {
   Search,
   ButtonSearch,
   IconAudio,
-  IconInfo,
   ButtonAudio
 } from 'Components/Header/styles'
 
-
 export function InputSearch() {
   const [text, setText] = useState('')
-  const [hasText, setHasText] = useState(false)
-  // const stateless = useState(false)
+  let state, voice;
+
+  function speaking() {
+    console.log(state)
+  }
 
   function hasSearchChanger(evt: ChangeEvent & { target: { value: string; } }) {
-    const changeText = evt.target.value
-
-    setHasText(changeText?.length > 0)
-    setText(changeText)
+    setText(evt.target.value)
   }
+
+  useEffect(() => {
+
+
+  }, [])
 
 
   return (
@@ -37,10 +41,10 @@ export function InputSearch() {
           width='2rem'
           height='2rem'
         >
-          {hasText && (
+          {text.length > 0 && (
             <Button
               title='Limpar pesquisa'
-              onClick={_ => (setText(''), setHasText(false))}
+              onClick={_ => (setText(''))}
               aria-hidden='true'
             >
               <IconClear />
@@ -54,7 +58,7 @@ export function InputSearch() {
           </ButtonAudio>
         </BoxIcon>
         <BoxIcon style={{padding: 0}} >
-          <ButtonSearch  title='Click para pesquisar'  >
+          <ButtonSearch  title='Click para pesquisar' onClick={speaking} >
             <IconSearch />
           </ButtonSearch>
         </BoxIcon>

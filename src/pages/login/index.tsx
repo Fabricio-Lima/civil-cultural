@@ -1,11 +1,12 @@
 /* Resources */
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'next-i18next'
 
 /* Components */
 import Button from 'Components/Button'
@@ -112,4 +113,12 @@ export default function Login () {
             </Col>
         </Col>
     )
+}
+
+export async function getStaticProps({ locale }) {
+    return {
+        props: {
+            ...(await serverSideTranslations(locale, ['common']))
+        }
+    }
 }

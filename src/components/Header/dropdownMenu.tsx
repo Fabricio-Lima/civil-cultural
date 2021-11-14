@@ -1,5 +1,7 @@
 /* Resources */
 import { useRef, useState, useEffect, useMemo } from "react"
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 
 /* Styles */
@@ -13,23 +15,20 @@ import {
 
 
 export function DropdownMenu() {
+  const [isActive, setIsActive] = useState(false)
+
   const dropdownRef = useRef<HTMLDivElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
-  const [isActive, setIsActive] = useState(false)
-  const { t, i18n } = useTranslation()
+  const { pathname } = useRouter()
+  const { t } = useTranslation()
 
   const languages = [
-    {language : t('portuguese') , value : 'pt-BR'},
-    {language : t('english') , value : 'en-US'},
+    { language: t('portuguese'), value: 'pt-BR' },
+    { language: t('english'), value: 'en-US' },
   ]
 
-  function changeLanguage(lang: string) {
-    i18n.changeLanguage(lang)
-    setIsActive(false)
-  }
-
   const LanguagesMemoized = useMemo(
-    () => languages.map(({ language, value }, index) => <Option key={index} onClick={() => changeLanguage(value)}>{language}</Option>), 
+    () => languages.map(({ language, value }, index) => <Option key={index} onClick={() => setIsActive(false)}><Link href={pathname} locale={value}><a className='text-decoration-none'>{language}</a></Link></Option>),
     [languages]
   )
 
@@ -44,7 +43,7 @@ export function DropdownMenu() {
     }
 
     function pageKeyPress(evt: KeyboardEvent) {
-      if(evt?.key == 'Escape') setIsActive(false)
+      if (evt?.key == 'Escape') setIsActive(false)
     }
 
     let doc = document.querySelector('body')
@@ -75,9 +74,9 @@ export function DropdownMenu() {
           ref={dropdownRef}
           className={isActive ? 'active' : ''}
         >
-            <Select>
-              { LanguagesMemoized }
-            </Select>
+          <Select>
+            {LanguagesMemoized}
+          </Select>
         </Dropdown>
       </DropdownMenuContainer>
 

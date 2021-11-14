@@ -1,9 +1,8 @@
 /* Resources */
-import { ChangeEvent, useState, useRef, MouseEventHandler } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
-import { useSpeechRecognition } from 'react-speech-recognition'
-import SpeechRecognition from 'react-speech-recognition'
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 
 /* Components */
 import { Overlay, Popover } from 'react-bootstrap'
@@ -25,7 +24,7 @@ import {
 } from 'Components/Header/styles'
 
 export function InputSearch() {
-  let idTimeout
+  let idTimeout: any[] = []
 
   const [text, setText] = useState('')
   const [isListening, setIsListening] = useState(false)
@@ -54,25 +53,32 @@ export function InputSearch() {
     if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
       setAlert(x => !x)
       setTarget(event.target)
-      if(alert && idTimeout) clearTimeout(idTimeout)
-      idTimeout = setTimeout(() => setAlert(false), 3200)
       return
     }
 
     isListening ?
       (SpeechRecognition.stopListening(), setIsListening(false)) :
-      (SpeechRecognition.startListening({ language: locale, continuous: true }), setIsListening(true), setText(s => s + transcript))
-
+      (SpeechRecognition.startListening({ language: locale, continuous: true }), setIsListening(true))
+      
   }
 
-  function hasSearchChanger(evt: ChangeEvent & { target: { value: string; } }) {
-    setText(evt.target.value)
-  }
+  useEffect(() => { 
+    if(alert)
+        idTimeout.push(setTimeout(() => setAlert(false), 3800))
+
+      return () => {
+        idTimeout.forEach(id => clearTimeout(id))
+      }
+  }, [alert])
+
+  useEffect(() => {
+    setText(s => s + transcript)
+  }, [transcript])
 
   return (
     <>
       <SearchContainer>
-        <Search placeholder='Pesquise aqui' onChange={hasSearchChanger} value={text} />
+        <Search placeholder='Pesquise aqui' onChange={ event => setText(event.target.value)} value={text} />
         <BoxIcon
           width='2rem'
           height='2rem'
@@ -90,7 +96,7 @@ export function InputSearch() {
         </BoxIcon>
         <BoxIcon ref={boxIconRef}>
           <ButtonAudio title='Fale para pesquisar' onClick={speaking} >
-            <IconAudio className={isListening ? 'listen' : ''} />
+            <IconAudio className={isListening ? 'listening' : ''} />
           </ButtonAudio>
           <Overlay
             show={alert}

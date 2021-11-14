@@ -1,6 +1,9 @@
 {
     "portuguese": "Portuguese",
     "english": "English",
+    "error": {
+        "error": "Error"
+    },
     "forms": {
         "password": "Password",
         "name": "Name",
@@ -16,7 +19,9 @@
     },
     "pages": {
         "home": {
-            "popover_message": "This browser does not support speech recognition."
+            "popover_message": "The browser does not support speech recognition.",
+            "menu_publication": "Latest publications",
+            "menu_category": "Posts by category"
         },
         "login": {
             "forgot_password": "Forgot password ?",

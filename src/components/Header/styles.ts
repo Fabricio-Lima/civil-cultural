@@ -1,8 +1,11 @@
-import styled, { keyframes, css, Keyframes } from 'styled-components'
+/* Resources */
+import styled, { keyframes, css } from 'styled-components'
 
+/* Components */
 import { IoMdSearch, IoMdClose } from 'react-icons/io'
-import { AiFillAudio, AiOutlineMenuUnfold, AiOutlineMenuFold } from 'react-icons/ai'
+import { AiFillAudio } from 'react-icons/ai'
 import { HiInformationCircle } from 'react-icons/hi'
+import { MdMenu } from 'react-icons/md'
 import { Popover } from 'react-bootstrap'
 
 // Styles global Header
@@ -10,12 +13,13 @@ export const HeaderContainer = styled.header`
   grid-area: header;
   position: fixed;
   width: 100%;
-  height: 5.5rem;
+  height: 4.8rem;
   margin: 0;
-  padding: 0;
+  padding: 1px 0;
   top: 0;
-  padding-bottom: .5rem;
   box-shadow: 0 0 10px ${t => t.theme.tons.primary};
+  background: ${t => t.theme.background};
+  z-index: 1000;
 `
 
 export const FlexContainer = styled.div`
@@ -58,10 +62,12 @@ export const IconInfo = styled(HiInformationCircle)`
 
 // Styles from InputSearch
 export const SearchContainer = styled.div`
+  width: 88%;
   display: flex;
   align-items: center;
   padding-left: .2rem;  
   border-radius: .5rem;
+  background-color: transparent;
   background-color: ${t => t.theme.backgroundInput};
 `
 
@@ -94,12 +100,12 @@ export const ButtonAudio = styled(Button)`
 
 const animationListening = keyframes`
   from {
-    color: 'var(--gray-500)';
+    color: var(--gray-500);
     opacity: .6;
   }
 
   to {
-    color: var(--green-dark);
+    color: var(--green-600);
     opacity: 1;
   }
 `
@@ -113,8 +119,8 @@ export const IconAudio = styled(AiFillAudio)`
     color: #729BD3;
   }
 
-  &.listen {
-    animation: ${animationListening} 1.4s cubic-bezier(0.46, 0.18, 0.46, 0.6) infinite;
+  &.listening {
+    animation: ${animationListening} 1.4s cubic-bezier(0.67, -0.18, 0.16, 1.06) infinite;
   }
 `
 
@@ -156,7 +162,7 @@ export const SwitchContainer = styled(Button)`
   border-radius: 15px 15px;
   overflow: hidden;
 
-  background-color: ${t => t.theme.type == 'dark' ? 'var(--gray-400)' : 'var(--gray-600)'} ;
+  background-color: ${t => t.theme.type == 'dark' ? 'var(--gray-400)' : 'var(--gray-300)'} ;
 `
 
 export const InputCheck = styled.input.attrs(() => ({
@@ -187,7 +193,7 @@ export const StateSwitch = styled.div`
   position: absolute;
   z-index: 2;
   left: 3px;
-  top: 2.4px;
+  top: 2.55px;
 
   background: linear-gradient(var(--purple-400), var(--purple-300));
 
@@ -200,12 +206,12 @@ export const StateSwitch = styled.div`
 
     position: absolute;
     left: 15%;
-    top: 15%;
+    top: 18%;
     border-radius: inherit;
     width: 70%;
     height: 70%;
 
-    background: linear-gradient(147deg,var(--purple-600), var(--purple-300));
+    background: linear-gradient(31deg,var(--purple-600), var(--purple-300));
   }
 `
 
@@ -295,14 +301,17 @@ export const Option = styled.span`
   padding: .8rem 1.3rem;
   display: block;
   box-sizing: content-box;
+  border-bottom: 1px solid ${t => t.theme.type == 'dark' ? 'var(--gray-400)' : 'var(--gray-200)'};
+
+
 
   &:hover {
     filter: blur(40%);
     cursor: pointer;
   }
 
-  &:nth-child(n + 1):nth-child(-n + 2) {
-    border-bottom: 1px solid ${t => t.theme.type == 'dark' ? 'var(--gray-400)' : 'var(--gray-200)'};
+  &:last-child {
+    border-bottom: 0;
   }
 `
 /** ----------------------------- */
@@ -313,9 +322,9 @@ export const BoxIconMenu = styled(BoxIcon)`
   border-radius:  4em;
   padding: .3em;
 
-  /* &:hover {
-    background: ${t => t.theme.tons.primary};
-  } */
+  &:hover {
+    background: #3478D418;
+  }
 `
 
 const visible = keyframes`
@@ -328,27 +337,15 @@ const visible = keyframes`
 
 `
 
-export const IconOpenMenu = styled(AiOutlineMenuFold)`
+export const IconMenu = styled(MdMenu)`
   ${Icon}
 
   &:hover {
     cursor: pointer;
   }
 
-  &.animation-open {
-    animation: ${visible} 1s both;
-  }
-`
-
-export const IconClosedMenu = styled(AiOutlineMenuUnfold)`
-  ${Icon}
-  
-  &:hover {
-    cursor: pointer;
-  }
-
-  &.animation-closed {
-    animation: ${visible} 1s both;
+  &.open {
+    color: var(--blue-300);
   }
 `
 /** ----------------------------- */
@@ -371,7 +368,8 @@ export const NavRow = styled.ul`
 `
 
 export const NavItem = styled.li`
-  margin: .5rem;
+  margin-right: .9rem;
+  margin-top: .9rem;
 `
 export const Link = styled.a`
   height: 100%;
@@ -427,7 +425,7 @@ export const PopoverContainer = styled(Popover)`
   border-radius: 10px;
 
   & > .popover-arrow::after {
-    border-bottom: 1px solid ${t => t.theme.type == 'dark' && console.log(t.theme.type) ? 'rgba(79, 82, 101)' : 'rgba(555, 555, 555)'};
+    border-bottom-color: ${t => (t.theme.type == 'dark') ? '#4F526590' : '#FDFDFD'};
   }
 `
 
@@ -435,7 +433,7 @@ export const PopoverBody = styled(Popover.Body)`
   color: ${t => t.theme.text};
   background: ${t => t.theme.popup.background};
   padding: .7rem;
-  border: 1px solid #96969650;
+  border: 1px solid #96969620;
   border-radius: 10px;
 `
 

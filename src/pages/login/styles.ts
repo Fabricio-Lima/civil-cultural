@@ -9,11 +9,12 @@ export const Logo = styled(Col)`
 
 `
 export const LogoTitle = styled.h4`
-    font-size: 1.5em;
+    font-size: 2.2em;
     font-weight: 600;
     letter-spacing: 0.10rem;
     line-height: .4rem;
     margin-right: .9rem;
+    margin-bottom: 0;
 `
 
 export const ImgIllustration = styled(Col)`

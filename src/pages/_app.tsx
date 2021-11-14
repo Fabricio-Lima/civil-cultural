@@ -4,8 +4,8 @@ import { CustomThemeProvider } from 'Context/ThemeContext'
 import { appWithTranslation } from 'next-i18next'
 
 /* Styles */
-import 'bootstrap/dist/css/bootstrap.min.css'
 import GlobalStyle from 'Styles/globalStyles'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 
 

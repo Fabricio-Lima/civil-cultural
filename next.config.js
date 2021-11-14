@@ -5,7 +5,8 @@ module.exports = {
   i18n,
   images: {
     domains: [
-      'storage.googleapis.com'
+      'storage.googleapis.com',
+      'img.freepik.com'
     ]
   }
 }

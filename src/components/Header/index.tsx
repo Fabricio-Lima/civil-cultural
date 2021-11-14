@@ -25,20 +25,15 @@ export default function Header() {
   return (
     <HeaderContainer>
       <FlexContainer>
-        <BoxItem />
-        <BoxItem />
-
-      </FlexContainer>
-      <FlexContainer>
-        <BoxItem style={{ width: '50%' }} >
+        <BoxItem className='col-3' >
           <FlexContainer style={{ justifyContent: 'flex-start' }} >
             <IconSidebar />
           </FlexContainer>
         </BoxItem>
-        <BoxItem>
+        <BoxItem className='col-6'>
           <InputSearch />
         </BoxItem>
-        <BoxItem style={{ width: '50%' }} >
+        <BoxItem className='col-3' >
           <Nav>
             <NavRow>
               <NavItem>

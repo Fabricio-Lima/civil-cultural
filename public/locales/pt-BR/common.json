@@ -1,6 +1,9 @@
 {
     "portuguese": "Português",
     "english": "Inglês",
+    "error": {
+        "error": "Erro"
+    },
     "forms": {
         "password": "Senha",
         "name": "Nome",
@@ -16,7 +19,9 @@
     },
     "pages": {
         "home": {
-            "popover_message": "Este navegador não tem suporte a reconhecimento de fala."
+            "popover_message": "O navegador não tem suporte a reconhecimento de fala.",
+            "menu_publication": "Publicações mais recentes",
+            "menu_category": "Postagens por categoria"
         },
         "login": {
             "forgot_password": "Esqueceu a senha ?",

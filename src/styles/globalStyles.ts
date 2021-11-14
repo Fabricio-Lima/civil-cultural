@@ -4,15 +4,21 @@ import styled, { createGlobalStyle } from "styled-components"
 export default createGlobalStyle`  
 /* Variable colors */
   :root {
+    --light: #F3F3F3;
+    --dark: #2A2A2E;
+
     --white: #FFFFFF;
-    --gray-50: #F7F8FA;
-    --gray-100: #E6E8EB;
-    --gray-200: #DFDFDF;
+    --white-ice: #F5F5F5;
+    --gray-50: #E9E9E9;
+    --gray-100: #E8E8E8;
+    --gray-200: #DADADA;
     --gray-300: #afb2b1;
     --gray-400: #696969;
     --gray-600: #333333;
     --gray-700: #2A2A2E;
 
+    --blue-100: #A0C8FF;
+    --blue-200: #8DBDFF;
     --blue-300: #729BD3;
     --blue-400: #4681D3;
     --blue-500: #3478D4;
@@ -69,7 +75,7 @@ export default createGlobalStyle`
     cursor: pointer;
   }
   
-  input[type=button], button:hover {
+  input[type=button]:hover, button:hover {
     background-image: linear-gradient(rgb(0 0 0 / 0%),rgb(0 0 0 / 5%) 40%,rgb(0 0 0 / 10%));
   }
 
@@ -85,7 +91,7 @@ export default createGlobalStyle`
 
 /* Text */
   h1, h2, h3, h4, h5, h6, title {
-    font:  600 1.2rem 'Fira Sans', sans-serif;
+    font:  600 1.2rem 'Dongle', sans-serif;
     color: ${p => p.theme.title};
   }
 
@@ -101,5 +107,9 @@ export default createGlobalStyle`
 
   .cursor-pointer {
     cursor: pointer;
+  }
+
+  .remove-bg-image:hover {
+    background-image: none;
   }
 `

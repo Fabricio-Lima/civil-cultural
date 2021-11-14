@@ -3,8 +3,7 @@ import { IconBaseProps } from 'react-icons/lib'
 
 import {
   BoxIconMenu,
-  IconClosedMenu,
-  IconOpenMenu
+  IconMenu
 } from 'Components/Header/styles'
 
 
@@ -17,11 +16,11 @@ export function IconSidebar() {
     if(isHandler) setIsHandler(false)
   }
 
-    const iconOpenMenu = <IconOpenMenu className={ (!isHandler && isActive) ? 'animation-open' : ''} /> 
+  const className = (!isHandler && isActive) ? 'animation-open' : ''
 
   return (
     <BoxIconMenu onClick={menuToggle}>
-      {isActive ?  iconOpenMenu : <IconClosedMenu className='animation-closed' />}
+      <IconMenu className='open'/>
     </BoxIconMenu>
   )
 }

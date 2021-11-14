@@ -1,14 +1,14 @@
 /* Resources */
+import * as yup from 'yup'
+import reactForm, { useForm }  from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+
+/* Components */
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useForm } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
-import * as yup from 'yup'
-import { useTranslation } from 'next-i18next'
-
-/* Components */
 import Button from 'Components/Button'
 import Input from 'Components/Input'
 import AlertError from 'Components/AlertError'
@@ -50,8 +50,8 @@ export default function Login () {
                     <Logo xxl='5' xl='5' lg='6' md='7' sm='8' xs='10' className='mx-auto d-flex align-items-center mb-5'>
                         <LogoTitle className='h4 ms-2'>Civil Cultural</LogoTitle>
                         <Image
-                            width={50}
-                            height={50}
+                            width={43}
+                            height={43}
                             src='/civilcultural.png'
                             aria-label='Logo Civil Cultural'
                             objectFit='cover'

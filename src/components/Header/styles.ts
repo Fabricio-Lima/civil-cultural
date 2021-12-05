@@ -2,6 +2,7 @@
 import styled, { keyframes, css } from 'styled-components'
 
 /* Components */
+import { Col, FormControl, InputGroup } from 'react-bootstrap'
 import { IoMdSearch, IoMdClose } from 'react-icons/io'
 import { AiFillAudio } from 'react-icons/ai'
 import { HiInformationCircle } from 'react-icons/hi'
@@ -61,20 +62,56 @@ export const IconInfo = styled(HiInformationCircle)`
 
 
 // Styles from InputSearch
-export const SearchContainer = styled.div`
-  width: 88%;
-  display: flex;
-  align-items: center;
-  padding-left: .2rem;  
-  border-radius: .5rem;
+export const DropdownSearch = styled(Col)`
+  transition: display 1s ease-out, height 1s ease-out;
+`
+
+export const DropdownMenuSearch = styled(Col)`
+  position: absolute;
+  top: 65px;
+  left: 0;
+  width: 100%;
+  background: ${t => t.theme.colors.grayDark};
+  box-shadow: 0 10px 20px ${t => t.theme.tons.primary};
+`
+
+export const SearchContainer = styled.div.attrs((props: {left: string|number}) => ({
+  left: props.left ?? '4',
+}))`
   background-color: transparent;
-  background-color: ${t => t.theme.backgroundInput};
+  position: absolute;
+  left: ${x => `${x.left}%`};
 `
 
 export const BoxIcon = styled.div`
   width: ${(props: {  width?: string; height?: string; }) => props.width ?? ''};
   height: ${(props: {  width?: string; height?: string; }) => props.height ?? ''};
   padding: .2rem;
+`
+
+export const Search = styled(FormControl)`
+  padding: 0 .85rem;
+  border-radius: .5rem;
+  border: 0px;
+  background-color: ${t => t.theme.backgroundInput};
+  color: ${t => t.theme.type == 'dark' ? '#fff' : 'var(--gray-500)'} !important;
+  font-size: 1.1rem;
+
+  &:focus {
+    background-color: ${t => t.theme.backgroundInput};
+  }
+  
+  &::placeholder {
+    color: ${t => t.theme.text};
+    font-weight: 600;
+    font-size: 1rem;
+  }
+`
+
+export const InputGroupText = styled(InputGroup.Text)`
+  background: ${t => t.theme.backgroundInput};
+  border: 0;
+  padding: 0;
 `
 
 export const ButtonSearch = styled(Button)`
@@ -86,7 +123,6 @@ export const ButtonSearch = styled(Button)`
 
 export const IconSearch = styled(IoMdSearch)`
   font-size: 1.5rem;
-  color: #ffffff;
   vertical-align: middle;
 `
 
@@ -113,7 +149,7 @@ const animationListening = keyframes`
 export const IconAudio = styled(AiFillAudio)`
   ${Icon}
   transition: color .3s ease-out;
-  color: ${t => t.theme.type == 'dark' ? 'var(--gray-100)' : 'var(--gray-400)'};
+  /* color: ${t => t.theme.type == 'dark' ? 'var(--gray-100)' : 'var(--gray-400)'}; */
 
   &:hover {
     color: #729BD3;
@@ -132,26 +168,6 @@ export const IconClear = styled(IoMdClose)`
     color: #F45D4E; 
   }
 `
-
-export const Search = styled.input.attrs(() => ({
-  type: 'text'
-}))`
-  width: 28rem;
-  padding: .85rem;
-  border-radius: .5rem;
-  border: 0px;
-  background-color: ${t => t.theme.backgroundInput};
-  color: ${t => t.theme.title};
-  font-size: 1.1rem;
-  font-size: 600;
-
-  
-  &::placeholder {
-    color: ${t => t.theme.title};
-    font-weight: 600;
-    font-size: 1rem;
-  }
-`
 /** ----------------------------- */
 
 /* SWITCH */
@@ -165,9 +181,7 @@ export const SwitchContainer = styled(Button)`
   background-color: ${t => t.theme.type == 'dark' ? 'var(--gray-400)' : 'var(--gray-300)'} ;
 `
 
-export const InputCheck = styled.input.attrs(() => ({
-  type: 'checkbox'
-}))`
+export const InputCheck = styled.input`
   display: block;
   width: 100%;
   height: 100%;
@@ -271,8 +285,8 @@ export const Dropdown = styled.div`
   border-radius: .8rem;
 
   position: absolute;
-  top: 3.9rem;
-  right: 7rem;
+  top: 95%;
+  right: 7%;
   z-index: 900;
   
   opacity: 0;

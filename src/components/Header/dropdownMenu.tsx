@@ -17,10 +17,15 @@ import {
 export function DropdownMenu() {
   const [isActive, setIsActive] = useState(false)
 
-  const dropdownRef = useRef<HTMLDivElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
-  const { pathname } = useRouter()
+  const { pathname, locale } = useRouter()
   const { t } = useTranslation()
+  const [languageTitle, setLanguageTitle] = useState(locale == 'pt-BR' ? 'Português' : 'English')
+
+  const changeLanguage = (lang: string) => {
+    setIsActive(false)
+    setLanguageTitle(lang)
+  }
 
   const languages = [
     { language: t('portuguese'), value: 'pt-BR' },
@@ -28,18 +33,18 @@ export function DropdownMenu() {
   ]
 
   const LanguagesMemoized = useMemo(
-    () => languages.map(({ language, value }, index) => <Option key={index} onClick={() => setIsActive(false)}><Link href={pathname} locale={value}><a className='text-decoration-none'>{language}</a></Link></Option>),
+    () => languages.map(({ language, value }, index) => (
+      <Option key={index} onClick={() => changeLanguage(language)}>
+        <Link href={pathname} locale={value} scroll={false}><a className='text-decoration-none'>{language}</a></Link>
+      </Option>
+    )),
     [languages]
   )
 
   useEffect(() => {
     function pageClick(evt: MouseEvent) {
-      if (
-        (dropdownRef.current && !dropdownRef.current!.contains(evt.target as Node)) &&
-        (buttonRef.current && !buttonRef.current!.contains(evt.target as Node))
-      ) {
+      if (!Object.is(evt.target, buttonRef.current) && isActive)
         setIsActive(false)
-      }
     }
 
     function pageKeyPress(evt: KeyboardEvent) {
@@ -48,10 +53,10 @@ export function DropdownMenu() {
 
     let doc = document.querySelector('body')
 
-    if (isActive) {
+  
       doc && doc.addEventListener('click', pageClick)
       doc && doc.addEventListener('keydown', pageKeyPress)
-    }
+    
 
     return () => {
       doc && doc.removeEventListener('click', pageClick)
@@ -67,11 +72,10 @@ export function DropdownMenu() {
           ref={buttonRef}
           onClick={() => setIsActive(!isActive)}
         >
-          {t('english')}
+          {languageTitle}
         </DropdownButton>
 
         <Dropdown
-          ref={dropdownRef}
           className={isActive ? 'active' : ''}
         >
           <Select>

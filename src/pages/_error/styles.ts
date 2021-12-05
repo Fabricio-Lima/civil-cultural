@@ -26,6 +26,14 @@ export const ErrorStatusCode = styled.p`
     margin-right: auto;
 `
 
+export const BoxImg = styled(Col)`
+    width: 86px;
+    height: 86px;
+    position: absolute;
+    bottom: -20%;
+    right: -4%;
+`
+
 export const ErrorBadge = styled.span`
     text-transform: uppercase;
     color: #546475;
@@ -36,14 +44,6 @@ export const ErrorBadge = styled.span`
     position: absolute;
     top: -11.5%;
     left: 5%;
-`
-
-export const BoxImg = styled(Col)`
-    width: 86px;
-    height: 86px;
-    position: absolute;
-    bottom: -20%;
-    right: -4%;
 `
 
 export const LinkBack = styled.a`

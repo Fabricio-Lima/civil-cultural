@@ -24,11 +24,13 @@
             "menu_category": "Posts by category"
         },
         "login": {
+            "nick_or_email": "Nick or E-mail",
             "forgot_password": "Forgot password ?",
             "create_account": "Create an account"
         },
         "register": {
             "title": "Register",
+            "link_login": "Log in",
             "about_you": "Tell us about your career",
             "message_error": {
                 "required": "Required :FIELD field",

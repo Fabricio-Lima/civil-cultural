@@ -24,12 +24,14 @@
             "menu_category": "Postagens por categoria"
         },
         "login": {
+            "nick_or_email": "Nome ou e-mail",
             "forgot_password": "Esqueceu a senha ?",
             "create_account": "Criar Conta"
         },
         "register": {
             "title": "Registro",
             "about_you": "Conte-nos sobre sua carreira",
+            "link_login": "Logar-se",
             "message_error": {
                 "required": "Campo :FIELD obrigatório",
                 "confirm_password": "Senhas divergentes",

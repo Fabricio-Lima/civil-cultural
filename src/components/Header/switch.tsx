@@ -31,7 +31,7 @@ export function Switch() {
 
   return (
     <SwitchContainer onClick={alternateTheme} className='remove-bg-image'>
-      <InputCheck ref={switchRef} defaultChecked={isDark}/>
+      <InputCheck type='checkbox' ref={switchRef} defaultChecked={isDark}/>
       <FlexSwitch>
         <ContainerSun>
           <Span>🌞</Span>

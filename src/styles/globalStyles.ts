@@ -4,7 +4,7 @@ import styled, { createGlobalStyle } from "styled-components"
 export default createGlobalStyle`  
 /* Variable colors */
   :root {
-    --light: #F3F3F3;
+    --light: #F5F5F5;
     --dark: #2A2A2E;
 
     --white: #FFFFFF;
@@ -12,8 +12,8 @@ export default createGlobalStyle`
     --gray-50: #E9E9E9;
     --gray-100: #E8E8E8;
     --gray-200: #DADADA;
-    --gray-300: #afb2b1;
-    --gray-400: #696969;
+    --gray-300: #565656;
+    --gray-400: #808080;
     --gray-600: #333333;
     --gray-700: #2A2A2E;
 
@@ -77,6 +77,12 @@ export default createGlobalStyle`
   
   input[type=button]:hover, button:hover {
     background-image: linear-gradient(rgb(0 0 0 / 0%),rgb(0 0 0 / 5%) 40%,rgb(0 0 0 / 10%));
+  }
+
+  .remove-focus:focus {
+    border: 0;
+    box-shadow: none;
+    outline: none;
   }
 
 /* Height and width */

@@ -2,6 +2,7 @@
 import Head from 'next/head'
 import { CustomThemeProvider } from 'Context/ThemeContext'
 import { appWithTranslation } from 'next-i18next'
+import { SSRProvider } from 'react-bootstrap'
 
 /* Styles */
 import GlobalStyle from 'Styles/globalStyles'
@@ -10,7 +11,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 
 export default function App(props) {
-  const CustomTranslation = appWithTranslation(({Component, pageProps}) =>  <Component {...pageProps} />)
+  const CustomTranslation = appWithTranslation(({ Component, pageProps }) => <Component {...pageProps} />)
   return (
     <>
       <Head>
@@ -19,8 +20,10 @@ export default function App(props) {
         <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
       </Head>
       <CustomThemeProvider>
-        <GlobalStyle/>
-       <CustomTranslation {...props} />
+        <GlobalStyle />
+        <SSRProvider>
+          <CustomTranslation {...props} />
+        </SSRProvider>
       </CustomThemeProvider>
     </>
   )

@@ -1,9 +1,11 @@
 /* Resources */
+import { KeyboardEventHandler } from 'react'
 import * as yup from 'yup'
-import reactForm, { useForm }  from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useRive, useStateMachineInput } from 'rive-react'
 
 /* Components */
 import Head from 'next/head'
@@ -23,20 +25,45 @@ import {
     FormLink
 } from 'Pages/login/styles'
 
+
 const schema = yup.object({
     email: yup.string().email().required(),
     password: yup.string().required()
 })
 
-export default function Login () {
+export default function Login() {
     const { t } = useTranslation()
     const {
         handleSubmit,
         register,
         formState: { errors }
-    } = useForm({ resolver: yupResolver(schema) })
+    } = useForm({ mode: 'onChange', resolver: yupResolver(schema) })
 
-    const submit = data => console.table(data)
+    const STATE_MACHINE_NAME = 'State Machine 1'
+    const STATE_MACHINE_CHECKING = 'Checking'
+    const STATE_MACHINE_VALID = 'Success'
+    const STATE_MACHINE_INVALID = 'Fail'
+
+    const { RiveComponent, rive } = useRive({
+        src: 'assets/scientist-login.riv',
+        stateMachines: STATE_MACHINE_NAME,
+        autoplay: true,
+        onLoadError(err) {
+            console.log(`ERR: %c${err}`, 'color: red')
+        },
+    })
+
+    const checking = useStateMachineInput(rive, STATE_MACHINE_NAME, STATE_MACHINE_CHECKING)
+    const success = useStateMachineInput(rive, STATE_MACHINE_NAME, STATE_MACHINE_VALID)
+    const fail = useStateMachineInput(rive, STATE_MACHINE_NAME, STATE_MACHINE_INVALID)
+
+
+    const illustrationValidate = (e) => e.target?.value.length > 0 ? (checking && checking.fire()) : (fail && fail.fire())
+
+    function submit(data) {
+        console.table(data)
+        success && success.fire()
+    }
 
 
     return (
@@ -44,7 +71,9 @@ export default function Login () {
             <Head>
                 <title>Login</title>
             </Head>
-            <ImgIllustration xxl='6' xl='6' lg='6' md='6' className='d-none d-md-block'/>
+            <ImgIllustration xxl='6' xl='6' lg='6' md='6' className='d-none d-md-block p-0'>
+                <RiveComponent style={{ width: '100%', height: '100%', marginLeft: '-.5rem'}}/>
+            </ImgIllustration>
             <Col xxl='6' xl='6' lg='6' md='6' sm='12' xs='12' className='d-flex justify-items-center align-items-center'>
                 <Col className='col-11 mx-auto'>
                     <Logo xxl='5' xl='5' lg='6' md='7' sm='8' xs='10' className='mx-auto d-flex align-items-center mb-5'>
@@ -59,49 +88,54 @@ export default function Login () {
                         />
                     </Logo>
 
-                    <Form> 
+                    <Form>
                         <Form.Group >
-                            <Col xxl='6' xl='8' lg='8' md='10' sm='12' xs='12'  className="mx-auto mb-4">
+                            <Col xxl='6' xl='8' lg='8' md='10' sm='12' xs='12' className="mx-auto mb-4">
                                 <FloatLabel
-                                    label="Email"
+                                    label={t('pages.login.nick_or_email')}
                                 >
-                                    <Input 
+                                    <Input
                                         type='text'
                                         placeholder="Email"
                                         aria-label="Email"
                                         aria-required='true'
-                                        {...register('email', { required: true}) }
+                                        {...register('email', { required: true })}
+                                        onKeyUp={illustrationValidate}
                                     />
                                 </FloatLabel>
                                 <Col className='col-12 mx-auto mt-2'>
                                     {errors.email && (<AlertError text='Email obrigatória' />)}
                                 </Col>
                             </Col>
-                            <Col xxl='6' xl='8' lg='8' md='10' sm='12' xs='12'  className="col-10 mx-auto mb-4">
+
+                            <Col xxl='6' xl='8' lg='8' md='10' sm='12' xs='12' className="col-10 mx-auto mb-4">
                                 <FloatLabel
-                                        label={t('forms.password')}
+                                    label={t('forms.password')}
                                 >
-                                        <Input 
-                                            type='password' 
-                                            placeholder="Senha"
-                                            aria-label="password"
-                                            aria-required='true'
-                                            {...register('password', { required: true }) }
-                                        />
+                                    <Input
+                                        type='password'
+                                        placeholder="Senha"
+                                        aria-label="password"
+                                        aria-required='true'
+                                        {...register('password', { required: true })}
+                                        onKeyUp={illustrationValidate}
+                                    />
                                 </FloatLabel>
                                 <Col className='col-12 mx-auto mt-2'>
                                     {errors.password && (<AlertError text='Senha obrigatória' />)}
                                 </Col>
                             </Col>
+
                             <Col xxl='8' xl='8' lg='8' md='10' sm='12' xs='12' className="col-8 mx-auto pt-2 pb-3 mt-5 mb-4">
                                 <Link href='#' >
                                     <FormLink className="link-primary float-end">{t('pages.login.forgot_password')}</FormLink>
                                 </Link>
                             </Col>
 
-                            <Col xxl='8' xl='8' lg='8' md='10' sm='12' xs='12'  className="mx-auto d-grid gap-2 mb-4">
+                            <Col xxl='8' xl='8' lg='8' md='10' sm='12' xs='12' className="mx-auto d-grid gap-2 mb-4">
                                 <Button type="button" className='text-uppercase' onClick={handleSubmit(submit)}> Entrar </Button>
                             </Col>
+                            
                             <Col className='col-12 my-2 text-center clearfix'>
                                 <Link href='/register' >
                                     <FormLink className="link-primary text-decoration-none text-center">{t('pages.login.create_account')}</FormLink>
@@ -109,7 +143,7 @@ export default function Login () {
                             </Col>
                         </Form.Group>
                     </Form>
-                </Col>  
+                </Col>
             </Col>
         </Col>
     )

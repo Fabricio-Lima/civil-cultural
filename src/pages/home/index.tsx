@@ -2,10 +2,9 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import axios from 'axios'
+
 import { PublicationArrayProps } from 'Contracts/PageProps'
-import  { useTranslation } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation } from 'next-i18next'
 
 /* Components */
 import Header from "Components/Header"
@@ -34,22 +33,24 @@ import {
 } from 'Pages/home/styles'
 
 
-export default function Home({ publications }: PublicationArrayProps) {
+export default function Home() {
   const cardTest = Array(4).fill('teste');
   const { t } = useTranslation()
-  console.table(publications);
+
   return (
     <HomeContainer>
       <Head>
-        <title>Home</title>
+        <title>Civil cultural</title>
       </Head>
       <Header />
       <Main >
         <DivHeader />
-        <Col as={'section'} className='row p-0 m-0' >
+        <Col as='section' className='row p-0 m-0' >
           <Sidebar />
-          <Col className='col-8 d-flex flex-column flex-wrap border-1 border-secondary'>
+
+          <Col className='col-11 col-xxl-8 col-lg-8 col-xl-8 col-md-9 col-sm-11 mx-auto border-1 border-secondary'>
             {
+              /* COMPONENTE CARD */
               cardTest.map((x, i) => (
                 <CardContainer key={i} className='col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-11 col-xs-11 mx-auto'>
                   <Row className='col-12'>
@@ -76,10 +77,11 @@ export default function Home({ publications }: PublicationArrayProps) {
                   </Row>
                 </CardContainer>
               ))
+              /* COMPONENT END */
             }
 
             {
-              /* COMPONENTE CARD EM CARREGAMENTO */
+              /* COMPONENTE CARD DE LOAD */
               <CardContainer className='col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-11 col-xs-11 mx-auto'>
                 <Row className='col-12'>
                   <Col className='col-10 px-0'>
@@ -103,9 +105,11 @@ export default function Home({ publications }: PublicationArrayProps) {
                   </Col>
                 </Row>
               </CardContainer>
+              /* COMPONENT END*/
             }
           </Col>
-          <Col className='col-3'>
+
+          <Col className='col-3 d-none d-md-block d-lg-block'>
             <SectionOthers>
               <BoxTitleMenu className='col-11 mx-auto'>
                 <TitleMenu>{ t('pages.home.menu_publication') }</TitleMenu>
@@ -178,25 +182,3 @@ export default function Home({ publications }: PublicationArrayProps) {
     </HomeContainer>
   )
 }
-
-
-export async function getServerSideProps({ locale, query: {page = 1, perPage = 20 } }) {
-  const res = await axios.get(`http://127.0.0.1:8555/api/publications/${page}/${perPage}`, {
-    headers: {
-      'Authorization': `bearer ${process.env.API_CC_TOKEN}`
-    }
-  })
-  console.log(res, process.env.API_CC_TOKEN)
-
-  if (res.data == undefined)
-    return { notFound: true }
-
-  return {
-      revalidate: 10000,
-      props: {
-          ...(await serverSideTranslations(locale, ['common'])),
-          publications: res ?? [],
-      }
-  }
-}
-

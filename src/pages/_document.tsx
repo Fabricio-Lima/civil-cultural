@@ -8,7 +8,6 @@ import { ServerStyleSheet } from 'styled-components'
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const sheet = new ServerStyleSheet();
-    const { renderPage } = ctx
 
     try {
       ctx.renderPage({
@@ -19,7 +18,12 @@ export default class MyDocument extends Document {
 
       return {
         ...initialProps,
-        styles: [sheet.getStyleElement(), ...React.Children.toArray(initialProps.styles)]
+        styles: (
+          <>
+            {initialProps.styles}
+            {sheet.getStyleElement()}
+          </>
+        )
       };
     } finally {
       sheet.seal();

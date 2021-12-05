@@ -1,6 +1,5 @@
 /* Resources */
 import { useRouter } from 'next/router'
-import AstroError from '../../public/astro_error.png'
 
 /* Components */
 import Image from 'next/image'
@@ -27,8 +26,9 @@ export default function Error404() {
                 <ErrorStatusCode>404</ErrorStatusCode>
                 <BoxImg>
                     <Image
-                        src={AstroError}
+                        src='/assets/astro_error.png'
                         alt='Astro'
+                        objectFit='contain'
                         width={86}
                         height={86}
                     />

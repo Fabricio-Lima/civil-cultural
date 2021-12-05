@@ -6,7 +6,7 @@ import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 
 export const FloatLabel = styled(FloatingLabel)`
     font-size: .94em;
-    color: ${t => t.theme.colors.grayLight};
+    color: ${t => t.theme.type === 'dark' ? 'var(--gray-200)' : 'var(--gray-600)'};
 
     & > label {
         bottom: -.8rem;
@@ -23,7 +23,7 @@ export const FormLink = styled.a`
 export const FormSelect = styled(Form.Select)`
     height: calc(3.40rem + 2px) !important;
     background-color: ${t => t.theme.background};
-    color: ${t => t.theme.colors.grayLight};
+    color: ${t => t.theme.type === 'dark' ? 'var(--gray-200)' : 'var(--gray-600)'};
 
     &:focus {
         border: 1px solid var(--green-600);

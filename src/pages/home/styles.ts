@@ -5,6 +5,8 @@ import { Col, Card, ListGroup } from 'react-bootstrap'
 export const HomeContainer = styled.div`
   display: flex;
   flex-direction: column;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
 `
 
 export const Main = styled.main`
@@ -50,8 +52,8 @@ export const BoxImg = styled(Col)`
 export const CardTitle = styled(Card.Title)`
   color: ${t => t.theme.title};
   font-family: 'Fira Sans', sans-serif;
-  font-size: 1.2rem;
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: 600;
   text-align: left;
 `
 
@@ -62,7 +64,7 @@ export const CardText = styled(Card.Text)`
 `
 
 export const CardTextDate = styled(Card.Text)`
-  color: ${t => t.theme.type == 'dark' ? 'var(--gray-300)' : 'var(--gray-400)'};
+  color: ${t => t.theme.type == 'dark' ? 'var(--gray-200)' : 'var(--gray-400)'};
   font-size: .7rem;
   font-weight: 500;
 `

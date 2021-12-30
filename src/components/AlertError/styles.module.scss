@@ -1,0 +1,9 @@
+.alertCustom {
+    &.light {
+        background-color: var(--light);
+    }
+
+    &.dark {
+        background-color: var(--dark);
+    }
+}

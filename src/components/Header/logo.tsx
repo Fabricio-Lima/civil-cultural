@@ -1,14 +1,12 @@
+/* Resources */
 import Image from 'next/image'
 
-import {
-  LogoContainer,
-  Typography
-} from 'Components/Header/styles'
-
+/* Styles */
+import styles from 'Components/Header/styles.module.scss'
 
 export function Logo() {
   return (
-    <LogoContainer>
+    <div className={styles.logoContainer}>
       <Image
         src='/civilcultural.png'
         alt='Logo Civil Cultural'
@@ -16,9 +14,9 @@ export function Logo() {
         height={40}
         objectFit='cover'
       />
-      <Typography>
+      <p className={styles.typography}>
         Civil Cultural
-      </Typography>
-    </LogoContainer>
+      </p>
+    </div >
   )
 }

@@ -5,14 +5,13 @@ import { appWithTranslation } from 'next-i18next'
 import { SSRProvider } from 'react-bootstrap'
 
 /* Styles */
-import GlobalStyle from 'Styles/globalStyles'
+import 'Styles/global.scss'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 
 
-export default function App(props) {
-  const CustomTranslation = appWithTranslation(({ Component, pageProps }) => <Component {...pageProps} />)
-  return (
+function App({ Component, pageProps }) {
+    return (
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -20,13 +19,12 @@ export default function App(props) {
         <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
       </Head>
       <CustomThemeProvider>
-        <GlobalStyle />
         <SSRProvider>
-          <CustomTranslation {...props} />
+          <Component {...pageProps} />
         </SSRProvider>
       </CustomThemeProvider>
     </>
   )
 }
 
-
+export default appWithTranslation(App)

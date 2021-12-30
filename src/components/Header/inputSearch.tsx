@@ -5,24 +5,19 @@ import { useTranslation } from 'next-i18next'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 
 /* Components */
-import { Col, Overlay, InputGroup } from 'react-bootstrap'
+import { IoMdClose, IoMdSearch } from 'react-icons/io'
+import { AiFillAudio } from 'react-icons/ai'
+import { 
+  Col, 
+  Overlay, 
+  InputGroup, 
+  FormControl, 
+  Button, 
+  Popover
+} from 'react-bootstrap'
 
 /* Styles */
-import {
-  SearchContainer,
-  Search,
-  InputGroupText,
-  BoxIcon,
-  IconSearch,
-  IconAudio,
-  IconClear,
-  ButtonClear,
-  ButtonSearch,
-  ButtonAudio,
-  PopoverContainer,
-  PopoverBody,
-  PopoverTitle
-} from 'Components/Header/styles'
+import styles from 'Components/Header/styles.module.scss'
 
 export const InputSearch = forwardRef((_: any | null, ref: Ref<any>) => {
   let idTimeout: any[] = []
@@ -89,34 +84,34 @@ export const InputSearch = forwardRef((_: any | null, ref: Ref<any>) => {
 
   return (
     <>
-      <SearchContainer className='col-11 col-xxl-5 col-xl-5 col-lg-5 col-md-8' ref={ref}>
+      <div className={`${styles.searchContainer} col-11 col-xxl-5 col-xl-5 col-lg-5 col-md-8`} ref={ref}>
         <InputGroup className='p-0'>
-          <Search
-            className='remove-focus'
+          <FormControl
+            className={`${styles.search} remove-focus`}
             placeholder='Pesquise aqui'
             aria-label='Pesquise aqui'
             aria-describedby='input para pesquisa de artigos e notícias'
             onChange={event => setText(event.target.value)} value={text}
           />
-          
-          <InputGroupText>
-            <BoxIcon className='col-1 offset-1 p-0 m-0'>
-              <ButtonClear
-                  className={text.length == 0 ? 'd-none' : ''}
-                  title='Limpar pesquisa'
-                  onClick={_ => (setText(''))}
-                  aria-hidden='true'
-                >
-                  <IconClear />
-                </ButtonClear>
-            </BoxIcon>
-          </InputGroupText>
 
-          <InputGroupText>
-            <BoxIcon className='col-1 offset-1 p-0 m-0' ref={boxIconRef}>
-              <ButtonAudio title='Fale para pesquisar' onClick={speaking} >
-                <IconAudio className={isListening ? 'listening' : ''} />
-              </ButtonAudio>
+          <InputGroup.Text className={styles.inputGroupText}>
+            <div className={`${styles.boxIcon} col-1 offset-1 p-0 m-0`}>
+              <Button
+                className={`${styles.buttonClear} ${text.length == 0 ? 'd-none' : ''}`}
+                title='Limpar pesquisa'
+                onClick={_ => (setText(''))}
+                aria-hidden='true'
+              >
+                <IoMdClose className={styles.iconClear} />
+              </Button>
+            </div>
+          </InputGroup.Text>
+
+          <InputGroup.Text className={styles.inputGroupText}>
+            <div className={`${styles.boxIcon} col-1 offset-1 p-0 m-0`} ref={boxIconRef}>
+              <Button className={styles.buttonAudio} title='Fale para pesquisar' onClick={speaking} >
+                <AiFillAudio className={`${styles.iconAudio} ${isListening ? 'listening' : ''}`} />
+              </Button>
               <Overlay
                 show={alert}
                 target={target}
@@ -124,24 +119,24 @@ export const InputSearch = forwardRef((_: any | null, ref: Ref<any>) => {
                 container={boxIconRef}
                 transition
               >
-                <PopoverContainer>
-                  <PopoverBody>
-                    <PopoverTitle className='mb-0'>{t('pages.home.popover_message')}</PopoverTitle>
-                  </PopoverBody>
-                </PopoverContainer>
+                <Popover className={styles.popoverContainer}>
+                  <Popover.Body className={styles.popoverBody}>
+                    <p className={`${styles.popoverTitle} mb-0`}>{t('pages.home.popover_message')}</p>
+                  </Popover.Body>
+                </Popover>
               </Overlay>
-            </BoxIcon>
-          </InputGroupText>
+            </div>
+          </InputGroup.Text>
 
-          <InputGroupText>
-            <BoxIcon className='col-3 p-0 m-0' >
-              <ButtonSearch ref={buttonRef} title='Click para pesquisar'>
-                <IconSearch />
-              </ButtonSearch>
-            </BoxIcon>
-          </InputGroupText>
+          <InputGroup.Text className={styles.inputGroupText}>
+            <div className={`${styles.boxIcon} col-3 p-0 m-0`} >
+              <Button className={styles.buttonSearch} ref={buttonRef} title='Click para pesquisar'>
+                <IoMdSearch className={styles.iconSearch} />
+              </Button>
+            </div>
+          </InputGroup.Text>
         </InputGroup>
-      </SearchContainer>
+      </div>
     </>
   )
 })

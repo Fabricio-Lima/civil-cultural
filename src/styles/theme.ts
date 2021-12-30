@@ -1,3 +1,4 @@
+// serve como referência as cores light e dark
 export const ThemeStyle = {
   light: {
     type: 'light',

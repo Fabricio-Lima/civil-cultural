@@ -1,16 +1,5 @@
-/* Resources */
-import styled, { keyframes, css } from 'styled-components'
-
-/* Components */
-import { Col, FormControl, InputGroup } from 'react-bootstrap'
-import { IoMdSearch, IoMdClose } from 'react-icons/io'
-import { AiFillAudio } from 'react-icons/ai'
-import { HiInformationCircle } from 'react-icons/hi'
-import { MdMenu } from 'react-icons/md'
-import { Popover } from 'react-bootstrap'
-
 // Styles global Header
-export const HeaderContainer = styled.header`
+.headerContainer {
   grid-area: header;
   position: fixed;
   width: 100%;
@@ -18,123 +7,140 @@ export const HeaderContainer = styled.header`
   margin: 0;
   padding: 1px 0;
   top: 0;
-  box-shadow: 0 0 10px ${t => t.theme.tons.primary};
-  background: ${t => t.theme.background};
   z-index: 1000;
-`
 
-export const FlexContainer = styled.div`
+  &.light {
+    box-shadow: 0 0 10px rgba(50,50,50,.3);
+    background-color: var(--light);
+  } 
+
+  &.dark {
+    box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+    background-color: var(--dark);
+  }
+}
+
+.flexContainer {
   display: flex;
   width: 100%;
   justify-content: space-between;
   align-items: center;
   justify-items: center;
   padding: 0 .5rem;
-`
+}
 
-export const BoxItem = styled.div`
+.boxItem {
   padding: .3rem;
-`
+}
 
-const Icon = css`
-  font-size: 1.5rem;
-  color: ${t => t.theme.title};
-  vertical-align: middle;
-`
-
-export const Button = styled.button`
+/* .button {
   background: transparent;
   border: 0;
-`
+} */
 
-export const ButtonClear = styled(Button)`
+.buttonClear {
   &:hover{
     background-image: none;
   }
-`
+}
 
-export const IconInfo = styled(HiInformationCircle)`
+/* ICON: HiInformationCircle */
+.iconInfo {
   fill: #5C9AF9;
   font-size: 1.1rem;
   vertical-align: middle;
-`
+}
 /** ----------------------------- */
 
 
 // Styles from InputSearch
-export const DropdownSearch = styled(Col)`
+.dropdownSearch {
   transition: display 1s ease-out, height 1s ease-out;
-`
+}
 
-export const DropdownMenuSearch = styled(Col)`
+.dropdownMenuSearch {
   position: absolute;
   top: 65px;
   left: 0;
   width: 100%;
-  background: ${t => t.theme.colors.grayDark};
-  box-shadow: 0 10px 20px ${t => t.theme.tons.primary};
-`
 
-export const SearchContainer = styled.div.attrs((props: {left: string|number}) => ({
-  left: props.left ?? '4',
-}))`
+  &.light {
+    background-color: var(--gray-300);
+    box-shadow: 0 10px 20px rgba(50,50,50,.3);
+  }
+
+  &.dark {
+    background-color: var(--gray-500);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .3);
+  }
+}
+
+.searchContainer {
   background-color: transparent;
   position: absolute;
-  left: ${x => `${x.left}%`};
-`
+  left: 4%;
+}
 
-export const BoxIcon = styled.div`
-  width: ${(props: {  width?: string; height?: string; }) => props.width ?? ''};
-  height: ${(props: {  width?: string; height?: string; }) => props.height ?? ''};
+.boxIcon {
   padding: .2rem;
-`
+}
 
-export const Search = styled(FormControl)`
+.search {
   padding: 0 .85rem;
   border-radius: .5rem;
   border: 0px;
-  background-color: ${t => t.theme.backgroundInput};
-  color: ${t => t.theme.type == 'dark' ? '#fff' : 'var(--gray-500)'} !important;
   font-size: 1.1rem;
 
-  &:focus {
-    background-color: ${t => t.theme.backgroundInput};
+  &.light, &.light:focus, &.light::placeholder {
+    color: #FFFFFF;
+    background-color: var(--gray-200);
+  }
+
+  &.dark, &.dark:focus, &.dark::placeholder {
+    color: var(--gray-500);
+    background-color: var(--gray-400);
   }
   
   &::placeholder {
-    color: ${t => t.theme.text};
     font-weight: 600;
     font-size: 1rem;
   }
-`
+}
 
-export const InputGroupText = styled(InputGroup.Text)`
-  background: ${t => t.theme.backgroundInput};
+.inputGroupText {
   border: 0;
   padding: 0;
-`
 
-export const ButtonSearch = styled(Button)`
+  &.light {
+    background-color: var(--gray-200);
+  }
+
+  &.dark {
+    background-color: var(--gray-400);
+  }
+}
+
+.buttonSearch {
   height: 100%;
   background-color: var(--blue-500);
   padding: .7rem 1.2rem;
   border-radius: 0 .5rem .5rem 0;
-`
+}
 
-export const IconSearch = styled(IoMdSearch)`
+.iconSearch {
   font-size: 1.5rem;
   vertical-align: middle;
-`
+}
 
-export const ButtonAudio = styled(Button)`
+.buttonAudio {
   padding: 0 .5rem;
 
   &:hover {
     background-image: none;
   }
-`
+}
 
-const animationListening = keyframes`
+@keyframes fadeIn {
   from {
     color: var(--gray-500);
     opacity: .6;
@@ -144,44 +150,68 @@ const animationListening = keyframes`
     color: var(--green-600);
     opacity: 1;
   }
-`
+}
 
-export const IconAudio = styled(AiFillAudio)`
-  ${Icon}
+.iconAudio {
+  font-size: 1.5rem;
+  vertical-align: middle;
   transition: color .3s ease-out;
   /* color: ${t => t.theme.type == 'dark' ? 'var(--gray-100)' : 'var(--gray-400)'}; */
+
+  &.light {
+    color: var(--gray-700);
+  }
+
+  &.dark {
+    color: var(--gray-100);
+  }
 
   &:hover {
     color: #729BD3;
   }
 
   &.listening {
-    animation: ${animationListening} 1.4s cubic-bezier(0.67, -0.18, 0.16, 1.06) infinite;
+    animation: fadeIn 1.4s cubic-bezier(0.67, -0.18, 0.16, 1.06) infinite;
   }
-`
+}
 
-export const IconClear = styled(IoMdClose)`
-  ${Icon}
+.iconClear {
+  font-size: 1.5rem;
+  vertical-align: middle;
   transition: color .3s ease-out;
+
+  &.light {
+    color: var(--gray-700);
+  }
+
+  &.dark {
+    color: var(--gray-100);
+  }
 
   &:hover {
     color: #F45D4E; 
   }
-`
+}
 /** ----------------------------- */
 
 /* SWITCH */
-export const SwitchContainer = styled(Button)`
+.switchContainer {
   width: 3.3rem;
   height: 1.68rem;
   position: relative;
   border-radius: 15px 15px;
   overflow: hidden;
 
-  background-color: ${t => t.theme.type == 'dark' ? 'var(--gray-400)' : 'var(--gray-300)'} ;
-`
+  &.light {
+    background-color: var(--gray-300);
+  }
 
-export const InputCheck = styled.input`
+  &.dark {
+    background-color: var(--grau-400);
+  }
+}
+
+.inputCheck {
   display: block;
   width: 100%;
   height: 100%;
@@ -193,8 +223,9 @@ export const InputCheck = styled.input`
 
   opacity: 0;
   cursor: pointer;
-`
-export const StateSwitch = styled.div`
+}
+
+.stateSwitch {
   display: block;
   width: 40%;
   height: 82%;
@@ -211,7 +242,7 @@ export const StateSwitch = styled.div`
 
   background: linear-gradient(var(--purple-400), var(--purple-300));
 
-  &.active-switch{
+  &.activeSwitch{
     transform: translateX(118%);
   }
 
@@ -227,28 +258,28 @@ export const StateSwitch = styled.div`
 
     background: linear-gradient(31deg,var(--purple-600), var(--purple-300));
   }
-`
+}
 
-export const FlexSwitch = styled(FlexContainer)`
+.flexSwitch {
   justify-content: space-around;
   width: 100%;
   height: 100%;
   padding: 0;
-`
+}
 
-export const ContainerMoon = styled.div`
+.containerMoon {
   background: transparent;
   height: 100%;
   width: 100%;
-`
+}
 
-export const ContainerSun = styled.div`
+.containerSun {
   background: transparent; 
   height: 100%;
   width: 100%;
-`
+}
 
-export const Span = styled.span`
+.span {
   display: flex;
   align-content: center;
   justify-content: center;
@@ -258,29 +289,42 @@ export const Span = styled.span`
   vertical-align: middle;
   margin: .25em .2em;
   font-size: 1em;
-`
+}
 
 /* DROPDOWN */
-export const DropdownMenuContainer = styled.div`
+.dropdownMenuContainer {
   padding: .2rem;
-`
+}
 
-export const DropdownButton = styled(Button)`
+.dropdownButton {
   font-size: .95rem;
   font-weight: 600;
   text-align: center;
   vertical-align: middle;
-  color: ${t => t.theme.link};
+
+  &.light {
+    color: var(--gray-400);
+  }
+
+  &.dark {
+    color: var(--gray-100);
+  }
 
   &:hover {
     background-image: none;
-    filter: ${ t => t.theme.type == 'dark' ? 'sepia(45%)' : 'brightness(60%)'};
   }
-`
 
-export const Dropdown = styled.div`
+  &.light:hover {
+    filter: sepia(60%);
+  }
+
+  &.dark:hover {
+    filter: sepia(45%);
+  }
+}
+
+.dropdown {
   width: 14rem;
-  background: ${t => t.theme.background};
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
   border-radius: .8rem;
 
@@ -294,30 +338,44 @@ export const Dropdown = styled.div`
   transform: translateY(-20px);
   transition: opacity .3s ease, transform .3s ease, visibility 0.3s;
 
+  &.light {
+    background-color: var(--light);
+  }
+
+  &.dark {
+    background: var(--dark);
+  }
+
   &.active {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
   }
-`
+}
 
-export const Select = styled.div`
+.select {
   list-style: none;
   padding: 0;
   margin: 0;
   border: 0; 
-`
+}
 
-export const Option = styled.span`
+.option {
   text-align: center;
   text-decoration: none;
-  color: ${t => t.theme.title};
   padding: .8rem 1.3rem;
   display: block;
   box-sizing: content-box;
-  border-bottom: 1px solid ${t => t.theme.type == 'dark' ? 'var(--gray-400)' : 'var(--gray-200)'};
 
+  &.light {
+    color: var(--gray-700);
+    border-bottom: 1px solid var(--gray-200);
+  }
 
+  &.dark {
+    color: var(--gray-100);
+    border-bottom: 1px solid var(--gray-400);
+  }
 
   &:hover {
     filter: blur(40%);
@@ -327,21 +385,21 @@ export const Option = styled.span`
   &:last-child {
     border-bottom: 0;
   }
-`
+}
 /** ----------------------------- */
 
 
 /* ICON NAVBAR  */
-export const BoxIconMenu = styled(BoxIcon)`
+.boxIconMenu {
   border-radius:  4em;
   padding: .3em;
 
   &:hover {
     background: #3478D418;
   }
-`
+}
 
-const visible = keyframes`
+@keyframes visible {
   0% {
     opacity: 0;
   }
@@ -349,10 +407,19 @@ const visible = keyframes`
     opacity: 1;
   }
 
-`
+}
 
-export const IconMenu = styled(MdMenu)`
-  ${Icon}
+.iconMenu {
+  font-size: 1.5rem;
+  vertical-align: middle;
+
+  &.dark {
+    color: var(--gray-100);
+  }
+
+  &.light {
+    color: var(--gray-700);
+  }
 
   &:hover {
     cursor: pointer;
@@ -361,31 +428,32 @@ export const IconMenu = styled(MdMenu)`
   &.open {
     color: var(--blue-300);
   }
-`
+}
 /** ----------------------------- */
 
 /** Styles from Navigation header */
-
-export const Nav = styled.nav`
+.nav {
   display: flex;
   justify-content: flex-end;
   align-content: center;
-`
+}
 
-export const NavRow = styled.ul`
+.navRow {
   display: flex;
   justify-content: space-between;
   align-content: stretch;
   justify-items: center;
   align-items: center;
   list-style-type: none;
-`
+}
 
-export const NavItem = styled.li`
+.navItem {
   margin-right: .9rem;
   margin-top: .9rem;
-`
-export const Link = styled.a`
+}
+
+// Element Link
+.link {
   height: 100%;
   padding: .7rem;
   text-decoration: none;
@@ -396,9 +464,9 @@ export const Link = styled.a`
   &:hover {
     color: var(--blue-500);
   }
-`
+}
 
-export const ButtonLogin = styled(Link)`
+.buttonLogin {
   color: var(--white);
   font-weight: 600;
   background: var(--blue-500);
@@ -410,47 +478,67 @@ export const ButtonLogin = styled(Link)`
 
   &:hover {
     color: var(--white);
-    background-image: linear-gradient(rgb(0 0 0 / 0%),rgb(0 0 0 / 5%) 40%,rgb(0 0 0 / 10%));
+    background-image: linear-gradient(rgba(0, 0, 0, 0%), rgba(0, 0, 0, 5%) 40%, rgba(0, 0, 0, 10%));
   }
-`
+}
 /** ----------------------------- */
 
 /** Styles from Logo */
-export const LogoContainer = styled.div`
+.logoContainer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: .2rem;
   margin-left: 1px;
-`
-export const Typography = styled.p`
+}
+
+.typography {
   font: 600 1.4rem 'Noto Sans JP', sans-serif;
   text-align: center;
   margin-left: .7rem;
-`
+}
 /** ----------------------------- */
 
 
 /* Popover */
 
-export const PopoverContainer = styled(Popover)`
-  background: ${t => t.theme.popup.background};
+.popoverContainer {
   border: transparent;
   border-radius: 10px;
 
-  & > .popover-arrow::after {
-    border-bottom-color: ${t => (t.theme.type == 'dark') ? '#4F526590' : '#FDFDFD'};
+  &.light {
+    background: linear-gradient(5deg, rgba(253, 253, 253, .8), rgba(245, 245, 245, .8));
   }
-`
 
-export const PopoverBody = styled(Popover.Body)`
-  color: ${t => t.theme.text};
-  background: ${t => t.theme.popup.background};
+  &.dark {
+    background: linear-gradient(5deg, rgba(79, 82, 101, .8), rgba(95, 99, 114, .8));
+  }
+
+  &.light > .popover-arrow::after {
+    border-bottom-color: #FDFDFD;
+  }
+
+  &.dark > .popover-arrow::after {
+    border-bottom-color: #4F526590;
+  }
+}
+
+.popoverBody {
   padding: .7rem;
   border: 1px solid #96969620;
   border-radius: 10px;
-`
 
-export const PopoverTitle = styled.p`
+  &.light {
+    color: var(--gray-500);
+    background: linear-gradient(5deg, rgba(253, 253, 253, .8), rgba(245, 245, 245, .8));
+  }
+
+  &.dark {
+    color: var(--gray-50);
+    background: linear-gradient(5deg, rgba(79, 82, 101, .8), rgba(95, 99, 114, .8));
+  }
+}
+
+.popoverTitle {
   font-size: .9rem,
-`
+}

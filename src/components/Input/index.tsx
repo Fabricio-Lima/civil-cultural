@@ -3,11 +3,14 @@ import { forwardRef, Ref, useContext} from 'react'
 import { FormControlProps } from 'react-bootstrap'
 
 /* Components */
-import { InputCustomized } from 'Components/Input/styles'
+import Form from 'react-bootstrap/Form' 
+
+/* Styles */
+import styles from 'Components/Input/styles.module.scss'
 
 const Input = forwardRef((props: FormControlProps, ref?: Ref<any>) => {
     return (
-        <InputCustomized ref={ref} {...props} />
+        <Form.Control className={styles.inputCustomized} ref={ref} {...props} />
     )
 })
 

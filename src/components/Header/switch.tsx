@@ -1,17 +1,12 @@
+/* Resources */
 import { useState, useRef, useEffect } from 'react'
-
 import { useTheme } from 'Hooks/useTheme'
-import { ThemeStyle } from 'Styles/theme'
 
-import {
-  SwitchContainer,
-  Span,
-  FlexSwitch,
-  InputCheck,
-  StateSwitch,
-  ContainerMoon,
-  ContainerSun
-} from "Components/Header/styles";
+/* Components */
+import { Button } from 'react-bootstrap'
+
+/* Styles */
+import styles from "Components/Header/styles.module.scss";
 
 
 export function Switch() {
@@ -19,28 +14,27 @@ export function Switch() {
   const switchRef = useRef<HTMLInputElement>(null)
   const [isDark, setIsDark] = useState(false)
 
-  useEffect(() => setIsDark(theme.type === 'dark'), [])
-
   const alternateTheme = () => {
     if (switchRef.current) {
-      let checked = switchRef.current.checked && theme.type == 'light'
+      console.log(theme, switchRef.current.checked && theme == 'light')
+      let checked = switchRef.current.checked && theme == 'light'
       setIsDark(checked)
-      toggleTheme(checked ? 'DARK' : 'LIGHT')
+      toggleTheme(checked ? 'dark' : 'light')
     }
   }
 
   return (
-    <SwitchContainer onClick={alternateTheme} className='remove-bg-image'>
-      <InputCheck type='checkbox' ref={switchRef} defaultChecked={isDark}/>
-      <FlexSwitch>
-        <ContainerSun>
-          <Span>🌞</Span>
-        </ContainerSun>
-        <ContainerMoon>
-          <Span>🌜</Span>
-        </ContainerMoon>
-      </FlexSwitch>
-      <StateSwitch className={isDark ? 'active-switch' : 'desative-switch'} />
-    </SwitchContainer>
+    <Button onClick={alternateTheme} className={`${styles.switchContainer} ${styles[theme]} remove-bg-image`}>
+      <input type='checkbox' className={styles.inputCheck} ref={switchRef} defaultChecked={isDark}/>
+      <div className={`${styles.flexSwitch} ${styles.flexContainer}`}>
+        <div className={styles.containerSun}>
+          <span className={styles.span}>🌞</span>
+        </div>
+        <div className={styles.containerMoon}>
+          <span className={styles.span}>🌜</span>
+        </div>
+      </div>
+      <div className={`${styles.stateSwitch} ${isDark ? styles.activeSwitch : 'desativeSwitch'}`} />
+    </Button>
   )
 }

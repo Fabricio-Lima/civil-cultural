@@ -1,21 +1,16 @@
+/* Resources */
 import { forwardRef, Ref, useContext, useState } from 'react';
 import * as ReactIs from 'react-is'
+import { ThemeContext } from 'Context/ThemeContext'
+
+/* Components */
+import Popup from 'reactjs-popup'
 import { ModalPopupProps } from 'Contracts/ModalPopup'
 import { IconBase } from 'react-icons/lib'
 import { PopupActions } from 'reactjs-popup/dist/types'
-import { ThemeContext } from 'Context/ThemeContext'
 
-
-import {
-  PopupContainer,
-  PopupTitle,
-  PopupTitleContainer,
-  PopupContentContainer,
-  PopupContent,
-  PopupFooter,
-  GroupButtons,
-  PopupButton
-} from 'Components/ModalPopup/styles'
+/* Styles */
+import styles from 'Components/ModalPopup/styles.module.scss'
 
 export const ModalPopup = forwardRef((modalProps: ModalPopupProps, ref?: Ref<PopupActions>) => {
   const {
@@ -44,9 +39,9 @@ export const ModalPopup = forwardRef((modalProps: ModalPopupProps, ref?: Ref<Pop
             ReactIs.isElement(title) ?
               title :
               (
-                <PopupTitleContainer {...theme}>
-                  <PopupTitle>{icon && (ReactIs.isElement(icon) || icon instanceof IconBase) ? icon : ''} {title}</PopupTitle>
-                </PopupTitleContainer>
+                <div className={styles.popupTitleContainer} >
+                  <h3 className={styles.popupTitle}>{icon && (ReactIs.isElement(icon) || icon instanceof IconBase) ? icon : ''} {title}</h3>
+                </div>
               )
           )
         }
@@ -54,9 +49,9 @@ export const ModalPopup = forwardRef((modalProps: ModalPopupProps, ref?: Ref<Pop
           ReactIs.isElement(content) ?
             content :
             (
-              <PopupContentContainer {...theme}>
-                <PopupContent>{content}</PopupContent>
-              </PopupContentContainer>
+              <div className={styles.popupContentContainer} >
+                <p className={styles.popupContent}>{content}</p>
+              </div>
             )
         }
         {
@@ -64,11 +59,11 @@ export const ModalPopup = forwardRef((modalProps: ModalPopupProps, ref?: Ref<Pop
             ReactIs.isElement(footer) ?
               footer :
                 (
-                  <PopupFooter>
-                    <GroupButtons>
-                      <PopupButton onClick={closeModal}>{footer}</PopupButton>
-                    </GroupButtons>
-                  </PopupFooter>
+                  <p className={styles.popupFooter}>
+                    <div className={styles.groupButtons}>
+                      <button className={styles.popupButton} onClick={closeModal}>{footer}</button>
+                    </div>
+                  </p>
                 )
           )
         }
@@ -77,7 +72,8 @@ export const ModalPopup = forwardRef((modalProps: ModalPopupProps, ref?: Ref<Pop
   }
 
   return (
-    <PopupContainer
+    <Popup
+      className={styles.popupContainer}
       ref={ref}
       open={openPopup}
       onClose={() => setOpenPopup(false)}
@@ -86,9 +82,8 @@ export const ModalPopup = forwardRef((modalProps: ModalPopupProps, ref?: Ref<Pop
       closeOnEscape
       position='top center'
       {...props}
-      {...theme}
     >
       {children ?? ModalElements}
-    </PopupContainer>
+    </Popup>
   )
 })

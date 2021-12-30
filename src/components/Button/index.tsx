@@ -1,13 +1,18 @@
-import { forwardRef, Ref } from 'react';
-import { ButtonCustomized } from 'Components/Button/styles';
-import { ButtonProps } from 'react-bootstrap';
+/* Resources */
+import { forwardRef, Ref } from 'react'
 
+/* Components */
+import { ButtonProps } from 'react-bootstrap'
+import ButtonBST from 'react-bootstrap/Button'
+
+/* Styles */
+import styles from 'Components/Button/styles.module.scss'
 
 
 const Button = forwardRef(({ children, ...props }: ButtonProps, ref?: Ref<any>) => (
-    <ButtonCustomized ref={ref} {...props}>
+    <ButtonBST ref={ref} {...props} className={styles.button}>
         {children}
-    </ButtonCustomized>
+    </ButtonBST>
 ))
 
 export default Button

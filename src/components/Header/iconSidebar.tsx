@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
-import { IconBaseProps } from 'react-icons/lib'
 
-import {
-  BoxIconMenu,
-  IconMenu
-} from 'Components/Header/styles'
+
+/* Components */
+import { MdMenu } from 'react-icons/md'
+
+/* Styles */
+import styles from 'Components/Header/styles.module.scss'
 
 
 export function IconSidebar() {
@@ -16,11 +17,11 @@ export function IconSidebar() {
     if(isHandler) setIsHandler(false)
   }
 
-  const className = (!isHandler && isActive) ? 'animation-open' : ''
+  //const className = (!isHandler && isActive) ? 'animation-open' : ''
 
   return (
-    <BoxIconMenu onClick={menuToggle}>
-      <IconMenu className='open'/>
-    </BoxIconMenu>
+    <div className={styles.boxIconMenu} onClick={menuToggle}>
+      <MdMenu className={`${styles.iconMenu} open`}/>
+    </div>
   )
 }

@@ -4,14 +4,11 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 
+/* Components */
+import { Button } from 'react-bootstrap'
+
 /* Styles */
-import {
-  DropdownButton,
-  DropdownMenuContainer,
-  Dropdown,
-  Select,
-  Option
-} from 'Components/Header/styles';
+import styles from 'Components/Header/styles.module.scss'
 
 
 export function DropdownMenu() {
@@ -34,9 +31,9 @@ export function DropdownMenu() {
 
   const LanguagesMemoized = useMemo(
     () => languages.map(({ language, value }, index) => (
-      <Option key={index} onClick={() => changeLanguage(language)}>
+      <span className={styles.option} key={index} onClick={() => changeLanguage(language)}>
         <Link href={pathname} locale={value} scroll={false}><a className='text-decoration-none'>{language}</a></Link>
-      </Option>
+      </span>
     )),
     [languages]
   )
@@ -53,10 +50,10 @@ export function DropdownMenu() {
 
     let doc = document.querySelector('body')
 
-  
-      doc && doc.addEventListener('click', pageClick)
-      doc && doc.addEventListener('keydown', pageKeyPress)
-    
+
+    doc && doc.addEventListener('click', pageClick)
+    doc && doc.addEventListener('keydown', pageKeyPress)
+
 
     return () => {
       doc && doc.removeEventListener('click', pageClick)
@@ -67,22 +64,23 @@ export function DropdownMenu() {
 
   return (
     <>
-      <DropdownMenuContainer>
-        <DropdownButton
+      <div className={styles.dropdownMenuContainer}>
+        <Button
+          className={styles.dropdownButton}
           ref={buttonRef}
           onClick={() => setIsActive(!isActive)}
         >
           {languageTitle}
-        </DropdownButton>
+        </Button>
 
-        <Dropdown
-          className={isActive ? 'active' : ''}
+        <div
+          className={`${styles.dropdown} ${isActive ? 'active' : ''}`}
         >
-          <Select>
+          <div className={styles.select}>
             {LanguagesMemoized}
-          </Select>
-        </Dropdown>
-      </DropdownMenuContainer>
+          </div>
+        </div>
+      </div>
 
     </>
   )

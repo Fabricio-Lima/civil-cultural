@@ -1,7 +1,4 @@
-import styled from 'styled-components'
-import ButtonBST from 'react-bootstrap/Button'
-
-export const ButtonCustomized = styled(ButtonBST)`
+.button {
     background: var(--green-dark);
     border: 1px solid #00B012;
     color: var(--white);
@@ -20,4 +17,4 @@ export const ButtonCustomized = styled(ButtonBST)`
         box-shadow: none;
         filter: opacity(90%);
     }
-`
+}

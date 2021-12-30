@@ -14,16 +14,10 @@ import Link from 'next/link'
 import Button from 'Components/Button'
 import Input from 'Components/Input'
 import AlertError from 'Components/AlertError'
-import { Col, Form } from 'react-bootstrap'
+import { Col, Form, FloatingLabel } from 'react-bootstrap'
 
 /*  Styles */
-import {
-    Logo,
-    LogoTitle,
-    ImgIllustration,
-    FloatLabel,
-    FormLink
-} from 'Pages/login/styles'
+import styles from 'Pages/login/styles.module.scss'
 
 
 const schema = yup.object({
@@ -71,13 +65,13 @@ export default function Login() {
             <Head>
                 <title>Login</title>
             </Head>
-            <ImgIllustration xxl='6' xl='6' lg='6' md='6' className='d-none d-md-block p-0'>
+            <Col xxl='6' xl='6' lg='6' md='6' className={`${styles.imgIllustration} d-none d-md-block p-0`}>
                 <RiveComponent style={{ width: '100%', height: '100%', marginLeft: '-.5rem'}}/>
-            </ImgIllustration>
+            </Col>
             <Col xxl='6' xl='6' lg='6' md='6' sm='12' xs='12' className='d-flex justify-items-center align-items-center'>
                 <Col className='col-11 mx-auto'>
-                    <Logo xxl='5' xl='5' lg='6' md='7' sm='8' xs='10' className='mx-auto d-flex align-items-center mb-5'>
-                        <LogoTitle className='h4 ms-2'>Civil Cultural</LogoTitle>
+                    <Col xxl='5' xl='5' lg='6' md='7' sm='8' xs='10' className='mx-auto d-flex align-items-center mb-5'>
+                        <h4 className={`${styles.logoTitle} h4 ms-2`}>Civil Cultural</h4>
                         <Image
                             width={43}
                             height={43}
@@ -86,12 +80,13 @@ export default function Login() {
                             objectFit='cover'
                             className='float-end'
                         />
-                    </Logo>
+                    </Col>
 
                     <Form>
                         <Form.Group >
                             <Col xxl='6' xl='8' lg='8' md='10' sm='12' xs='12' className="mx-auto mb-4">
-                                <FloatLabel
+                                <FloatingLabel
+                                    className={styles.floatLabel}
                                     label={t('pages.login.nick_or_email')}
                                 >
                                     <Input
@@ -102,14 +97,15 @@ export default function Login() {
                                         {...register('email', { required: true })}
                                         onKeyUp={illustrationValidate}
                                     />
-                                </FloatLabel>
+                                </FloatingLabel>
                                 <Col className='col-12 mx-auto mt-2'>
                                     {errors.email && (<AlertError text='Email obrigatória' />)}
                                 </Col>
                             </Col>
 
                             <Col xxl='6' xl='8' lg='8' md='10' sm='12' xs='12' className="col-10 mx-auto mb-4">
-                                <FloatLabel
+                                <FloatingLabel
+                                    className={styles.floatLabel}
                                     label={t('forms.password')}
                                 >
                                     <Input
@@ -120,7 +116,7 @@ export default function Login() {
                                         {...register('password', { required: true })}
                                         onKeyUp={illustrationValidate}
                                     />
-                                </FloatLabel>
+                                </FloatingLabel>
                                 <Col className='col-12 mx-auto mt-2'>
                                     {errors.password && (<AlertError text='Senha obrigatória' />)}
                                 </Col>
@@ -128,7 +124,7 @@ export default function Login() {
 
                             <Col xxl='8' xl='8' lg='8' md='10' sm='12' xs='12' className="col-8 mx-auto pt-2 pb-3 mt-5 mb-4">
                                 <Link href='#' >
-                                    <FormLink className="link-primary float-end">{t('pages.login.forgot_password')}</FormLink>
+                                    <a className={`${styles.formLink} link-primary float-end`}>{t('pages.login.forgot_password')}</a>
                                 </Link>
                             </Col>
 
@@ -138,7 +134,7 @@ export default function Login() {
                             
                             <Col className='col-12 my-2 text-center clearfix'>
                                 <Link href='/register' >
-                                    <FormLink className="link-primary text-decoration-none text-center">{t('pages.login.create_account')}</FormLink>
+                                    <a className={`${styles.formLink} link-primary text-decoration-none text-center`}>{t('pages.login.create_account')}</a>
                                 </Link>
                             </Col>
                         </Form.Group>

@@ -1,10 +1,10 @@
 import { ReactNode } from 'react'
 import { DefaultTheme } from 'styled-components'
 
-export type ThemeStateProps = 'DARK' | 'LIGHT'
+export type ThemeStateProps = 'dark' | 'light'
 
 export interface CustomThemeContextProps {
-  theme: DefaultTheme;
+  theme: ThemeStateProps;
   toggleTheme: (themeType: ThemeStateProps) => void
 }
 

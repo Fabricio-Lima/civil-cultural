@@ -1,36 +1,53 @@
+.containerLogin {
+    &.light {
+        background-color: var(--light);
+    }
+
+    &.dark {
+        background-color: var(--dark);
+    }
+}
+
 .logoTitle {
     font-size: 2.2em;
     font-weight: 600;
-    letter-spacing: 0.10rem;
+    letter-spacing: 0.1rem;
     line-height: 1.4rem;
-    margin-right: .9rem;
+    margin-right: 0.9rem;
     margin-bottom: 0;
+
+    &.light {
+        color: var(--gray-500);
+    }
+
+    &.dark {
+        color: var(--gray-50);
+    }
 }
 
 .imgIllustration {
-    background-image: radial-gradient(#0DB958 36%, #234D4C);
+    background-image: radial-gradient(#0db958 36%, #234d4c);
 }
 
 .floatLabel {
-    font-size: .94em;
+    font-size: 0.94em;
 
-    &.floatLabelDark {
-        color: var(--gray-200);
-    }
-
-    &.floatLabelLight {
+    &.light {
         color: var(--gray-600);
     }
 
+    &.dark {
+        color: var(--gray-200);
+    }
+
     & > label {
-        bottom: -.8rem;
-        padding-left: .5rem !important;
-        padding-right: .5rem !important;
+        bottom: -0.8rem;
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
     }
 }
 
-
 .formLink {
-    font-size: .86em;
+    font-size: 0.86em;
     font-weight: 500;
 }

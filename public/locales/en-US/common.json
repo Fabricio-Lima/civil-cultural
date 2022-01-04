@@ -10,7 +10,7 @@
         "confirm_password": "Confirm an password",
         "phone_cell": "Phone Cell",
         "landline": "Landline",
-        "language": "Language",
+        "personal_identification": "Personal Identification",
         "country": "country",
         "state": "State",
         "city": "City",
@@ -26,7 +26,10 @@
         "login": {
             "nick_or_email": "Nick or E-mail",
             "forgot_password": "Forgot password ?",
-            "create_account": "Create an account"
+            "create_account": "Create an account",
+            "message_error": {
+                "required": "Required :FIELD"
+            }
         },
         "register": {
             "title": "Register",
@@ -34,9 +37,11 @@
             "about_you": "Tell us about your career",
             "message_error": {
                 "required": "Required :FIELD field",
+                "email": "Invalid email",
                 "confirm_password": "Divergent passwords",
                 "number": "Please enter only numbers",
-                "max": "Maximum :NUM Characters"
+                "max": "Maximum :NUM Characters",
+                "type": "Please enter only letters"
             }
         }
     }

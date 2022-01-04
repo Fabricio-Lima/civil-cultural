@@ -1,7 +1,7 @@
 /* Resources */
 import { forwardRef, Ref, useContext, useState } from 'react';
 import * as ReactIs from 'react-is'
-import { ThemeContext } from 'Context/ThemeContext'
+import { useTheme } from 'Hooks/useTheme'
 
 /* Components */
 import Popup from 'reactjs-popup'
@@ -24,10 +24,9 @@ export const ModalPopup = forwardRef((modalProps: ModalPopupProps, ref?: Ref<Pop
     stateless,
     ...props
   } = modalProps
-
-  const { theme } = useContext(ThemeContext)
   
-  const [ openPopup, setOpenPopup ] = stateless ? stateless : useState(false)
+  const [openPopup, setOpenPopup] = stateless ? stateless : useState(false)
+  const { theme } = useTheme()
 
   const closeModal = () => setOpenPopup(false)
 
@@ -39,7 +38,7 @@ export const ModalPopup = forwardRef((modalProps: ModalPopupProps, ref?: Ref<Pop
             ReactIs.isElement(title) ?
               title :
               (
-                <div className={styles.popupTitleContainer} >
+                <div className={`${styles.popupTitleContainer} ${styles[theme]}`} >
                   <h3 className={styles.popupTitle}>{icon && (ReactIs.isElement(icon) || icon instanceof IconBase) ? icon : ''} {title}</h3>
                 </div>
               )
@@ -73,7 +72,7 @@ export const ModalPopup = forwardRef((modalProps: ModalPopupProps, ref?: Ref<Pop
 
   return (
     <Popup
-      className={styles.popupContainer}
+      className={`${styles.popupContainer} ${styles[theme]}`}
       ref={ref}
       open={openPopup}
       onClose={() => setOpenPopup(false)}

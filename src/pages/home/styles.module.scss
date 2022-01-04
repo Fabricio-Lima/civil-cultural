@@ -3,6 +3,15 @@
   flex-direction: column;
   padding-top: .5rem;
   padding-bottom: .5rem;
+
+
+  &.light {
+    background-color: var(--light);
+  }
+
+  &.dark {
+    background-color: var(--dark);
+  }
 }
 
 .main {
@@ -64,7 +73,7 @@
   }
 
   &.dark {
-    color: var(--gray-100);
+    color: var(--gray-200);
   }
 }
 
@@ -73,11 +82,11 @@
   font-weight: 400;
 
   &.light {
-    color: var(--gray-300);
+    color: var(--gray-500);
   }
 
   &.dark {
-    color: var(--gray-500);
+    color: var(--gray-200);
   }
 }
 
@@ -98,11 +107,12 @@
   text-decoration: none;
 
   &.light, &.light:hover {
-    color: var(--white-ice);
+    color: #464646;
   }
 
   &.dark, &.dark:hover {
-    color: #464646;
+    
+    color: var(--white-ice);
   }
 
   &:hover {

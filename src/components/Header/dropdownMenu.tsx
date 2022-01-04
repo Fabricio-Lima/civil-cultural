@@ -3,6 +3,7 @@ import { useRef, useState, useEffect, useMemo } from "react"
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
+import { useTheme } from 'Hooks/useTheme'
 
 /* Components */
 import { Button } from 'react-bootstrap'
@@ -12,17 +13,11 @@ import styles from 'Components/Header/styles.module.scss'
 
 
 export function DropdownMenu() {
+  const  { theme } = useTheme()
   const [isActive, setIsActive] = useState(false)
-
   const buttonRef = useRef<HTMLButtonElement>(null)
   const { pathname, locale } = useRouter()
   const { t } = useTranslation()
-  const [languageTitle, setLanguageTitle] = useState(locale == 'pt-BR' ? 'Português' : 'English')
-
-  const changeLanguage = (lang: string) => {
-    setIsActive(false)
-    setLanguageTitle(lang)
-  }
 
   const languages = [
     { language: t('portuguese'), value: 'pt-BR' },
@@ -31,7 +26,7 @@ export function DropdownMenu() {
 
   const LanguagesMemoized = useMemo(
     () => languages.map(({ language, value }, index) => (
-      <span className={styles.option} key={index} onClick={() => changeLanguage(language)}>
+      <span className={`${styles.option} ${styles[theme]}`} key={index}>
         <Link href={pathname} locale={value} scroll={false}><a className='text-decoration-none'>{language}</a></Link>
       </span>
     )),
@@ -59,22 +54,21 @@ export function DropdownMenu() {
       doc && doc.removeEventListener('click', pageClick)
       doc && doc.removeEventListener('keydown', pageKeyPress)
     }
-
   }, [isActive])
 
   return (
     <>
       <div className={styles.dropdownMenuContainer}>
         <Button
-          className={styles.dropdownButton}
+          className={`${styles.dropdownButton} ${styles[theme]}`}
           ref={buttonRef}
           onClick={() => setIsActive(!isActive)}
         >
-          {languageTitle}
+          {t(locale == 'pt-BR' ? 'portuguese' : 'english')}
         </Button>
 
         <div
-          className={`${styles.dropdown} ${isActive ? 'active' : ''}`}
+          className={`${styles.dropdown} ${styles[theme]} ${isActive ? styles.active : ''}`}
         >
           <div className={styles.select}>
             {LanguagesMemoized}

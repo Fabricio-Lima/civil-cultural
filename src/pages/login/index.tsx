@@ -1,11 +1,12 @@
 /* Resources */
 import { KeyboardEventHandler } from 'react'
-import * as yup from 'yup'
-import { useForm } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
+import { useTheme } from 'Hooks/useTheme'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useRive, useStateMachineInput } from 'rive-react'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { useForm } from 'react-hook-form'
+import * as yup from 'yup'
 
 /* Components */
 import Head from 'next/head'
@@ -19,14 +20,24 @@ import { Col, Form, FloatingLabel } from 'react-bootstrap'
 /*  Styles */
 import styles from 'Pages/login/styles.module.scss'
 
-
-const schema = yup.object({
-    email: yup.string().email().required(),
-    password: yup.string().required()
-})
-
 export default function Login() {
+    let schema
+    const { theme } = useTheme()
     const { t } = useTranslation()
+
+    if (!schema) {
+        schema = yup.object({
+            user: yup
+                .string()
+                .required(t('pages.login.message_error.required').replace(':FIELD', t('pages.login.nick_or_email')))
+                .trim(),
+            password: yup
+                .string()
+                .required(t('pages.login.message_error.required').replace(':FIELD', t('forms.password')))
+                .trim(),
+        })
+    }
+        
     const {
         handleSubmit,
         register,
@@ -61,17 +72,17 @@ export default function Login() {
 
 
     return (
-        <Col className='col-12 p-0 m-0 row h-full'>
+        <Col className={`${styles.containerLogin} ${styles[theme]} col-12 p-0 m-0 row h-full`}>
             <Head>
                 <title>Login</title>
             </Head>
             <Col xxl='6' xl='6' lg='6' md='6' className={`${styles.imgIllustration} d-none d-md-block p-0`}>
-                <RiveComponent style={{ width: '100%', height: '100%', marginLeft: '-.5rem'}}/>
+                <RiveComponent style={{ width: '100%', height: '100%', marginLeft: '-.5rem' }} />
             </Col>
             <Col xxl='6' xl='6' lg='6' md='6' sm='12' xs='12' className='d-flex justify-items-center align-items-center'>
                 <Col className='col-11 mx-auto'>
                     <Col xxl='5' xl='5' lg='6' md='7' sm='8' xs='10' className='mx-auto d-flex align-items-center mb-5'>
-                        <h4 className={`${styles.logoTitle} h4 ms-2`}>Civil Cultural</h4>
+                        <h4 className={`${styles.logoTitle} ${styles[theme]} h4 ms-2`}>Civil Cultural</h4>
                         <Image
                             width={43}
                             height={43}
@@ -86,39 +97,39 @@ export default function Login() {
                         <Form.Group >
                             <Col xxl='6' xl='8' lg='8' md='10' sm='12' xs='12' className="mx-auto mb-4">
                                 <FloatingLabel
-                                    className={styles.floatLabel}
+                                    className={`${styles.floatLabel} ${styles[theme]}`}
                                     label={t('pages.login.nick_or_email')}
                                 >
                                     <Input
                                         type='text'
-                                        placeholder="Email"
-                                        aria-label="Email"
+                                        placeholder={t('pages.login.nick_or_email')}
+                                        aria-label={t('pages.login.nick_or_email')}
                                         aria-required='true'
-                                        {...register('email', { required: true })}
+                                        {...register('user', { required: true })}
                                         onKeyUp={illustrationValidate}
                                     />
                                 </FloatingLabel>
                                 <Col className='col-12 mx-auto mt-2'>
-                                    {errors.email && (<AlertError text='Email obrigatória' />)}
+                                    {errors.user && (<AlertError text={errors.user.message} />)}
                                 </Col>
                             </Col>
 
                             <Col xxl='6' xl='8' lg='8' md='10' sm='12' xs='12' className="col-10 mx-auto mb-4">
                                 <FloatingLabel
-                                    className={styles.floatLabel}
+                                    className={`${styles.floatLabel} ${styles[theme]}`}
                                     label={t('forms.password')}
                                 >
                                     <Input
                                         type='password'
-                                        placeholder="Senha"
-                                        aria-label="password"
+                                        placeholder={t('forms.password')}
+                                        aria-label={t('forms.password')}
                                         aria-required='true'
                                         {...register('password', { required: true })}
                                         onKeyUp={illustrationValidate}
                                     />
                                 </FloatingLabel>
                                 <Col className='col-12 mx-auto mt-2'>
-                                    {errors.password && (<AlertError text='Senha obrigatória' />)}
+                                    {errors.password && (<AlertError text={errors.password.message} />)}
                                 </Col>
                             </Col>
 
@@ -131,7 +142,7 @@ export default function Login() {
                             <Col xxl='8' xl='8' lg='8' md='10' sm='12' xs='12' className="mx-auto d-grid gap-2 mb-4">
                                 <Button type="button" className='text-uppercase' onClick={handleSubmit(submit)}> Entrar </Button>
                             </Col>
-                            
+
                             <Col className='col-12 my-2 text-center clearfix'>
                                 <Link href='/register' >
                                     <a className={`${styles.formLink} link-primary text-decoration-none text-center`}>{t('pages.login.create_account')}</a>

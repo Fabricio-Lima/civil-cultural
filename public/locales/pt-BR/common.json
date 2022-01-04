@@ -10,7 +10,7 @@
         "confirm_password": "Confirme a senha",
         "phone_cell": "Celular",
         "landline": "Telefone fixo",
-        "language": "Idioma",
+        "personal_identification": "Identificação pessoal",
         "country": "País",
         "state": "Estado",
         "city": "Cidade",
@@ -26,17 +26,22 @@
         "login": {
             "nick_or_email": "Nome ou e-mail",
             "forgot_password": "Esqueceu a senha ?",
-            "create_account": "Criar Conta"
+            "create_account": "Criar Conta",
+            "message_error": {
+                "required": ":FIELD obrigatório"
+            }
         },
         "register": {
             "title": "Registro",
             "about_you": "Conte-nos sobre sua carreira",
             "link_login": "Logar-se",
             "message_error": {
-                "required": "Campo :FIELD obrigatório",
+                "required": ":FIELD obrigatório",
+                "email": "Email inválido",
                 "confirm_password": "Senhas divergentes",
                 "number": "Por favor, insira apenas número",
-                "max": "No máximo :NUM caracteres"
+                "max": "No máximo :NUM caracteres",
+                "type": "Por favor, digite apenas letras"
             }
         }
     }

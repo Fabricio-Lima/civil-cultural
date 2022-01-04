@@ -1,3 +1,13 @@
+.containerRegister {
+    &.light {
+        background-color: var(--light);
+    }
+
+    &.dark {
+        background-color: var(--dark);
+    }
+}
+
 .floatLabel {
     font-size: .94em;
 
@@ -44,12 +54,12 @@
     height: 100px !important;
 
     &.light, &.light:focus {
-        color: var(--gray-200);
+        color: var(--gray-600);
         background-color: var(--light);
     }
 
     &.dark , &.dark:focus {
-        color: var(--gray-400);
+        color: var(--gray-100);
         background-color: var(--dark);
     }
 

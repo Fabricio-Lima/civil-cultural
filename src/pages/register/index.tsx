@@ -37,35 +37,76 @@ import styles from 'Pages/register/styles.module.scss'
 
 export default function Register() {
     let schema
+    const { theme } = useTheme()
     const [countries, setCountries] = useState<CountryProps[]>([])
     const [showPassword, setShowPassword] = useState<boolean>(false)
     const { t } = useTranslation()
 
-    const { theme } = useTheme()
 
     if (!schema) {
         schema = yup.object({
-            name: yup.string().required(t('pages.register.message_error.required').replace(':FIELD', t('forms.name'))),
-            email: yup.string().email().required(t('pages.register.message_error.required').replace(':FIELD', 'email')),
-            password: yup.string().required(t('pages.register.message_error.required').replace(':FIELD', t('forms.password'))),
-            currentPassword: yup.string().required(t('pages.register.message_error.required').replace(':FIELD', t('forms.confirm_password'))).oneOf([yup.ref('password')], 'Senhas divergentes'),
-            language: yup.string().required(t('pages.register.message_error.required').replace(':FIELD', t('forms.language'))),
-            phone_cell: yup.number().required(t('pages.register.message_error.required').replace(':FIELD', t('forms.phone_cell'))),
-            phone_fix_number: yup.number().notRequired(),
-            country: yup.string().required(t('pages.register.message_error.required').replace(':FIELD', t('forms.country'))),
-            cep: yup.number().notRequired().max(8, t('pages.register.message_error.max').replace(':FIELD', t('forms.cep'))),
-            state: yup.string().required(t('pages.register.message_error.required').replace(':FIELD', t('forms.state'))),
-            city: yup.string().required(t('pages.register.message_error.required').replace(':FIELD', t('forms.city'))),
-            address: yup.string().required(t('pages.register.message_error.required').replace(':FIELD', t('forms.address'))),
-            personal_identification: yup.string().required(t('pages.register.message_error.required').replace(':FIELD', t('forms.personal_identification'))),
+            name: yup
+                .string()
+                .required(t('pages.register.message_error.required').replace(':FIELD', t('forms.name')))
+                .trim(),
+            email: yup
+                .string()
+                .email(t('pages.register.message_error.email'))
+                .required(t('pages.register.message_error.required').replace(':FIELD', 'email'))
+                .trim(),
+            password: yup
+                .string()
+                .required(t('pages.register.message_error.required').replace(':FIELD', t('forms.password')))
+                .trim(),
+            currentPassword: yup
+                .string()
+                .required(t('pages.register.message_error.required').replace(':FIELD', t('forms.confirm_password')))
+                .oneOf([yup.ref('password')], 'Senhas divergentes')
+                .trim(),
+            phone_cell: yup
+                .string()
+                .required(t('pages.register.message_error.required').replace(':FIELD', t('forms.phone_cell')))
+                .max(11, t('pages.register.message_error.max').replace(':NUM', '11'))
+                .trim(),
+            phone_fix_number: yup
+                .string()
+                .nullable()
+                .notRequired()
+                .max(8, t('pages.register.message_error.max').replace(':NUM', '8'))
+                .trim(),
+            personal_identification: yup
+                .string()
+                .required(t('pages.register.message_error.required').replace(':FIELD', t('forms.personal_identification')))
+                .trim(),
+            country: yup
+                .string()
+                .required(t('pages.register.message_error.required').replace(':FIELD', t('forms.country')))
+                .trim(),
+            cep: yup
+                .string()
+                .notRequired()
+                .max(8, t('pages.register.message_error.max').replace(':NUM', '8')),
+            state: yup
+                .string()
+                .required(t('pages.register.message_error.required').replace(':FIELD', t('forms.state')))
+                .trim(),
+            city: yup
+                .string()
+                .required(t('pages.register.message_error.required').replace(':FIELD', t('forms.city')))
+                .trim(),
+            address: yup
+                .string()
+                .required(t('pages.register.message_error.required').replace(':FIELD', t('forms.address')))
+                .trim()
         })
 
     }
 
-    const { register, handleSubmit, formState: { errors } } = useForm({
-        mode: 'onChange',
-        resolver: yupResolver(schema)
-    })
+    const { 
+        register, 
+        handleSubmit, 
+        formState: { errors } 
+    } = useForm({ mode: 'onChange', resolver: yupResolver(schema) })
 
 
     const submit = (data) => console.table(data)
@@ -82,7 +123,7 @@ export default function Register() {
     console.log(errors)
 
     return (
-        <Col className='col-12 p-0 m-0'>
+        <Col className={`${styles.containerRegister} ${styles[theme]} col-12 p-0 m-0`}>
             <Head>
                 <title>Cadastro</title>
             </Head>
@@ -94,13 +135,12 @@ export default function Register() {
                             <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
                                 <FloatingLabel
                                     className={`${styles.floatLabel} ${styles[theme]}`}
-
                                     label={t('forms.name')}
                                 >
                                     <Input
                                         type='text'
-                                        placeholder='Name'
-                                        aria-label="Name"
+                                        placeholder={t('forms.name')}
+                                        aria-label={t('forms.name')}
                                         aria-required='true'
                                         {...register('name', { required: true })}
 
@@ -137,8 +177,8 @@ export default function Register() {
                                 >
                                     <Input
                                         type={showPassword ? 'text' : 'password'}
-                                        placeholder='Senha'
-                                        aria-label="Password"
+                                        placeholder={t('forms.password')}
+                                        aria-label={t('forms.password')}
                                         aria-required='true'
                                         {...register('password', { required: true })}
 
@@ -159,8 +199,8 @@ export default function Register() {
                                 >
                                     <Input
                                         type={showPassword ? 'text' : 'password'}
-                                        placeholder='Confirme Password'
-                                        aria-label="Password"
+                                        placeholder={t('forms.confirm_password')}
+                                        aria-label={t('forms.confirm_password')}
                                         aria-required='true'
                                         {...register('currentPassword', { required: true })}
 
@@ -179,8 +219,8 @@ export default function Register() {
                                 >
                                     <Input
                                         type='number'
-                                        placeholder='Telefone'
-                                        aria-label="Telefone"
+                                        placeholder={t('forms.phone_cell')}
+                                        aria-label={t('forms.phone_cell')}
                                         aria-required='true'
                                         onKeyPress={(e) => /[\d]+/.test(e.key) || e.preventDefault()}
                                         {...register('phone_cell', { required: true, max: 11 })}
@@ -197,15 +237,15 @@ export default function Register() {
                                 >
                                     <Input
                                         type='number'
-                                        placeholder='Telefone Fixo'
-                                        aria-label="Telefone Fixo"
+                                        placeholder={t('forms.landline')}
+                                        aria-label={t('forms.landline')}
                                         aria-required='false'
                                         onKeyPress={(e) => /[\d]+/.test(e.key) || e.preventDefault()}
                                         {...register('phone_fix_number', { required: false, max: 8 })}
                                     />
                                 </FloatingLabel>
                                 <Col className='col-12 mx-auto mt-2'>
-                                    {errors.phone_fix_number && (<AlertError text='Telefone obrigatório' />)}
+                                    {errors.phone_fix_number && (<AlertError text={errors.phone_fix_number.message} />)}
                                 </Col>
                             </Col>
                         </Row>
@@ -213,22 +253,17 @@ export default function Register() {
                             <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
                                 <FloatingLabel
                                     className={`${styles.floatLabel} ${styles[theme]}`}
-                                    label={t('forms.language')}
+                                    label={t('forms.personal_identification')}
                                 >
-                                    <Form.Select
-                                        placeholder='Idioma'
-                                        aria-label='Idioma'
+                                    <Input
+                                        placeholder={t('forms.personal_identification')}
+                                        aria-label={t('forms.personal_identification')}
                                         aria-required='true'
-                                        className={`${styles.formSelect} ${styles[theme]} py-1`}
-                                        {...register('language', { required: true })}
-                                    >
-                                        <option value="" disabled></option>
-                                        <option value='pt-BR'>Português</option>
-                                        <option value='en'>Inglês</option>
-                                    </Form.Select>
+                                        {...register('personal_identification', { required: true })}
+                                    />
                                 </FloatingLabel>
                                 <Col className='col-12 mx-auto mt-2'>
-                                    {errors.language && (<AlertError text='Selecione o idioma principal' />)}
+                                    {errors.personal_identification && (<AlertError text={errors.personal_identification.message} />)}
                                 </Col>
                             </Col>
                             <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
@@ -237,18 +272,18 @@ export default function Register() {
                                     label={t('forms.country')}
                                 >
                                     <Form.Select
-                                        placeholder='País'
-                                        aria-label='País'
+                                        placeholder={t('forms.country')}
+                                        aria-label={t('forms.country')}
                                         aria-required='true'
                                         className={`${styles.formSelect} ${styles[theme]} py-1`}
                                         {...register('country', { required: true })}
                                     >
-                                        <option value="" disabled></option>
+                                        <option value="" disabled selected></option>
                                         {countries.map(country => <option key={country.id['ISO-ALPHA-2']} value={country.id['ISO-ALPHA-2']}>{country.nome}</option>)}
                                     </Form.Select>
                                 </FloatingLabel>
                                 <Col className='col-12 mx-auto mt-2'>
-                                    {errors.country && (<AlertError text='Selecione o país' />)}
+                                    {errors.country && (<AlertError text={errors.country.message} />)}
                                 </Col>
                             </Col>
                         </Row>
@@ -261,14 +296,14 @@ export default function Register() {
 
                                     <Input
                                         type='text'
-                                        placeholder='Estado'
-                                        aria-label="Estado"
+                                        placeholder={t('forms.state')}
+                                        aria-label={t('forms.state')}
                                         aria-required='true'
                                         {...register('state', { required: true })}
                                     />
                                 </FloatingLabel>
                                 <Col className='col-12 mx-auto mt-2'>
-                                    {errors.state && (<AlertError text='Campo campo é obrigatório' />)}
+                                    {errors.state && (<AlertError text={errors.state.message} />)}
                                 </Col>
                             </Col>
                             <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
@@ -282,9 +317,12 @@ export default function Register() {
                                         aria-label='Cep'
                                         aria-required='false'
                                         onKeyPress={(e) => /[\d]+/.test(e.key) || e.preventDefault()}
-                                        {...register('cep', { required: false })}
+                                        {...register('cep', { required: false, max: 8 })}
                                     />
                                 </FloatingLabel>
+                                <Col className='col-12 mx-auto mt-2'>
+                                    {errors.cep && (<AlertError text={errors.cep.message} />)}
+                                </Col>
                             </Col>
                         </Row>
                         <Row>
@@ -295,14 +333,14 @@ export default function Register() {
                                 >
                                     <Input
                                         type='text'
-                                        placeholder='Cidade'
-                                        aria-label='Cidade'
+                                        placeholder={t('forms.city')}
+                                        aria-label={t('forms.city')}
                                         aria-required='true'
                                         {...register('city', { required: true })}
                                     />
                                 </FloatingLabel>
                                 <Col className='col-12 mx-auto mt-2'>
-                                    {errors.city && (<AlertError text='Cidade obrigatória' />)}
+                                    {errors.city && (<AlertError text={errors.city.message} />)}
                                 </Col>
                             </Col>
                             <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
@@ -312,28 +350,14 @@ export default function Register() {
                                 >
                                     <Input
                                         type='text'
-                                        placeholder='Endereço'
-                                        aria-label='Endereço'
+                                        placeholder={t('forms.address')}
+                                        aria-label={t('forms.address')}
                                         aria-required='true'
                                         {...register('address', { required: true })}
                                     />
                                 </FloatingLabel>
                                 <Col className='col-12 mx-auto mt-2'>
-                                    {errors.address && (<AlertError text='Campo endereço Obrigatório' />)}
-                                </Col>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col xxl='12' xl='12' lg='12' md='12' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
-
-                                <FloatingLabel
-                                    className={`${styles.floatLabel} ${styles[theme]}`}
-                                    label={t('pages.register.about_you')}
-                                >
-                                    <Form.Control as='textarea' className={`${styles.formTextarea} ${styles[theme]} form-control`} {...register('personal_identification', { required: true })} />
-                                </FloatingLabel>
-                                <Col className='col-12 mx-auto mt-2'>
-                                    {errors.personal_identification && (<AlertError text='Por favor preencha esse campo.' />)}
+                                    {errors.address && (<AlertError text={errors.address.message} />)}
                                 </Col>
                             </Col>
                         </Row>
@@ -344,7 +368,7 @@ export default function Register() {
                 </Form>
                 <Col className='col-12 mt-2 text-center'>
                     <Link href='/login'>
-                        <a className={`${styles.formLink} link-primary`}>{ t('pages.register.link_login') }</a>
+                        <a className={`${styles.formLink} link-primary`}>{t('pages.register.link_login')}</a>
                     </Link>
                 </Col>
             </Col>

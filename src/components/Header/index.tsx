@@ -20,7 +20,12 @@ interface HTMLEventElement extends MouseEvent {
   target: EventTarget & HTMLElement
 }
 
-export default function Header({ isActive }: { isActive: () => void }) {
+interface SidebarState {
+  isActive: boolean;
+  setIsActive: () => void;
+}
+
+export default function Header({ isActive, setIsActive }: SidebarState) {
   const { theme } = useTheme()
   const [isShow, setIsShow] = useState(false)
 
@@ -59,34 +64,39 @@ export default function Header({ isActive }: { isActive: () => void }) {
   }, [isShow])
 
   return (
-    <header className={styles.headerContainer}>
+    <header className={`${styles.headerContainer} ${styles[theme]}`}>
       <div className={styles.flexContainer}>
         <div className={`${styles.boxItem} col-3 col-md-2`} >
-          <div className={styles.flexContainer}>
-            <div className={`${styles.boxIcon} ${styles.boxIconMenu}`}
+          <div className={`${styles.flexContainer} justify-content-start p-0`}>
+            {/* Open menu */}
+            <Col className={`${styles.boxIconMenu} col-auto`}
               aria-controls='sidebar'
-              onClick={isActive}
+              onClick={setIsActive}
             >
-              <div className={`${styles.boxIcon} open`} />
-            </div>
-
-            <Col className={`${styles.dropdownMenuSearch} me-2 mt-1`}>
+              <div className={styles.boxIcon}>
+                <MdMenu className={`${styles.iconMenu} ${styles[theme]} mx-auto ${isActive ? styles.open : ''} `}/>
+              </div>
+            </Col>
+            
+            <Col className='col-auto'>
               <button
                 id='btnShowDropdown'
-                className='btn remove-focus remove-bg-image p-1 m-0'
+                className='btn remove-focus border-0 remove-bg-image p-1 m-0'
+                style={{zIndex: 100}}
                 onClick={setViewDropDown}
                 ref={buttonRef}
               >
-                <IoMdSearch className={`${styles.iconSearch} cursor-pointer`} />
+                <IoMdSearch className={`${styles.iconSearch} ${styles.iconMenuSearch} ${styles[theme]} cursor-pointer`} />
               </button>
+
               {
                 isShow && (
-                  <div
-                    className={styles.dropdownMenuSearch}
+                  <Col
+                    className={`${styles.dropdownMenuSearch} ${styles[theme]} col-12`}
                     ref={dropdownRef}
                   >
                     <InputSearch />
-                  </div>
+                  </Col>
                 )
               }
             </Col>

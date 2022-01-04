@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from 'react'
 import { useTheme } from 'Hooks/useTheme'
 
 /* Components */
-import { Button } from 'react-bootstrap'
+import { Col, Button } from 'react-bootstrap'
 
 /* Styles */
 import styles from "Components/Header/styles.module.scss";
@@ -26,14 +26,14 @@ export function Switch() {
   return (
     <Button onClick={alternateTheme} className={`${styles.switchContainer} ${styles[theme]} remove-bg-image`}>
       <input type='checkbox' className={styles.inputCheck} ref={switchRef} defaultChecked={isDark}/>
-      <div className={`${styles.flexSwitch} ${styles.flexContainer}`}>
-        <div className={styles.containerSun}>
+      <Col className={`${styles.flexSwitch} ${styles.flexContainer} col-12`}>
+        <Col className={styles.containerSun}>
           <span className={styles.span}>🌞</span>
-        </div>
-        <div className={styles.containerMoon}>
+        </Col>
+        <Col className={styles.containerMoon}>
           <span className={styles.span}>🌜</span>
-        </div>
-      </div>
+        </Col>
+      </Col>
       <div className={`${styles.stateSwitch} ${isDark ? styles.activeSwitch : 'desativeSwitch'}`} />
     </Button>
   )

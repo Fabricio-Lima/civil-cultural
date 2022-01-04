@@ -15,7 +15,23 @@
         "state": "Estado",
         "city": "Cidade",
         "address": "Endereço",
-        "number": "Número"
+        "number": "Número",
+        "message_error": {
+            "required": ":FIELD obrigatório",
+            "email": "Email inválido",
+            "confirm_password": "Senhas divergentes",
+            "number": "Por favor, insira apenas número",
+            "max": "No máximo :NUM caracteres",
+            "type": "Por favor, digite apenas letras"
+        }
+    },
+    "components": {
+        "sidebar": {
+            "close": "Fechar",
+            "topic": "Tópicos",
+            "article": "Artigos",
+            "news": "Notícias"
+        }
     },
     "pages": {
         "home": {
@@ -26,23 +42,11 @@
         "login": {
             "nick_or_email": "Nome ou e-mail",
             "forgot_password": "Esqueceu a senha ?",
-            "create_account": "Criar Conta",
-            "message_error": {
-                "required": ":FIELD obrigatório"
-            }
+            "create_account": "Criar Conta"
         },
         "register": {
             "title": "Registro",
-            "about_you": "Conte-nos sobre sua carreira",
-            "link_login": "Logar-se",
-            "message_error": {
-                "required": ":FIELD obrigatório",
-                "email": "Email inválido",
-                "confirm_password": "Senhas divergentes",
-                "number": "Por favor, insira apenas número",
-                "max": "No máximo :NUM caracteres",
-                "type": "Por favor, digite apenas letras"
-            }
+            "link_login": "Logar-se"
         }
     }
 }

@@ -75,45 +75,12 @@ export default function Home() {
       </Head>
       <Header isActive={showSidebar} setIsActive={() => setShowSidebar(x => !x)} />
       <main className={styles.main}>
-        <Sidebar active={showSidebar} />
+        <Sidebar active={showSidebar} setClose={() => setShowSidebar(false)} />
+        
         <div className={styles.divHeader} />
+
         <Col as='section' className='row p-0 m-0' >
-          <Col className='col-11 col-xxl-8 col-lg-8 col-xl-8 col-md-9 col-sm-11 mx-auto border-1 border-secondary'>
-            {
-              /* COMPONENTE CARD */
-              cardTest.map((x, i) => (
-                <Card key={i} className={`${styles.cardContainer} ${styles[theme]} col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-11 col-xs-11 mx-auto`}>
-                  <Row className='col-12'>
-                    <Col className='col-10 px-0'>
-                      <Card.Body>
-                        <Card.Text className={`${styles.cardTextDate} ${styles[theme]}`}>10/05/2021 &#9679; há 4 horas</Card.Text>
-                        <Card.Title className={styles.cardTitle}><Link href='#'><Card.Link className={styles.cardLink}>Caixa Economica divulga calendário de pagamento do Auxílio Brasil</Card.Link></Link></Card.Title>
-                        <Card.Text className={`${styles.cardText} ${styles[theme]} text-truncate`}>
-                          This is a wider card with supporting text below as a natural lead-in to
-                          additional content. This content is a little bit longer.
-                        </Card.Text>
-                      </Card.Body>
-                    </Col>
-                    <Col className="col-2 p-0 m-0 d-flex justify-content-center align-content-center">
-                      <Col className={styles.boxImg}>
-                        <Image
-                          src="https://img.freepik.com/psd-gratuitas/maos-segurando-um-jornal-de-negocios-com-modelo-de-maquete-de-espaco-de-copia-na-mesa-preta-topview_185216-128.jpg?size=626&ext=jpg"
-                          alt="Imagem de exemplo"
-                          layout="fill"
-                          objectFit='cover'
-                        />
-                      </Col>
-                    </Col>
-                  </Row>
-                </Card>
-              ))
-              /* COMPONENT END */
-            }
-
-            <CardPostLoad />
-          </Col>
-
-          <Col className='col-3 d-none d-md-block d-lg-block'>
+           <Col className='col-3 d-none d-md-block d-lg-block'>
             <section className={`${styles.sectionOthers} ${styles[theme]}`}>
               <Col className={`${styles.boxTitleMenu} ${styles[theme]} col-11 mx-auto`}>
                 <h3 className={`${styles.titleMenu} ${styles[theme]}`}>{t('pages.home.menu_publication')}</h3>
@@ -182,6 +149,41 @@ export default function Home() {
                 </span>
               </Col>
             </section>
+          </Col>
+
+          <Col className='col-11 col-xxl-8 col-lg-8 col-xl-8 col-md-9 col-sm-11 mx-auto border-1 border-secondary'>
+            {
+              /* COMPONENTE CARD */
+              cardTest.map((x, i) => (
+                <Card key={i} className={`${styles.cardContainer} ${styles[theme]} col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-11 col-xs-11 mx-auto`}>
+                  <Row className='col-12'>
+                    <Col className='col-10 px-0'>
+                      <Card.Body>
+                        <Card.Text className={`${styles.cardTextDate} ${styles[theme]}`}>10/05/2021 &#9679; há 4 horas</Card.Text>
+                        <Card.Title className={styles.cardTitle}><Link href='#'><Card.Link className={styles.cardLink}>Caixa Economica divulga calendário de pagamento do Auxílio Brasil</Card.Link></Link></Card.Title>
+                        <Card.Text className={`${styles.cardText} ${styles[theme]} text-truncate`}>
+                          This is a wider card with supporting text below as a natural lead-in to
+                          additional content. This content is a little bit longer.
+                        </Card.Text>
+                      </Card.Body>
+                    </Col>
+                    <Col className="col-2 p-0 m-0 d-flex justify-content-center align-content-center">
+                      <Col className={styles.boxImg}>
+                        <Image
+                          src="https://img.freepik.com/psd-gratuitas/maos-segurando-um-jornal-de-negocios-com-modelo-de-maquete-de-espaco-de-copia-na-mesa-preta-topview_185216-128.jpg?size=626&ext=jpg"
+                          alt="Imagem de exemplo"
+                          layout="fill"
+                          objectFit='cover'
+                        />
+                      </Col>
+                    </Col>
+                  </Row>
+                </Card>
+              ))
+              /* COMPONENT END */
+            }
+
+            <CardPostLoad />
           </Col>
         </Col>
       </main>

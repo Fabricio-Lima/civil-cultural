@@ -47,56 +47,56 @@ export default function Register() {
         schema = yup.object({
             name: yup
                 .string()
-                .required(t('pages.register.message_error.required').replace(':FIELD', t('forms.name')))
+                .required(t('forms.message_error.required').replace(':FIELD', t('forms.name')))
                 .trim(),
             email: yup
                 .string()
-                .email(t('pages.register.message_error.email'))
-                .required(t('pages.register.message_error.required').replace(':FIELD', 'email'))
+                .email(t('forms.message_error.email'))
+                .required(t('forms.message_error.required').replace(':FIELD', 'email'))
                 .trim(),
             password: yup
                 .string()
-                .required(t('pages.register.message_error.required').replace(':FIELD', t('forms.password')))
+                .required(t('forms.message_error.required').replace(':FIELD', t('forms.password')))
                 .trim(),
             currentPassword: yup
                 .string()
-                .required(t('pages.register.message_error.required').replace(':FIELD', t('forms.confirm_password')))
+                .required(t('forms.message_error.required').replace(':FIELD', t('forms.confirm_password')))
                 .oneOf([yup.ref('password')], 'Senhas divergentes')
                 .trim(),
             phone_cell: yup
                 .string()
-                .required(t('pages.register.message_error.required').replace(':FIELD', t('forms.phone_cell')))
-                .max(11, t('pages.register.message_error.max').replace(':NUM', '11'))
+                .required(t('forms.message_error.required').replace(':FIELD', t('forms.phone_cell')))
+                .max(11, t('forms.message_error.max').replace(':NUM', '11'))
                 .trim(),
             phone_fix_number: yup
                 .string()
                 .nullable()
                 .notRequired()
-                .max(8, t('pages.register.message_error.max').replace(':NUM', '8'))
+                .max(8, t('forms.message_error.max').replace(':NUM', '8'))
                 .trim(),
             personal_identification: yup
                 .string()
-                .required(t('pages.register.message_error.required').replace(':FIELD', t('forms.personal_identification')))
+                .required(t('forms.message_error.required').replace(':FIELD', t('forms.personal_identification')))
                 .trim(),
             country: yup
                 .string()
-                .required(t('pages.register.message_error.required').replace(':FIELD', t('forms.country')))
+                .required(t('forms.message_error.required').replace(':FIELD', t('forms.country')))
                 .trim(),
             cep: yup
                 .string()
                 .notRequired()
-                .max(8, t('pages.register.message_error.max').replace(':NUM', '8')),
+                .max(8, t('forms.message_error.max').replace(':NUM', '8')),
             state: yup
                 .string()
-                .required(t('pages.register.message_error.required').replace(':FIELD', t('forms.state')))
+                .required(t('forms.message_error.required').replace(':FIELD', t('forms.state')))
                 .trim(),
             city: yup
                 .string()
-                .required(t('pages.register.message_error.required').replace(':FIELD', t('forms.city')))
+                .required(t('forms.message_error.required').replace(':FIELD', t('forms.city')))
                 .trim(),
             address: yup
                 .string()
-                .required(t('pages.register.message_error.required').replace(':FIELD', t('forms.address')))
+                .required(t('forms.message_error.required').replace(':FIELD', t('forms.address')))
                 .trim()
         })
 

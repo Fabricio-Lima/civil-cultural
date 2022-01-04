@@ -29,11 +29,11 @@ export default function Login() {
         schema = yup.object({
             user: yup
                 .string()
-                .required(t('pages.login.message_error.required').replace(':FIELD', t('pages.login.nick_or_email')))
+                .required(t('forms.message_error.required').replace(':FIELD', t('pages.login.nick_or_email')))
                 .trim(),
             password: yup
                 .string()
-                .required(t('pages.login.message_error.required').replace(':FIELD', t('forms.password')))
+                .required(t('forms.message_error.required').replace(':FIELD', t('forms.password')))
                 .trim(),
         })
     }
@@ -82,7 +82,7 @@ export default function Login() {
             <Col xxl='6' xl='6' lg='6' md='6' sm='12' xs='12' className='d-flex justify-items-center align-items-center'>
                 <Col className='col-11 mx-auto'>
                     <Col xxl='5' xl='5' lg='6' md='7' sm='8' xs='10' className='mx-auto d-flex align-items-center mb-5'>
-                        <h4 className={`${styles.logoTitle} ${styles[theme]} h4 ms-2`}>Civil Cultural</h4>
+                        <h4 className={`${styles.logoTitle} ${styles[theme]} text-capitalize ms-2`}>Civil Cultural</h4>
                         <Image
                             width={43}
                             height={43}

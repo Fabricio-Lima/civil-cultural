@@ -1,10 +1,10 @@
-/* Resources */
+/* ----------- RESOURCES ----------- */
 import { useTheme } from 'Hooks/useTheme'
 
-/* Components */
+/* ----------- COMPONENTS ----------- */
 import Alert from 'react-bootstrap/Alert'
 
-/* Styles */
+/* ----------- STYLES ----------- */
 import styles from 'Components/AlertError/styles.module.scss'
 
 export default function AlertError({ text, ...props }: { text: string }) {

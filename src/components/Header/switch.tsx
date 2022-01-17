@@ -1,11 +1,11 @@
-/* Resources */
+/* ----------- RESOURCES ----------- */
 import { useState, useRef, useEffect } from 'react'
 import { useTheme } from 'Hooks/useTheme'
 
-/* Components */
+/* ----------- COMPONENTS ----------- */
 import { Col, Button } from 'react-bootstrap'
 
-/* Styles */
+/* ----------- STYLES ----------- */
 import styles from "Components/Header/styles.module.scss";
 
 

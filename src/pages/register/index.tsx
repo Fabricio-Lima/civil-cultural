@@ -1,4 +1,4 @@
-/* Resources */
+/* ----------- RESOURCES ----------- */
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 import { useTheme } from 'Hooks/useTheme'
@@ -10,7 +10,7 @@ import axios from 'axios'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 
-/* Components */
+/* ----------- COMPONENTS ----------- */
 import Button from 'Components/Button'
 import Input from 'Components/Input'
 import AlertError from 'Components/AlertError'
@@ -29,7 +29,7 @@ interface CountryProps {
     'sub-regiao': object;
 }
 
-/* Styles */
+/* ----------- STYLES ----------- */
 import styles from 'Pages/register/styles.module.scss'
 
 

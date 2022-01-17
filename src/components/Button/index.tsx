@@ -1,11 +1,11 @@
-/* Resources */
+/* ----------- RESOURCES ----------- */
 import { forwardRef, Ref } from 'react'
 
-/* Components */
+/* ----------- COMPONENTS ----------- */
 import { ButtonProps } from 'react-bootstrap'
 import ButtonBST from 'react-bootstrap/Button'
 
-/* Styles */
+/* ----------- STYLES ----------- */
 import styles from 'Components/Button/styles.module.scss'
 
 

@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
 import { useTheme } from 'Hooks/useTheme'
 
-/* Components */
+/* ----------- COMPONENTS ----------- */
 import { MdMenu } from 'react-icons/md'
 
-/* Styles */
+/* ----------- STYLES ----------- */
 import styles from 'Components/Header/styles.module.scss'
 
 

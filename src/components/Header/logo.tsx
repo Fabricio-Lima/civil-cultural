@@ -1,7 +1,7 @@
-/* Resources */
+/* ----------- RESOURCES ----------- */
 import Image from 'next/image'
 
-/* Styles */
+/* ----------- STYLES ----------- */
 import styles from 'Components/Header/styles.module.scss'
 
 export function Logo() {

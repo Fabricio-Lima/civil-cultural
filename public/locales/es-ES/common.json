@@ -1,0 +1,54 @@
+{
+    "portuguese": "Portuguese",
+    "english": "English",
+	"spanish": "Español",
+    "arabic": "Árabe",
+    "error": {
+        "error": "Error"
+    },
+    "forms": {
+        "password": "Contraseña",
+        "name": "Nombre",
+        "confirm_password": "Confirmar contraseña",
+        "phone_cell": "Teléfono celular",
+        "landline": "Teléfono fijo",
+        "personal_identification": "Identificación personal",
+        "country": "País",
+        "state": "Estado",
+        "city": "Ciudad",
+        "address": "Dirección",
+        "number": "Número",
+        "message_error": {
+            "required": "Campo obligatorio",
+            "email": "Correo electrónico no válido",
+            "confirm_password": "Contraseñas divergentes",
+            "number": "Por favor ingrese solo números",
+            "max": "Maximo numero de caractares",
+            "type": "Por favor, introduzca sólo letras"
+        }
+    },
+    "components": {
+        "sidebar": {
+            "close": "Cerrar",
+            "topic": "Tema",
+            "article": "Artículo",
+            "news": "Noticia"
+        }
+    },
+    "pages": {
+        "home": {
+            "popover_message": "El navegador no admite el reconocimiento de voz.",
+            "menu_publication": "Últimas publicaciones",
+            "menu_category": "Publicaciones por categoría"
+        },
+        "login": {
+            "nick_or_email": "Nick o correo electrónico",
+            "forgot_password": "Olvidé mi contraseña ?",
+            "create_account": "Crear una cuenta"
+        },
+        "register": {
+            "title": "Registro",
+            "link_login": "Inicia sesión"
+        }
+    }
+}

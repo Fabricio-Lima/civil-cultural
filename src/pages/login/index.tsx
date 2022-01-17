@@ -1,4 +1,4 @@
-/* Resources */
+/* ----------- RESOURCES ----------- */
 import { KeyboardEventHandler } from 'react'
 import { useTheme } from 'Hooks/useTheme'
 import { useTranslation } from 'next-i18next'
@@ -6,9 +6,10 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useRive, useStateMachineInput } from 'rive-react'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
+import { useAuth } from 'Hooks/useAuth'
 import * as yup from 'yup'
 
-/* Components */
+/* ----------- COMPONENTS ----------- */
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -17,13 +18,15 @@ import Input from 'Components/Input'
 import AlertError from 'Components/AlertError'
 import { Col, Form, FloatingLabel } from 'react-bootstrap'
 
-/*  Styles */
+/* ----------- STYLES ----------- */
 import styles from 'Pages/login/styles.module.scss'
+
 
 export default function Login() {
     let schema
     const { theme } = useTheme()
     const { t } = useTranslation()
+    const { signIn } = useAuth()
 
     if (!schema) {
         schema = yup.object({
@@ -66,7 +69,7 @@ export default function Login() {
     const illustrationValidate = (e) => e.target?.value.length > 0 ? (checking && checking.fire()) : (fail && fail.fire())
 
     function submit(data) {
-        console.table(data)
+        signIn(data)
         success && success.fire()
     }
 
@@ -105,7 +108,7 @@ export default function Login() {
                                         placeholder={t('pages.login.nick_or_email')}
                                         aria-label={t('pages.login.nick_or_email')}
                                         aria-required='true'
-                                        {...register('user', { required: true })}
+                                        {...register('userOrEmail', { required: true })}
                                         onKeyUp={illustrationValidate}
                                     />
                                 </FloatingLabel>

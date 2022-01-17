@@ -1,9 +1,9 @@
-/* Resources */
+/* ----------- RESOURCES ----------- */
 import { useState, useEffect, useRef, ReactChild } from 'react'
 import NextLink from 'next/link'
 import { useTheme } from 'Hooks/useTheme'
 
-/* Components */
+/* ----------- COMPONENTS ----------- */
 import { Col } from 'react-bootstrap'
 import { InputSearch } from 'Components/Header/inputSearch'
 import { Switch } from 'Components/Header/switch'
@@ -13,7 +13,7 @@ import { HiInformationCircle } from 'react-icons/hi'
 import { MdMenu } from 'react-icons/md'
 import { DropdownMenu } from 'Components/Header/dropdownMenu'
 
-/* Styles */
+/* ----------- STYLES ----------- */
 import styles from 'Components/Header/styles.module.scss'
 
 interface HTMLEventElement extends MouseEvent {
@@ -66,7 +66,7 @@ export default function Header({ isActive, setIsActive }: SidebarState) {
   return (
     <header className={`${styles.headerContainer} ${styles[theme]}`}>
       <div className={styles.flexContainer}>
-        <div className={`${styles.boxItem} col-3 col-md-2`} >
+        <div className={`${styles.boxItem} col-3`} >
           <div className={`${styles.flexContainer} justify-content-start p-0`}>
             {/* Open menu */}
             <Col className={`${styles.boxIconMenu} col-auto`}
@@ -103,7 +103,7 @@ export default function Header({ isActive, setIsActive }: SidebarState) {
           </div>
         </div>
 
-        <div className={`${styles.boxItem} col-3 col-md-2`} >
+        <div className={`${styles.boxItem} col-4`} >
           <nav className={styles.nav}>
             <ul className={styles.navRow}>
               <li className={styles.navItem}>

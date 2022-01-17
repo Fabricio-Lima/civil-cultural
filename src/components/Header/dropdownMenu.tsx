@@ -1,14 +1,14 @@
-/* Resources */
+/* ----------- RESOURCES ----------- */
 import { useRef, useState, useEffect, useMemo } from "react"
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { useTheme } from 'Hooks/useTheme'
 
-/* Components */
+/* ----------- COMPONENTS ----------- */
 import { Button } from 'react-bootstrap'
 
-/* Styles */
+/* ----------- STYLES ----------- */
 import styles from 'Components/Header/styles.module.scss'
 
 
@@ -42,19 +42,23 @@ export function DropdownMenu() {
     }
   }, [isActive])
 
-  const changeLanguage = (locale) => push(pathname, pathname, { locale })
+  console.log(locale)
+
+  const changeLanguage = (setLocale) => push(pathname, pathname, { locale: setLocale })
 
   const languages = [
-    { language: t('portuguese'), value: 'pt-BR' },
-    { language: t('english'), value: 'en-US' },
+    { language: t('portuguese'), location: 'pt-BR' },
+    { language: t('english'), location: 'en-US' },
+    { language: t('spanish'), location: 'es-ES' },
+    { language: t('arabic'), location: 'ar-AA' },
   ]
 
   const LanguagesMemoized = useMemo(
-    () => languages.map(({ language, value }, index) => (
+    () => languages.map(({ language, location }, index) => (
       <span
         className={`${styles.option} ${styles[theme]}`}
         key={index}
-        onClick={() => changeLanguage(value)}
+        onClick={() => changeLanguage(location)}
       >
         {language}
       </span>
@@ -70,7 +74,11 @@ export function DropdownMenu() {
           ref={buttonRef}
           onClick={() => setIsActive(!isActive)}
         >
-          {t(locale == 'pt-BR' ? 'portuguese' : 'english')}
+          {
+            languages
+              .filter(({ location }) => location === locale)[0]
+              .language
+          }
         </Button>
 
         <div className={`${styles.dropdown} ${styles[theme]} ${isActive ? styles.active : ''}`} >

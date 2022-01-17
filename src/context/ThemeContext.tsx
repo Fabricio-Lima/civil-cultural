@@ -1,12 +1,18 @@
+/* ----------- RESOURCES ----------- */
 import { createContext } from 'react'
 import { useCookie } from 'react-use'
 
-import { CustomThemeContextProps, CustomThemeProviderProps, ThemeStateProps } from 'Contracts/ThemeContext'
+/* ----------- TYPES ----------- */
+import {
+  CustomThemeContextProps,
+  CustomThemeProviderProps,
+  ThemeStateProps
+} from 'Contracts/ThemeContext'
 
 export const ThemeContext = createContext({} as CustomThemeContextProps)
 
 export function CustomThemeProvider({ children }: CustomThemeProviderProps) {
-  const [cookieTheme, updateCookieTheme] = useCookie('theme')
+  const [cookieTheme, updateCookieTheme] = useCookie('civil_theme')
 
   const theme = cookieTheme ? cookieTheme as ThemeStateProps :  'light'
 

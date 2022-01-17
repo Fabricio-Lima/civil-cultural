@@ -1,11 +1,11 @@
-/* Resources */
+/* ----------- RESOURCES ----------- */
 import { useState, useRef, useEffect, forwardRef, Ref } from 'react'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { useTheme } from 'Hooks/useTheme'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 
-/* Components */
+/* ----------- COMPONENTS ----------- */
 import { IoMdClose, IoMdSearch } from 'react-icons/io'
 import { AiFillAudio } from 'react-icons/ai'
 import { 
@@ -17,7 +17,7 @@ import {
   Popover
 } from 'react-bootstrap'
 
-/* Styles */
+/* ----------- STYLES ----------- */
 import styles from 'Components/Header/styles.module.scss'
 
 export const InputSearch = forwardRef((_: any | null, ref: Ref<any>) => {

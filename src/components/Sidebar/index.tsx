@@ -1,9 +1,9 @@
-/* Resources */
+/* ----------- RESOURCES ----------- */
 import { useTheme } from 'Hooks/useTheme'
 import { useTranslation } from 'next-i18next'
 import Image from 'next/image'
 
-/* Components */
+/* ----------- COMPONENTS ----------- */
 import { IoClose } from 'react-icons/io5'
 import {
   Col,
@@ -11,7 +11,7 @@ import {
   Offcanvas,
 } from 'react-bootstrap'
 
-/* Styles */
+/* ----------- STYLES ----------- */
 import styles from 'Components/Sidebar/styles.module.scss'
 
 

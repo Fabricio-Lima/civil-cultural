@@ -1,12 +1,12 @@
-/* Resources */
+/* ----------- RESOURCES ----------- */
 import { forwardRef, Ref, useContext} from 'react'
 import { FormControlProps } from 'react-bootstrap'
 import { useTheme } from 'Hooks/useTheme'
 
-/* Components */
+/* ----------- COMPONENTS ----------- */
 import Form from 'react-bootstrap/Form' 
 
-/* Styles */
+/* ----------- STYLES ----------- */
 import styles from 'Components/Input/styles.module.scss'
 
 const Input = forwardRef((props: FormControlProps, ref?: Ref<any>) => {

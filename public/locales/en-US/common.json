@@ -1,6 +1,8 @@
 {
     "portuguese": "Portuguese",
     "english": "English",
+    "spanish": "Spanish",
+    "arabic": "Arabic",
     "error": {
         "error": "Error"
     },

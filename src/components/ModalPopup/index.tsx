@@ -3,17 +3,19 @@ import { forwardRef, Ref, useContext, useState } from 'react';
 import * as ReactIs from 'react-is'
 import { useTheme } from 'Hooks/useTheme'
 
+/* ----------- CONTRACTS ----------- */
+import { ModalPopupProps } from 'Contracts/Components'
+
 /* ----------- COMPONENTS ----------- */
 import Popup from 'reactjs-popup'
-import { ModalPopupProps } from 'Contracts/ModalPopup'
 import { IconBase } from 'react-icons/lib'
 import { PopupActions } from 'reactjs-popup/dist/types'
 
 /* ----------- STYLES ----------- */
 import styles from 'Components/ModalPopup/styles.module.scss'
 
-export const ModalPopup = forwardRef((modalProps: ModalPopupProps, ref?: Ref<PopupActions>) => {
-  const {
+export const ModalPopup = forwardRef((
+  {
     icon,
     open,
     iconClose,
@@ -23,7 +25,9 @@ export const ModalPopup = forwardRef((modalProps: ModalPopupProps, ref?: Ref<Pop
     children,
     stateless,
     ...props
-  } = modalProps
+  }: ModalPopupProps,
+  ref?: Ref<PopupActions>
+) => {
   
   const [openPopup, setOpenPopup] = stateless ? stateless : useState(false)
   const { theme } = useTheme()

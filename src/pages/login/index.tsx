@@ -57,7 +57,6 @@ export default function Login() {
         stateMachines: STATE_MACHINE_NAME,
         autoplay: true,
         onLoadError(err) {
-            console.log(`ERR: %c${err}`, 'color: red')
         },
     })
 

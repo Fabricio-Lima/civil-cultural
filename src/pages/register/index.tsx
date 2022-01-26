@@ -120,8 +120,6 @@ export default function Register() {
             .catch(console.error)
     }, [])
 
-    console.log(errors)
-
     return (
         <Col className={`${styles.containerRegister} ${styles[theme]} col-12 p-0 m-0`}>
             <Head>

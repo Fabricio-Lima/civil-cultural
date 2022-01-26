@@ -42,8 +42,6 @@ export function DropdownMenu() {
     }
   }, [isActive])
 
-  console.log(locale)
-
   const changeLanguage = (setLocale) => push(pathname, pathname, { locale: setLocale })
 
   const languages = [
@@ -51,6 +49,7 @@ export function DropdownMenu() {
     { language: t('english'), location: 'en-US' },
     { language: t('spanish'), location: 'es-ES' },
     { language: t('arabic'), location: 'ar-AA' },
+    { language: t('french'), location: 'fr-FR' },
   ]
 
   const LanguagesMemoized = useMemo(

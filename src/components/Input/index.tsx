@@ -1,7 +1,9 @@
 /* ----------- RESOURCES ----------- */
 import { forwardRef, Ref, useContext} from 'react'
-import { FormControlProps } from 'react-bootstrap'
 import { useTheme } from 'Hooks/useTheme'
+
+/* ----------- CONTRACTS ----------- */
+import { FormControlProps } from 'react-bootstrap'
 
 /* ----------- COMPONENTS ----------- */
 import Form from 'react-bootstrap/Form' 
@@ -9,11 +11,11 @@ import Form from 'react-bootstrap/Form'
 /* ----------- STYLES ----------- */
 import styles from 'Components/Input/styles.module.scss'
 
-const Input = forwardRef((props: FormControlProps, ref?: Ref<any>) => {
+const Input = forwardRef(({ className, ...props}: FormControlProps, ref?: Ref<any>) => {
     const { theme } = useTheme()
 
     return (
-        <Form.Control className={`${styles.inputCustomized} ${styles[theme]}`} ref={ref} {...props} />
+        <Form.Control className={`${styles.inputCustomized} ${styles[theme]} ${className}`} ref={ref} {...props} />
     )
 })
 

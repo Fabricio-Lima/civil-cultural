@@ -5,7 +5,8 @@ module.exports = {
             'en-US',
             'pt-BR',
             'es-ES',
-            'ar-AA'
+            'ar-AA',
+            "fr-FR"
         ],
     reloadOnPrerender: process.env.APP_ENV == 'dev'
     },

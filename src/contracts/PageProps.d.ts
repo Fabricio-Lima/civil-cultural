@@ -1,4 +1,23 @@
 
+import { ReactElement, ReactNode } from 'react'
+import { NextPage } from 'next'
+import { AppProps as NextAppProps } from 'next/app'
+
+type NextPageWithLayout = NextPage & {
+    layout?: (page: ReactElement) => ReactNode
+}
+
+export type AppProps =  NextAppProps & { 
+    Component: NextPageWithLayout
+}
+
+export interface LayoutProps {
+    title?: string;
+    page?: ReactElement | ReactNode;
+    children?: ReactElement | ReactNode;
+}
+
+
 interface Paginate {
       total: number,
       per_page: number,

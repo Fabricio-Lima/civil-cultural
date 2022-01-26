@@ -14,14 +14,6 @@
   }
 }
 
-.main {
-  grid-area: main;
-}
-
-.divHeader {
-  height: 5.5rem;
-}
-
 /* CARD ARTICLE */
 
 .cardContainer {
@@ -166,8 +158,6 @@
     color: var(--gray-200);
   }
 }
-
-
 
 .list {
   background: transparent !important;

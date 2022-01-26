@@ -5,13 +5,19 @@ import { appWithTranslation } from 'next-i18next'
 import { CustomThemeProvider } from 'Context/ThemeContext'
 import { AuthProvider } from 'Context/AuthContenxt'
 
+/* ----------- CONTRACTS -----------  */
+import { AppProps } from 'Contracts/PageProps'
+
 /* ----------- STYLES ----------- */
 import 'Styles/global.scss'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import MainLayout from 'Components/layouts/MainLayout'
 
 
 
-function App({ Component, pageProps }) {
+function App({ Component, pageProps, router }: AppProps) {
+  const layout = Component.layout || ((page) => page)
+
   return (
     <>
       <Head>
@@ -22,7 +28,7 @@ function App({ Component, pageProps }) {
       <CustomThemeProvider>
         <AuthProvider>
           <SSRProvider>
-            <Component {...pageProps} />
+              { layout(<Component {...pageProps} />) }
           </SSRProvider>
         </AuthProvider>
       </CustomThemeProvider>

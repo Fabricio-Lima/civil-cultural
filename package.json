@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev -p 5555",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "create-env": "cp .env.example .env"
   },
   "dependencies": {
     "@hookform/resolvers": "^2.8.3",

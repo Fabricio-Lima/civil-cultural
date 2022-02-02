@@ -1,7 +1,7 @@
 {
-    "portuguese": "Portuguese",
-    "english": "English",
-	"spanish": "Español",
+    "portuguese": "البرتغالية",
+    "english": "إنجليزي",
+	"spanish": "الأسبانية",
 	"arabic": "العربية",
     "french": "فرنسي",
     "error": {
@@ -38,7 +38,7 @@
     },
     "pages": {
         "home": {
-            "popover_message": "المستعرض لا يعتمد التعرف على الكلام.",
+            "popover_message": "هذا المستعرض لا يدعم التعرف على الكلام",
             "menu_publication": "أحدث المنشورات",
             "menu_category": "المنشورات حسب الفئة"
         },

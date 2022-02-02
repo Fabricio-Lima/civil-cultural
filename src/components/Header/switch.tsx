@@ -11,20 +11,27 @@ import styles from "Components/Header/styles.module.scss";
 
 export function Switch() {
   const { theme, toggleTheme } = useTheme()
-  const switchRef = useRef<HTMLInputElement>(null)
+  const [checked, setChecked] = useState((theme === 'dark'))
+  const themeValue = theme === 'dark' ? 'light' : 'dark'
 
-  const isDark = () => theme === 'dark'
-  
-  const alternateTheme = () => {
-    if (switchRef.current) {
-      let isSetDark = switchRef.current.checked && !isDark()
-      toggleTheme(isSetDark ? 'dark' : 'light')
-    }
+
+  useEffect(() => {
+    setChecked(theme === 'dark')
+  }, [theme])
+
+  function alternateTheme() {
+    toggleTheme(themeValue)
+    setChecked(!(theme === 'dark'))
   }
 
   return (
-    <Button onClick={alternateTheme} className={`${styles.switchContainer} ${styles[theme]} remove-bg-image`}>
-      <input type='checkbox' className={styles.inputCheck} ref={switchRef} defaultChecked={isDark()}/>
+    <Button className={`${styles.switchContainer} ${styles[theme]} remove-bg-image`}>
+      <input
+        type='checkbox'
+        className={styles.inputCheck}
+        onChange={alternateTheme}
+        checked={checked}
+      />
       <Col className={`${styles.flexSwitch} ${styles.flexContainer} col-12`}>
         <Col className={styles.containerSun}>
           <span className={styles.span}>🌞</span>
@@ -33,7 +40,7 @@ export function Switch() {
           <span className={styles.span}>🌜</span>
         </Col>
       </Col>
-      <div className={`${styles.stateSwitch} ${isDark() ? styles.activeSwitch : 'desativeSwitch'}`} />
+      <div className={`${styles.stateSwitch} ${checked == true ? styles.activeSwitch : 'desativeSwitch' }`} />
     </Button>
   )
 }

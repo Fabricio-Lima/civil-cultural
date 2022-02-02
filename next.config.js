@@ -8,9 +8,9 @@ const withNextEnv = nextEnv();
 
 module.exports = withNextEnv({
   webpack5: true,
+  swcMinify: true,
   i18n,
   images: {
-    files: ['png', 'jpg', 'jpeg', 'gif', 'svg'],
     domains: [
       'img.freepik.com'
     ]

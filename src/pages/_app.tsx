@@ -1,4 +1,5 @@
 /* ----------- RESOURCES ----------- */
+import { Fragment } from 'react'
 import Head from 'next/head'
 import { SSRProvider } from 'react-bootstrap'
 import { appWithTranslation } from 'next-i18next'
@@ -11,13 +12,9 @@ import { AppProps } from 'Contracts/PageProps'
 /* ----------- STYLES ----------- */
 import 'Styles/global.scss'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import MainLayout from 'Components/layouts/MainLayout'
 
 
-
-function App({ Component, pageProps, router }: AppProps) {
-  const layout = Component.layout || ((page) => page)
-
+function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
@@ -25,13 +22,13 @@ function App({ Component, pageProps, router }: AppProps) {
         <meta httpEquiv="X-UA-Compatible" content="IE=7" />
         <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
       </Head>
-      <CustomThemeProvider>
-        <AuthProvider>
+      <AuthProvider>
+        <CustomThemeProvider>
           <SSRProvider>
-              { layout(<Component {...pageProps} />) }
+            <Component {...pageProps} />
           </SSRProvider>
-        </AuthProvider>
-      </CustomThemeProvider>
+        </CustomThemeProvider>
+      </AuthProvider>
     </>
   )
 }

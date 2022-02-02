@@ -10,6 +10,8 @@
 
 .floatLabel {
     font-size: .94em;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
 
     &.light {
         color: var(--gray-600);

@@ -1,5 +1,6 @@
 /* Resources */
 import { useRouter } from 'next/router'
+import Astro from 'Assets/astro_error.png'
 
 /* Components */
 import Image from 'next/image'
@@ -19,7 +20,7 @@ export default function Error404() {
                 <p className={styles.errorStatusCode}>404</p>
                 <Col className={styles.boxImg}>
                     <Image
-                        src='/assets/astro_error.png'
+                        src={Astro}
                         alt='Astro'
                         objectFit='contain'
                         width={86}

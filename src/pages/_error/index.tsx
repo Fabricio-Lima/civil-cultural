@@ -1,8 +1,9 @@
 /* ----------- RESOURCES ----------- */
 import { useRouter } from 'next/router'
+import Image from 'next/image'
+import Astro from 'Assets/astro_error.png'
 
 /* ----------- COMPONENTS ----------- */
-import Image from 'next/image'
 import {
     Col
 } from 'react-bootstrap'
@@ -20,7 +21,7 @@ export default function Error({ statusCode }) {
                 <p className={styles.errorStatusCode}>{ statusCode }</p>
                 <Col className={styles.boxImg}>
                     <Image
-                        src='/assets/astro_error.png'
+                        src={Astro}
                         alt='Astro'
                         objectFit='contain'
                         width={86}

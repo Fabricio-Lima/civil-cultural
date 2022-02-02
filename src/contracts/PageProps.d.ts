@@ -3,31 +3,28 @@ import { ReactElement, ReactNode } from 'react'
 import { NextPage } from 'next'
 import { AppProps as NextAppProps } from 'next/app'
 
-type NextPageWithLayout = NextPage & {
-    layout?: (page: ReactElement) => ReactNode
-}
-
-export type AppProps =  NextAppProps & { 
-    Component: NextPageWithLayout
-}
-
 export interface LayoutProps {
     title?: string;
-    page?: ReactElement | ReactNode;
-    children?: ReactElement | ReactNode;
+    children?: ReactNode;
 }
+
+
+export type AppProps = NextAppProps & {
+    Component: NextPage
+}
+
 
 
 interface Paginate {
-      total: number,
-      per_page: number,
-      current_page: number,
-      last_page: number,
-      first_page: number,
-      first_page_url: string,
-      last_page_url: string,
-      next_page_url: ?string,
-      previous_page_url: ?string
+    total: number,
+    per_page: number,
+    current_page: number,
+    last_page: number,
+    first_page: number,
+    first_page_url: string,
+    last_page_url: string,
+    next_page_url: ?string,
+    previous_page_url: ?string
 
 }
 

@@ -9,6 +9,8 @@ import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
+import { Layout } from 'Utils/Layout'
+import MainLayout from 'Layouts/MainLayout'
 
 /* ----------- COMPONENTS ----------- */
 import Button from 'Components/Button'
@@ -35,7 +37,7 @@ import styles from 'Pages/register/styles.module.scss'
 
 
 
-export default function Register() {
+function Register() {
     let schema
     const { theme } = useTheme()
     const [countries, setCountries] = useState<CountryProps[]>([])
@@ -102,10 +104,10 @@ export default function Register() {
 
     }
 
-    const { 
-        register, 
-        handleSubmit, 
-        formState: { errors } 
+    const {
+        register,
+        handleSubmit,
+        formState: { errors }
     } = useForm({ mode: 'onChange', resolver: yupResolver(schema) })
 
 
@@ -121,247 +123,251 @@ export default function Register() {
     }, [])
 
     return (
-        <Col className={`${styles.containerRegister} ${styles[theme]} col-12 p-0 m-0`}>
-            <Head>
-                <title>Cadastro</title>
-            </Head>
-
-            <Col xxl='8' xl='8' lg='10' md='10' sm='12' xs='12' className='mx-auto py-3'>
+        <Col className={`${styles.containerRegister} ${styles[theme]} col-12 py-3`}>
+            <Col className="d-none d-xxl-block d-xl-block d-lg-block col-6"></Col>
+            <Col className="col-11 mx-auto mx-lg-0 col-lg-6 col-md-10 col-sm-12">
                 <Form className='col-11 mx-auto'>
-                    <Form.Group>
-                        <Row>
-                            <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
-                                <FloatingLabel
-                                    className={`${styles.floatLabel} ${styles[theme]}`}
-                                    label={t('forms.name')}
-                                >
-                                    <Input
-                                        type='text'
-                                        placeholder={t('forms.name')}
-                                        aria-label={t('forms.name')}
-                                        aria-required='true'
-                                        {...register('name', { required: true })}
+                    <Form.Group className="row p-0 m-0 mb-4">
+                        <FloatingLabel
+                            className={`${styles.floatLabel} ${styles[theme]}`}
+                            label={t('forms.name')}
+                        >
+                            <Input
+                                type='text'
+                                placeholder={t('forms.name')}
+                                aria-label={t('forms.name')}
+                                aria-required='true'
+                                {...register('name', { required: true })}
 
-                                    />
-                                </FloatingLabel>
-                                <Col className='col-12 mx-auto mt-2'>
-                                    {errors.name && (<AlertError text={errors.name.message} />)}
-                                </Col>
-                            </Col>
-                            <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
-                                <FloatingLabel
-                                    className={`${styles.floatLabel} ${styles[theme]}`}
-                                    label='Email'
-                                >
-                                    <Input
-                                        type='email'
-                                        placeholder='Email'
-                                        aria-label="Email"
-                                        aria-required='true'
-                                        {...register('email', { required: true })}
-
-                                    />
-                                </FloatingLabel>
-                                <Col className='col-12 mx-auto mt-2'>
-                                    {errors.email && (<AlertError text={errors.email.message} />)}
-                                </Col>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4 position-relative">
-                                <FloatingLabel
-                                    className={`${styles.floatLabel} ${styles[theme]}`}
-                                    label={t('forms.password')}
-                                >
-                                    <Input
-                                        type={showPassword ? 'text' : 'password'}
-                                        placeholder={t('forms.password')}
-                                        aria-label={t('forms.password')}
-                                        aria-required='true'
-                                        {...register('password', { required: true })}
-
-                                    />
-
-                                    <span className={`${styles.boxIcon} cursor-pointer`} onClick={() => setShowPassword(x => !x)}>
-                                        {showPassword ? <AiFillEyeInvisible className={styles.iconEyeInvisible} /> : <AiFillEye className={styles.iconEye} />}
-                                    </span>
-                                </FloatingLabel>
-                                <Col className='col-12 mx-auto mt-2'>
-                                    {errors.password && (<AlertError text={errors.password.message} />)}
-                                </Col>
-                            </Col>
-                            <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
-                                <FloatingLabel
-                                    className={`${styles.floatLabel} ${styles[theme]}`}
-                                    label={t('forms.confirm_password')}
-                                >
-                                    <Input
-                                        type={showPassword ? 'text' : 'password'}
-                                        placeholder={t('forms.confirm_password')}
-                                        aria-label={t('forms.confirm_password')}
-                                        aria-required='true'
-                                        {...register('currentPassword', { required: true })}
-
-                                    />
-                                </FloatingLabel>
-                                <Col className='col-12 mx-auto mt-2'>
-                                    {errors.currentPassword && (<AlertError text={errors.currentPassword.message} />)}
-                                </Col>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
-                                <FloatingLabel
-                                    className={`${styles.floatLabel} ${styles[theme]}`}
-                                    label={t('forms.phone_cell')}
-                                >
-                                    <Input
-                                        type='number'
-                                        placeholder={t('forms.phone_cell')}
-                                        aria-label={t('forms.phone_cell')}
-                                        aria-required='true'
-                                        onKeyPress={(e) => /[\d]+/.test(e.key) || e.preventDefault()}
-                                        {...register('phone_cell', { required: true, max: 11 })}
-                                    />
-                                </FloatingLabel>
-                                <Col className='col-12 mx-auto mt-2'>
-                                    {errors.phone_cell && (<AlertError text={errors.phone_cell.message} />)}
-                                </Col>
-                            </Col>
-                            <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
-                                <FloatingLabel
-                                    className={`${styles.floatLabel} ${styles[theme]}`}
-                                    label={t('forms.landline')}
-                                >
-                                    <Input
-                                        type='number'
-                                        placeholder={t('forms.landline')}
-                                        aria-label={t('forms.landline')}
-                                        aria-required='false'
-                                        onKeyPress={(e) => /[\d]+/.test(e.key) || e.preventDefault()}
-                                        {...register('phone_fix_number', { required: false, max: 8 })}
-                                    />
-                                </FloatingLabel>
-                                <Col className='col-12 mx-auto mt-2'>
-                                    {errors.phone_fix_number && (<AlertError text={errors.phone_fix_number.message} />)}
-                                </Col>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
-                                <FloatingLabel
-                                    className={`${styles.floatLabel} ${styles[theme]}`}
-                                    label={t('forms.personal_identification')}
-                                >
-                                    <Input
-                                        placeholder={t('forms.personal_identification')}
-                                        aria-label={t('forms.personal_identification')}
-                                        aria-required='true'
-                                        {...register('personal_identification', { required: true })}
-                                    />
-                                </FloatingLabel>
-                                <Col className='col-12 mx-auto mt-2'>
-                                    {errors.personal_identification && (<AlertError text={errors.personal_identification.message} />)}
-                                </Col>
-                            </Col>
-                            <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
-                                <FloatingLabel
-                                    className={`${styles.floatLabel} ${styles[theme]}`}
-                                    label={t('forms.country')}
-                                >
-                                    <Form.Select
-                                        placeholder={t('forms.country')}
-                                        aria-label={t('forms.country')}
-                                        aria-required='true'
-                                        className={`${styles.formSelect} ${styles[theme]} py-1`}
-                                        {...register('country', { required: true })}
-                                    >
-                                        <option value="" disabled selected></option>
-                                        {countries.map(country => <option key={country.id['ISO-ALPHA-2']} value={country.id['ISO-ALPHA-2']}>{country.nome}</option>)}
-                                    </Form.Select>
-                                </FloatingLabel>
-                                <Col className='col-12 mx-auto mt-2'>
-                                    {errors.country && (<AlertError text={errors.country.message} />)}
-                                </Col>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
-                                <FloatingLabel
-                                    className={`${styles.floatLabel} ${styles[theme]}`}
-                                    label={t('forms.state')}
-                                >
-
-                                    <Input
-                                        type='text'
-                                        placeholder={t('forms.state')}
-                                        aria-label={t('forms.state')}
-                                        aria-required='true'
-                                        {...register('state', { required: true })}
-                                    />
-                                </FloatingLabel>
-                                <Col className='col-12 mx-auto mt-2'>
-                                    {errors.state && (<AlertError text={errors.state.message} />)}
-                                </Col>
-                            </Col>
-                            <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
-                                <FloatingLabel
-                                    className={`${styles.floatLabel} ${styles[theme]}`}
-                                    label='Cep'
-                                >
-                                    <Input
-                                        type='text'
-                                        placeholder='Cep'
-                                        aria-label='Cep'
-                                        aria-required='false'
-                                        onKeyPress={(e) => /[\d]+/.test(e.key) || e.preventDefault()}
-                                        {...register('cep', { required: false, max: 8 })}
-                                    />
-                                </FloatingLabel>
-                                <Col className='col-12 mx-auto mt-2'>
-                                    {errors.cep && (<AlertError text={errors.cep.message} />)}
-                                </Col>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
-                                <FloatingLabel
-                                    className={`${styles.floatLabel} ${styles[theme]}`}
-                                    label={t('forms.city')}
-                                >
-                                    <Input
-                                        type='text'
-                                        placeholder={t('forms.city')}
-                                        aria-label={t('forms.city')}
-                                        aria-required='true'
-                                        {...register('city', { required: true })}
-                                    />
-                                </FloatingLabel>
-                                <Col className='col-12 mx-auto mt-2'>
-                                    {errors.city && (<AlertError text={errors.city.message} />)}
-                                </Col>
-                            </Col>
-                            <Col xxl='6' xl='6' lg='6' md='10' sm='12' xs='12' className="mx-md-auto mx-sm-auto m-xs-auto mb-4">
-                                <FloatingLabel
-                                    className={`${styles.floatLabel} ${styles[theme]}`}
-                                    label={t('forms.address')}
-                                >
-                                    <Input
-                                        type='text'
-                                        placeholder={t('forms.address')}
-                                        aria-label={t('forms.address')}
-                                        aria-required='true'
-                                        {...register('address', { required: true })}
-                                    />
-                                </FloatingLabel>
-                                <Col className='col-12 mx-auto mt-2'>
-                                    {errors.address && (<AlertError text={errors.address.message} />)}
-                                </Col>
-                            </Col>
-                        </Row>
-                        <Col xxl='8' xl='8' lg='8' md='10' sm='12' xs='12' className="mx-auto d-grid gap-2 mb-4">
-                            <Button type="button" className='text-uppercase' onClick={handleSubmit(submit)}> Cadastrar </Button>
+                            />
+                        </FloatingLabel>
+                        <Col className='col-12 mx-auto mt-2'>
+                            {errors.name && (<AlertError text={errors.name.message} />)}
                         </Col>
+                    </Form.Group>
+
+                    <Form.Group className="row p-0 m-0 mb-4">
+                        <FloatingLabel
+                            className={`${styles.floatLabel} ${styles[theme]}`}
+                            label='Email'
+                        >
+                            <Input
+                                type='email'
+                                placeholder='Email'
+                                aria-label="Email"
+                                aria-required='true'
+                                {...register('email', { required: true })}
+
+                            />
+                        </FloatingLabel>
+                        <Col className='col-12 mx-auto mt-2'>
+                            {errors.email && (<AlertError text={errors.email.message} />)}
+                        </Col>
+                    </Form.Group>
+
+                    <Form.Group className="d-md-flex gap-md-2 mb-4">
+                        <Col className="col-12 col-md-6 mb-4 mb-md-0 position-relative">
+                            <FloatingLabel
+                                className={`${styles.floatLabel} ${styles[theme]}`}
+                                label={t('forms.password')}
+                            >
+                                <Input
+                                    type={showPassword ? 'text' : 'password'}
+                                    placeholder={t('forms.password')}
+                                    aria-label={t('forms.password')}
+                                    aria-required='true'
+                                    {...register('password', { required: true })}
+
+                                />
+
+                                <span className={`${styles.boxIcon} cursor-pointer`} onClick={() => setShowPassword(x => !x)}>
+                                    {showPassword ? <AiFillEyeInvisible className={styles.iconEyeInvisible} /> : <AiFillEye className={styles.iconEye} />}
+                                </span>
+                            </FloatingLabel>
+                            <Col className='col-12 mx-auto mt-2'>
+                                {errors.password && (<AlertError text={errors.password.message} />)}
+                            </Col>
+                        </Col>
+
+                        <Col className='col-12 col-md-6 mb-4 mb-md-0'>
+                            <FloatingLabel
+                                className={`${styles.floatLabel} ${styles[theme]}`}
+                                label={t('forms.confirm_password')}
+                            >
+                                <Input
+                                    type={showPassword ? 'text' : 'password'}
+                                    placeholder={t('forms.confirm_password')}
+                                    aria-label={t('forms.confirm_password')}
+                                    aria-required='true'
+                                    {...register('currentPassword', { required: true })}
+
+                                />
+                            </FloatingLabel>
+                            <Col className='col-12 mx-auto mt-2'>
+                                {errors.currentPassword && (<AlertError text={errors.currentPassword.message} />)}
+                            </Col>
+                        </Col>
+                    </Form.Group>
+
+                    <Form.Group className="d-md-flex gap-md-md-2 mb-4">
+                        <Col className='col-12 col-md-6 mb-4 mb-md-0'>
+                            <FloatingLabel
+                                className={`${styles.floatLabel} ${styles[theme]}`}
+                                label={t('forms.phone_cell')}
+                            >
+                                <Input
+                                    placeholder={t('forms.phone_cell')}
+                                    aria-label={t('forms.phone_cell')}
+                                    aria-required='true'
+                                    onKeyPress={(e) => /[\d]+/.test(e.key) || e.preventDefault()}
+                                    {...register('phone_cell', { required: true, max: 11 })}
+                                />
+                            </FloatingLabel>
+                            <Col className='col-12 mx-auto mt-2'>
+                                {errors.phone_cell && (<AlertError text={errors.phone_cell.message} />)}
+                            </Col>
+                        </Col>
+
+                        <Col className="col-12 col-md-6 mb-4 mb-md-0">
+                            <FloatingLabel
+                                className={`${styles.floatLabel} ${styles[theme]}`}
+                                label={t('forms.landline')}
+                            >
+                                <Input
+                                    placeholder={t('forms.landline')}
+                                    aria-label={t('forms.landline')}
+                                    aria-required='false'
+                                    onKeyPress={(e) => /[\d]+/.test(e.key) || e.preventDefault()}
+                                    {...register('phone_fix_number', { required: false, max: 8 })}
+                                />
+                            </FloatingLabel>
+                            <Col className='col-12 mx-auto mt-2'>
+                                {errors.phone_fix_number && (<AlertError text={errors.phone_fix_number.message} />)}
+                            </Col>
+                        </Col>
+                    </Form.Group>
+
+                    <Form.Group className="row p-0 m-0 mb-4">
+                        <FloatingLabel
+                            className={`${styles.floatLabel} ${styles[theme]}`}
+                            label={t('forms.personal_identification')}
+                        >
+                            <Input
+                                placeholder={t('forms.personal_identification')}
+                                aria-label={t('forms.personal_identification')}
+                                aria-required='true'
+                                {...register('personal_identification', { required: true })}
+                            />
+                        </FloatingLabel>
+                        <Col className='col-12 mx-auto mt-2'>
+                            {errors.personal_identification && (<AlertError text={errors.personal_identification.message} />)}
+                        </Col>
+                    </Form.Group>
+
+                    <Form.Group className="row p-0 m-0 mb-4">
+                        <FloatingLabel
+                            className={`${styles.floatLabel} ${styles[theme]}`}
+                            label={t('forms.country')}
+                        >
+                            <Form.Select
+                                placeholder={t('forms.country')}
+                                aria-label={t('forms.country')}
+                                aria-required='true'
+                                className={`${styles.formSelect} ${styles[theme]} py-1`}
+                                {...register('country', { required: true })}
+                                defaultValue='none'
+                            >
+                                <option value="none" disabled selected></option>
+                                {
+                                    countries.map(country =>
+                                        <option key={country.id['ISO-ALPHA-2']} value={country.id['ISO-ALPHA-2']}>
+                                            {country.nome}
+                                        </option>
+                                    )
+                                }
+                            </Form.Select>
+                        </FloatingLabel>
+                        <Col className='col-12 mx-auto mt-2'>
+                            {errors.country && (<AlertError text={errors.country.message} />)}
+                        </Col>
+                    </Form.Group>
+
+                    <Form.Group className="row p-0 m-0 mb-4">
+                        <FloatingLabel
+                            className={`${styles.floatLabel} ${styles[theme]}`}
+                            label={t('forms.state')}
+                        >
+
+                            <Input
+                                type='text'
+                                placeholder={t('forms.state')}
+                                aria-label={t('forms.state')}
+                                aria-required='true'
+                                {...register('state', { required: true })}
+                            />
+                        </FloatingLabel>
+                        <Col className='col-12 mx-auto mt-2'>
+                            {errors.state && (<AlertError text={errors.state.message} />)}
+                        </Col>
+                    </Form.Group>
+
+                    <Form.Group className="row p-0 m-0 mb-4">
+                        <FloatingLabel
+                            className={`${styles.floatLabel} ${styles[theme]}`}
+                            label='Cep'
+                        >
+                            <Input
+                                type='text'
+                                placeholder='Cep'
+                                aria-label='Cep'
+                                aria-required='false'
+                                onKeyPress={(e) => /[\d]+/.test(e.key) || e.preventDefault()}
+                                {...register('cep', { required: false, max: 8 })}
+                            />
+                        </FloatingLabel>
+                        <Col className='col-12 mx-auto mt-2'>
+                            {errors.cep && (<AlertError text={errors.cep.message} />)}
+                        </Col>
+                    </Form.Group>
+
+                    <Form.Group className="row p-0 m-0 mb-4">
+                        <FloatingLabel
+                            className={`${styles.floatLabel} ${styles[theme]}`}
+                            label={t('forms.city')}
+                        >
+                            <Input
+                                type='text'
+                                placeholder={t('forms.city')}
+                                aria-label={t('forms.city')}
+                                aria-required='true'
+                                {...register('city', { required: true })}
+                            />
+                        </FloatingLabel>
+                        <Col className='col-12 mx-auto mt-2'>
+                            {errors.city && (<AlertError text={errors.city.message} />)}
+                        </Col>
+                    </Form.Group>
+
+                    <Form.Group className="row p-0 m-0 mb-4">
+                        <FloatingLabel
+                            className={`${styles.floatLabel} ${styles[theme]}`}
+                            label={t('forms.address')}
+                        >
+                            <Input
+                                type='text'
+                                placeholder={t('forms.address')}
+                                aria-label={t('forms.address')}
+                                aria-required='true'
+                                {...register('address', { required: true })}
+                            />
+                        </FloatingLabel>
+                        <Col className='col-12 mx-auto mt-2'>
+                            {errors.address && (<AlertError text={errors.address.message} />)}
+                        </Col>
+                    </Form.Group>
+
+                    <Form.Group className="mx-auto d-grid gap-1 mb-4">
+                        <Button type="button" className='text-uppercase' onClick={handleSubmit(submit)}> Cadastrar </Button>
                     </Form.Group>
                 </Form>
                 <Col className='col-12 mt-2 text-center'>
@@ -381,3 +387,7 @@ export async function getStaticProps({ locale }) {
         }
     }
 }
+
+export default Layout(
+    Register
+)

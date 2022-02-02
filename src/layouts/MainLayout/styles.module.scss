@@ -1,0 +1,15 @@
+.layoutContainer {
+  body,
+  &.light {
+    background-color: var(--light) !important;
+  }
+
+  body,
+  &.dark {
+    background-color: var(--dark) !important;
+  }
+}
+
+.divHeader {
+  height: 5.5rem;
+}

@@ -30,7 +30,10 @@
       ],
       "Hooks/*": [
         "./hooks/*"
-      ]
+      ],
+      "Assets/*": [
+        "./assets/*"
+      ],
     },
     "lib": [
       "dom",
@@ -58,8 +61,5 @@
   ],
   "exclude": [
     "node_modules"
-  ],
-  "files": [
-    "src/contracts/styled.d.ts"
   ]
 }

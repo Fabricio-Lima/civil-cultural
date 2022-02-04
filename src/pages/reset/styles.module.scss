@@ -1,0 +1,99 @@
+.body {
+  padding: 0 !important;
+  height: 100vh;
+
+  &.light {
+    background-color: var(--light);
+  }
+
+  &.dark {
+    background-color: var(--dark);
+  }
+}
+
+/* -------- IMAGEM DE CAPA ----------- */
+
+.img_container {
+  height: 100vh;
+}
+
+.left_img {
+  height: 100%;
+}
+
+@media only screen and (max-width: 1100px) {
+  .img_container {
+    display: none;
+  }
+}
+
+/* ------------ PRINCIPAL ------------ */
+
+.main_container {
+  padding: 0 !important;
+  position: relative;
+
+  &.light {
+    color: var(--gray-500);
+  }
+
+  &.dark {
+    color: var(--gray-50);
+  }
+}
+
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 25em;
+  margin: 0 auto !important;
+}
+
+.title_container {
+  margin-bottom: 1.2em;
+}
+
+.title {
+  display: inline;
+  font-size: 3rem;
+  padding-right: 1rem;
+}
+
+.logo {
+  height: 43px !important;
+}
+
+.password_input {
+  margin-top: 1em;
+}
+
+.eye_btn_container {
+  position: absolute;
+  top: 1.5em;
+  right: 1px;
+}
+
+.instruction_container {
+  margin-top: 1em;
+}
+
+.instruction {
+  font-size: 0.86em;
+  font-weight: 400;
+}
+
+.submit {
+  width: 100%;
+  height: 45px;
+  text-transform: uppercase !important;
+  font-weight: 600;
+  margin-top: 1.5em;
+  background-color: var(--green-dark);
+  border: none;
+}
+
+.submit:hover {
+  background-color: var(--green-dark);
+}

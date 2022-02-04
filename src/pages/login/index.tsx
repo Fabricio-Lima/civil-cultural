@@ -136,7 +136,7 @@ export default function Login() {
                             </Col>
 
                             <Col xxl='8' xl='8' lg='8' md='10' sm='12' xs='12' className="col-8 mx-auto pt-2 pb-3 mt-5 mb-4">
-                                <Link href='#' >
+                                <Link href='/restore' >
                                     <a className={`${styles.formLink} link-primary float-end`}>{t('pages.login.forgot_password')}</a>
                                 </Link>
                             </Col>

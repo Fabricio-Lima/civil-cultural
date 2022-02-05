@@ -9,7 +9,10 @@ import ButtonBST from 'react-bootstrap/Button'
 import styles from 'Components/Button/styles.module.scss'
 
 
-const Button = forwardRef(({ children, className, ...props }: ButtonProps, ref?: Ref<any>) => (
+const Button = forwardRef((
+    { children, className, ...props }: ButtonProps,
+    ref?: Ref<any>
+) => (
     <ButtonBST ref={ref} className={`${styles.button} ${className}`} {...props} >
         {children}
     </ButtonBST>

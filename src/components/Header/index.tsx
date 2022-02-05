@@ -1,15 +1,13 @@
 /* ----------- RESOURCES ----------- */
-import { useState, useEffect, useRef, ReactChild } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import NextLink from 'next/link'
 import { useTheme } from 'Hooks/useTheme'
 
 /* ----------- COMPONENTS ----------- */
 import { Col } from 'react-bootstrap'
-import { InputSearch } from 'Components/Header/inputSearch'
+import InputSearch from 'Components/InputSearch'
 import { Switch } from 'Components/Header/switch'
-import { IoMdSearch, IoMdClose } from 'react-icons/io'
-import { AiFillAudio } from 'react-icons/ai'
-import { HiInformationCircle } from 'react-icons/hi'
+
 import { MdMenu } from 'react-icons/md'
 import { DropdownMenu } from 'Components/Header/dropdownMenu'
 
@@ -65,46 +63,23 @@ export default function Header({ isActive, setIsActive }: SidebarState) {
 
   return (
     <header className={`${styles.headerContainer} ${styles[theme]}`}>
-      <div className={styles.flexContainer}>
-        <div className={`${styles.boxItem} col-3`} >
-          <div className={`${styles.flexContainer} justify-content-start p-0`}>
-            {/* Open menu */}
-            <Col className={`${styles.boxIconMenu} col-auto`}
-              aria-controls='sidebar'
-              onClick={setIsActive}
-            >
-              <div className={styles.boxIcon}>
-                <MdMenu className={`${styles.iconMenu} ${styles[theme]} mx-auto ${isActive ? styles.open : ''} `}/>
-              </div>
-            </Col>
-            
-            <Col className='col-auto'>
-              <button
-                id='btnShowDropdown'
-                className='btn remove-focus border-0 remove-bg-image p-1 m-0'
-                style={{zIndex: 100}}
-                onClick={setViewDropDown}
-                ref={buttonRef}
-              >
-                <IoMdSearch className={`${styles.iconSearch} ${styles.iconMenuSearch} ${styles[theme]} cursor-pointer`} />
-              </button>
+      <Col className={styles.flexContainer}>
+        <Col
+          className='col-3'
+          aria-controls='sidebar'
+          onClick={setIsActive}
+        >
+          <Col className={styles.boxIconMenu}>
+            <MdMenu className={`${styles.iconMenu} ${styles[theme]} w-100 ${isActive ? styles.open : ''} `} />
+          </Col>
+        </Col>
 
-              {
-                isShow && (
-                  <Col
-                    className={`${styles.dropdownMenuSearch} ${styles[theme]} col-12`}
-                    ref={dropdownRef}
-                  >
-                    <InputSearch />
-                  </Col>
-                )
-              }
-            </Col>
-          </div>
-        </div>
+        <Col className='col-5 d-flex justify-content-center align-items-center'>
+          <InputSearch />
+        </Col>
 
-        <div className={`${styles.boxItem} col-4`} >
-          <nav className={styles.nav}>
+        <Col className='col-9 col-xxl-4 col-xl-4 col-lg-4 col-md-5' >
+          <nav className='col-12 d-xxl-flex d-xl-flex d-lg-flex d-md-flex justify-content-end align-items-center'>
             <ul className={styles.navRow}>
               <li className={styles.navItem}>
                 <DropdownMenu />
@@ -115,14 +90,12 @@ export default function Header({ isActive, setIsActive }: SidebarState) {
                 </NextLink>
               </li>
               <li className={styles.navItem}>
-                <div className={styles.boxItem} >
-                  <Switch />
-                </div>
+                <Switch />
               </li>
             </ul>
           </nav>
-        </div>
-      </div>
+        </Col>
+      </Col>
     </header >
   )
 }

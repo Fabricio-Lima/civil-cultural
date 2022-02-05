@@ -38,7 +38,7 @@
     },
     "pages": {
         "home": {
-            "popover_message": "El navegador no admite el reconocimiento de voz.",
+            "popover_message": "Este navegador no es compatible con el reconocimiento de voz.",
             "menu_publication": "Últimas publicaciones",
             "menu_category": "Publicaciones por categoría"
         },

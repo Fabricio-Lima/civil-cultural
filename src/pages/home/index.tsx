@@ -1,12 +1,12 @@
 /* ----------- RESOURCES ----------- */
-import { ReactElement } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useTranslation } from 'next-i18next'
 import { useTheme } from 'Hooks/useTheme'
+import { Layout } from 'utils/Layout'
 
 /* ----------- COMPONENTS ----------- */
-import Layout from 'Components/layouts/MainLayout'
+import MainLayout from 'Layouts/MainLayout'
 import { Row, Col, Placeholder, Card, ListGroup } from 'react-bootstrap'
 
 /* ----------- STYLES ----------- */
@@ -59,14 +59,13 @@ function CardTopicsLoad() {
 }
 
 
-function Home() {
+const Home = () => {
   const { theme } = useTheme()
-  
-  const cardTest = Array(4).fill('teste');
   const { t } = useTranslation()
+  const cardTest = Array(4).fill('teste');
 
   return (
-    <Col as='section' className='row p-0 m-0' >
+    <>
       <Col className='col-11 col-xxl-8 col-lg-8 col-xl-8 col-md-9 col-sm-11 mx-auto border-1 border-secondary'>
         {
           /* COMPONENTE CARD */
@@ -172,18 +171,16 @@ function Home() {
           </Col>
         </section>
       </Col>
-    </Col>
+    </>
   )
 }
 
-Home.layout = function layout(page: ReactElement) {
-  return (
-    <Layout
-      title='Publicações principais'
-    >
-      page
-    </Layout>
-  )
-}
 
-export default Home
+
+export default Layout(
+  Home,
+  MainLayout,
+  {
+    title: 'Home'
+  }
+)

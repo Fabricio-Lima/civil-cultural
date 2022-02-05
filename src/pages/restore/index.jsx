@@ -1,5 +1,6 @@
 /* ----------- RESOURCES ----------- */
 import { useTheme } from 'Hooks/useTheme'
+import {Locker as string } from 'Assets/locker.png'
 
 /* ----------- COMPONENTS ----------- */
 import {Form, Button, FloatingLabel } from 'react-bootstrap'
@@ -9,8 +10,6 @@ import Input from 'Components/Input'
 /* ----------- STYLES ----------- */
 import styles from 'Pages/restore/styles.module.scss'
 
-
-
 function Restore()  {
   const { theme } = useTheme()
   return (
@@ -19,11 +18,7 @@ function Restore()  {
         <title>Recuperar senha</title>
      </Head>
      <div className={styles.img_container}>
-       <img 
-       src="assets/locker-restore.png" 
-       alt="Cadeado"
-       className={styles.left_img}
-        />
+     
      </div>
      <section className={`container-fluid ${styles.main_container} ${styles[theme]}`}>
        <div className={styles.content}>

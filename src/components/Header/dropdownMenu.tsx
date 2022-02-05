@@ -1,6 +1,5 @@
 /* ----------- RESOURCES ----------- */
-import { useRef, useState, useEffect, useMemo } from "react"
-import Link from 'next/link'
+import { useRef, useState, useEffect } from "react"
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { useTheme } from 'Hooks/useTheme'
@@ -52,24 +51,22 @@ export function DropdownMenu() {
     { language: t('french'), location: 'fr-FR' },
   ]
 
-  const LanguagesMemoized = useMemo(
-    () => languages.map(({ language, location }, index) => (
-      <span
-        className={`${styles.option} ${styles[theme]}`}
-        key={index}
-        onClick={() => changeLanguage(location)}
-      >
-        {language}
-      </span>
-    )),
-    [languages]
-  )
+  const LanguagesMemoized = languages.map(({ language, location }, index) => (
+    <span
+      className={`${styles.option} ${styles[theme]}`}
+      key={index}
+      onClick={() => changeLanguage(location)}
+    >
+      {language}
+    </span>
+  ))
+
 
   return (
     <>
       <div className={styles.dropdownMenuContainer}>
         <Button
-          className={`${styles.dropdownButton} ${styles[theme]}`}
+          className={`${styles.dropdownButton} ${styles[theme]} remove-focus`}
           ref={buttonRef}
           onClick={() => setIsActive(!isActive)}
         >

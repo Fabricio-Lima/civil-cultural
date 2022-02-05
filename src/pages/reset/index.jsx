@@ -1,6 +1,7 @@
 /* ----------- RESOURCES ----------- */
 import { useTheme } from 'Hooks/useTheme'
 import { useState } from 'react'
+import {Locker as string } from 'Assets/locker.png'
 
 /* ----------- COMPONENTS ----------- */
 import Head from 'next/head'
@@ -24,8 +25,8 @@ function Reset()  {
      </Head>
      <div className={styles.img_container}>
        <img 
-       src="assets/locker-restore.png" 
-       alt="Cadeado"
+       src="assets/locker.png" 
+       alt="Cadeado e chave lado a lado"
        className={styles.left_img}
         />
      </div>

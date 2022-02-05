@@ -38,7 +38,7 @@
     },
     "pages": {
         "home": {
-            "popover_message": "Le navigateur ne prend pas en charge la reconnaissance vocale.",
+            "popover_message": "Ce navigateur ne prend pas en charge la reconnaissance vocale",
             "menu_publication": "Derniers articles",
             "menu_category": "Messages par catégorie"
         },

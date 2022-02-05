@@ -1,5 +1,6 @@
 /* ----------- RESOURCES ----------- */
 import { useState } from 'react'
+import { useTheme } from 'Hooks/useTheme'
 import Head from 'next/head'
 
 /* ----------- CONTRACTS ----------- */
@@ -13,24 +14,26 @@ import {
 } from 'react-bootstrap'
 
 /* ----------- STYLES ----------- */
-import styles from 'Components/layouts/MainLayout/styles.module.scss'
+import styles from 'Layouts/MainLayout/styles.module.scss'
 
-export default function MainLayout({ title, page, children }: LayoutProps) {
+export default function MainLayout({ children, title }: LayoutProps) {
     const [showSidebar, setShowSidebar] = useState(false)
-    
+    const { theme } = useTheme()
+
     return (
-        <div className={styles.layoutContainer}>
+        <div className={`${styles.layoutContainer} ${styles[theme]}`}>
             <Head>
-                <title>{ title || 'Civil cultural' }</title>
+                <title>{title ? `${title} | Civil Cultural` : 'Civil cultural'}</title>
             </Head>
 
             <Header isActive={showSidebar} setIsActive={() => setShowSidebar(x => !x)} />
+            <div className={styles.divHeader} />
+
             <main className={styles.main}>
                 <Sidebar active={showSidebar} setClose={() => setShowSidebar(false)} />
-                <div className={styles.divHeader} />
 
                 <Col as='section' className='row p-0 m-0'>
-                    { page ?? children }
+                    {children}
                 </Col>
             </main>
         </div>

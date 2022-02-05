@@ -6,7 +6,7 @@ import { useApi } from 'Hooks/useApi'
 
 
 /* ----------- TYPES ----------- */
-import { AuthContextProps, AuthProviderProps, UserAuth } from 'Contracts/AuthContext'
+import { AuthContextProps, AuthProviderProps, UserAuth } from 'Contracts/Context'
 
 /* ----------- TYPES MANUAL ----------- */
 type UserLignIn = {

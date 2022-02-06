@@ -1,4 +1,4 @@
-.containerLogin {
+.container_login {
     &.light {
         background-color: var(--light);
     }
@@ -8,11 +8,11 @@
     }
 }
 
-.logoTitle {
+.logo_title {
     font-size: 2.2em;
     font-weight: 600;
     letter-spacing: 0.1rem;
-    line-height: 0.5px;
+    line-height: .7em;
     margin-right: 0.9rem;
     margin-bottom: 0;
 
@@ -25,11 +25,11 @@
     }
 }
 
-.imgIllustration {
+.img_illustration {
     background-image: radial-gradient(#0db958 36%, #234d4c);
 }
 
-.floatLabel {
+.float_label {
     font-size: 0.94em;
 
     &.light {
@@ -47,7 +47,7 @@
     }
 }
 
-.formLink {
+.form_link {
     font-size: 0.86em;
     font-weight: 500;
 }

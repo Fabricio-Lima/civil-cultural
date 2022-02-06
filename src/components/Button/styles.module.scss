@@ -5,16 +5,16 @@
     font-weight: 600;
     padding: .6rem;
 
-    &:hover, &:focus {
-        background-color: var(--green-dark);
-        border: 1px solid #00B012;
-        box-shadow: none;
+    &:hover, &:focus, &:focus-visible {
+        background-color: var(--green-dark) !important;
+        border: 1px solid #00B012 !important;
+        box-shadow: none !important;
     }
 
     &:active {
-        background-color: var(--green-dark);
-        border: 1px solid #00B012;
-        box-shadow: none;
+        background-color: var(--green-dark) !important;
+        border: 1px solid #00B012 !important;
+        box-shadow: none !important;
         filter: opacity(90%);
     }
 }

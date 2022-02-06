@@ -1,6 +1,12 @@
 .search_container {
   background-color: transparent;
   width: 100%;
+  
+  &,
+  & div {
+    border-radius: 0.5rem 0 0 0.5em; 
+  }
+
 }
 
 .box_icon {
@@ -9,7 +15,7 @@
 
 .search {
   padding: 0 0.85rem;
-  border-radius: 0.5rem 1rem 1rem 0.5rem;
+  border-radius: 0.5rem 0 0 0.5em !important;
   border: 0px;
   font-size: 1.1rem;
 
@@ -80,7 +86,6 @@
     background-image: none;
   }
 }
-
 
 .button_audio {
   padding: 0 0.5rem;

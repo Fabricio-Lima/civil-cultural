@@ -123,8 +123,8 @@ function Register() {
     }, [])
 
     return (
-        <Col className={`${styles.containerRegister} ${styles[theme]} col-12 py-3`}>
-            <Col className="d-none d-xxl-block d-xl-block d-lg-block col-6"></Col>
+        <Col className={`${styles.containerRegister} ${styles[theme]} row p-0 m-0 col-12 py-3`}>
+            <Col className="d-none d-xxl-block d-xl-block d-lg-block col-6 h-full"></Col>
             <Col className="col-11 mx-auto mx-lg-0 col-lg-6 col-md-10 col-sm-12">
                 <Form className='col-11 mx-auto'>
                     <Form.Group className="row p-0 m-0 mb-4">

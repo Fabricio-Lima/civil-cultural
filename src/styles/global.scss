@@ -1,5 +1,18 @@
 /* Variable colors */
 :root {
+  --body-color: #e4e9f7;
+  --sidebar-color: #fff;
+  --primary-color: #695cfe;
+  --primary-color-light: #f6f5ff;
+  --toggle-color: #ddd;
+  --text-color: #707070;
+
+  /* ====== Transition ====== */
+  --tran-03: all 0.2s ease;
+  --tran-03: all 0.3s ease;
+  --tran-04: all 0.3s ease;
+  --tran-05: all 0.3s ease;
+
   --light: #f5f5f5;
   --dark: #2a2a2e;
 
@@ -86,8 +99,8 @@ button:hover {
 .remove-focus:focus,
 .remove-focus:focus-visible,
 .remove-ficus:active,
-.remove-focus:active+.remove-bg-image:focus,
-.remove-focus:active+.remove-bg-image:hover {
+.remove-focus:active + .remove-bg-image:focus,
+.remove-focus:active + .remove-bg-image:hover {
   outline: none !important;
   border: 0 !important;
   box-shadow: none !important;

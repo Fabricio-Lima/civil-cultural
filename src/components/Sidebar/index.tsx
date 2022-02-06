@@ -26,30 +26,100 @@ export default function Sidebar({ active, setClose }: SidebarState) {
   const { t } = useTranslation()
 
   return (
-    <Offcanvas as={Col} className={`${styles.sidebarContainer} ${styles[theme]} col-12 col-xxl-3 col-md-3 col-sm-12`} show={active} onHide={setClose} keyboard>
-      <Offcanvas.Header>
-        <Offcanvas.Title className={`${styles.sidebarTitle} ${styles[theme]} d-flex align-items-center gap-2`} id="offcanvasNavbarLabel">
-          <h5 className={`${styles.logoTitle} text-capitalize vertical-middle mt-1`}>Civil Cultural</h5>
-          <Image 
-            src='/civilcultural.png'
-            width={32}
-            height={32}
-            objectFit='cover'
-          />
-        </Offcanvas.Title>
-        <button type="button" className='btn p-0 remove-focus border-0 remove-bg-image' onClick={setClose} aria-label={t('components.sidebar.close')}>
-          <IoClose className={`${styles.iconClose} ${styles[theme]}`} />
-        </button>
-      </Offcanvas.Header>
-      <Offcanvas.Body>
-        <Nav className="flex-column mb-1">
-          <Nav.Link className={`${styles.navLink} ${styles[theme]} ${styles.active}`} href="#action1">{t('components.sidebar.topic')}</Nav.Link>
-          <Nav.Link className={`${styles.navLink} ${styles[theme]}`} href="#action1">{t('components.sidebar.article')}</Nav.Link>
-          <Nav.Link className={`${styles.navLink} ${styles[theme]}`} href="#action2">{t('components.sidebar.news')}</Nav.Link>
-          <hr className={`${styles.verticalLine} ${styles[theme]} mx-auto`} />
-          <Nav.Link className={`${styles.navLink} ${styles[theme]} align-self-center justify-content-start`} href="#action3">Login</Nav.Link>
-        </Nav>
-      </Offcanvas.Body>
-    </Offcanvas>
+    <nav className={styles.sidebar}>
+      <header>
+        <div className={styles.image_text}>
+          <span className="image">
+            <img src="logo.png" alt="" />
+          </span>
+
+          <div className={`${styles.text} ${styles.logo_text}`}>
+            <span className="name">Projeto civil cultural</span>
+            <span className="profession">Web developer</span>
+          </div>
+        </div>
+
+        <i className={`${styles.bx} ${styles.bx_chevron_right} ${styles.toggle}`}></i>
+      </header>
+
+      <div className={`${styles.menu_bar}`}>
+        <div className={styles.menu}>
+
+          <li className={styles.search_box}>
+            <i className={`${styles.bx} ${styles.bx_search} ${styles.icon}`}></i>
+            <input type="text" placeholder="Search..." />
+          </li>
+
+          <ul className={styles.menu_links}>
+            <li className={styles.nav_link}>
+              <a href="#">
+                <i className={`${styles.bx} ${styles.bx_home_alt} ${styles.icon}`} ></i>
+                <span className={`${styles.text} ${styles.nav_text}`}>Dashboard</span>
+              </a>
+            </li>
+
+            <li className={styles.nav_link}>
+              <a href="#">
+                <i className='bx bx-bar-chart-alt-2 icon' ></i>
+                <span className="text nav-text">Revenue</span>
+              </a>
+            </li>
+
+            <li className={styles.nav_link}>
+              <a href="#">
+                <i className='bx bx-bell icon'></i>
+                <span className="text nav-text">Notifications</span>
+              </a>
+            </li>
+
+            <li className={styles.nav_link}>
+              <a href="#">
+                <i className='bx bx-pie-chart-alt icon' ></i>
+                <span className="text nav-text">Analytics</span>
+              </a>
+            </li>
+
+            <li className={styles.nav_link}>
+              <a href="#">
+                <i className='bx bx-heart icon' ></i>
+                <span className="text nav-text">Likes</span>
+              </a>
+            </li>
+
+            <li className={styles.nav_link}>
+              <a href="#">
+                <i className='bx bx-wallet icon' ></i>
+                <span className="text nav-text">Wallets</span>
+              </a>
+            </li>
+
+          </ul>
+        </div>
+
+        <div className="bottom-content">
+          <li className="">
+            <a href="#">
+              <i className='bx bx-log-out icon' ></i>
+              <span className="text nav-text">Logout</span>
+            </a>
+          </li>
+
+          <li className="mode">
+            <div className="sun-moon">
+              <i className='bx bx-moon icon moon'></i>
+              <i className='bx bx-sun icon sun'></i>
+            </div>
+            <span className="mode-text text">Dark mode</span>
+
+            <div className="toggle-switch">
+              <span className="switch"></span>
+            </div>
+          </li>
+
+        </div>
+      </div>
+
+    </nav>
+
   )
 }

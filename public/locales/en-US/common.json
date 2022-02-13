@@ -10,7 +10,7 @@
     "forms": {
         "password": "Password",
         "name": "Name",
-        "confirm_password": "Confirm an password",
+        "password_confirmation": "Confirm an password",
         "phone_cell": "Phone Cell",
         "landline": "Landline",
         "personal_identification": "Personal Identification",
@@ -22,7 +22,7 @@
         "message_error": {
             "required": "Required :FIELD field",
             "email": "Invalid email",
-            "confirm_password": "Divergent passwords",
+            "password_confirmation": "Divergent passwords",
             "number": "Please enter only numbers",
             "max": "Maximum :NUM Characters",
             "type": "Please enter only letters"

@@ -19,12 +19,13 @@ import {
 /* ----------- STYLES ----------- */
 import styles from 'Components/InputSearch/styles.module.scss'
 
-const InputSearch = forwardRef(({
-    className,
-    ...props
-}: HTMLAttributes<HTMLDivElement>,
+function InputSearch(
+    {
+        className,
+        ...props
+    }: HTMLAttributes<HTMLDivElement>,
     ref: Ref<any>
-) => {
+) {
     let idTimeout: any[] = []
 
     const { theme } = useTheme()
@@ -61,11 +62,11 @@ const InputSearch = forwardRef(({
             setTarget(event.target)
             return
         }
-            
+
         (isListening) ?
             SpeechRecognition.stopListening() :
             SpeechRecognition.startListening({ continuous: true })
-        
+
         setIsListening(x => !x);
     }
 
@@ -143,7 +144,7 @@ const InputSearch = forwardRef(({
             </div>
         </>
     )
-})
+}
 
 
-export default InputSearch
+export default forwardRef(InputSearch)

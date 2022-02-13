@@ -14,7 +14,7 @@ import { PopupActions } from 'reactjs-popup/dist/types'
 /* ----------- STYLES ----------- */
 import styles from 'Components/ModalPopup/styles.module.scss'
 
-export const ModalPopup = forwardRef((
+function ModalPopup (
   {
     icon,
     open,
@@ -27,7 +27,7 @@ export const ModalPopup = forwardRef((
     ...props
   }: ModalPopupProps,
   ref?: Ref<PopupActions>
-) => {
+) {
   
   const [openPopup, setOpenPopup] = stateless ? stateless : useState(false)
   const { theme } = useTheme()
@@ -89,4 +89,6 @@ export const ModalPopup = forwardRef((
       {children ?? ModalElements}
     </Popup>
   )
-})
+}
+
+export default forwardRef(ModalPopup)

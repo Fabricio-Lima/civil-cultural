@@ -10,7 +10,7 @@
     "forms": {
         "password": "Contraseña",
         "name": "Nombre",
-        "confirm_password": "Confirmar contraseña",
+        "password_confirmation": "Confirmar contraseña",
         "phone_cell": "Teléfono celular",
         "landline": "Teléfono fijo",
         "personal_identification": "Identificación personal",
@@ -22,7 +22,7 @@
         "message_error": {
             "required": "Campo obligatorio",
             "email": "Correo electrónico no válido",
-            "confirm_password": "Contraseñas divergentes",
+            "password_confirmation": "Contraseñas divergentes",
             "number": "Por favor ingrese solo números",
             "max": "Maximo numero de caractares",
             "type": "Por favor, introduzca sólo letras"

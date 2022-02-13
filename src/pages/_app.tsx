@@ -1,5 +1,4 @@
 /* ----------- RESOURCES ----------- */
-import { Fragment } from 'react'
 import Head from 'next/head'
 import { SSRProvider } from 'react-bootstrap'
 import { appWithTranslation } from 'next-i18next'
@@ -23,11 +22,11 @@ function App({ Component, pageProps }: AppProps) {
         <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
       </Head>
       <AuthProvider>
-        <CustomThemeProvider>
-          <SSRProvider>
+        <SSRProvider>
+          <CustomThemeProvider>
             <Component {...pageProps} />
-          </SSRProvider>
-        </CustomThemeProvider>
+          </CustomThemeProvider>
+        </SSRProvider>
       </AuthProvider>
     </>
   )

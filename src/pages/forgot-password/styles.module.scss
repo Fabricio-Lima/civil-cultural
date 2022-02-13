@@ -19,9 +19,11 @@
   background-size: contain;
 }
 
-.instruction {
-  margin-top: 0.6rem;
-  font-size: 15px;
+/* ------------ PRINCIPAL ------------ */
+
+.main_container {
+  padding: 0 !important;
+  position: relative;
 
   &.light {
     color: var(--gray-500);
@@ -67,9 +69,19 @@
   }
 }
 
-.eye_btn_container {
-  position: absolute;
-  top: 1.5em;
-  right: 1px;
-  cursor: pointer;
+.instruction {
+  font-size: 14px;
+
+  &.light {
+    color: var(--gray-500);
+  }
+
+  &.dark {
+    color: var(--gray-50);
+  }
+}
+
+.form_link {
+  font-size: 0.86em;
+  font-weight: 500;
 }

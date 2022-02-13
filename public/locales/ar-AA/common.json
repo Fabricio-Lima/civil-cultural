@@ -10,7 +10,7 @@
     "forms": {
         "password": "شعار",
         "name": "اسم",
-        "confirm_password": "تأكيد كلمة مرور",
+        "password_confirmation": "تأكيد كلمة مرور",
         "phone_cell": "الهاتف الخليوي",
         "landline": "الهاتف الثابت",
         "personal_identification": "التعريف الشخصي",
@@ -22,7 +22,7 @@
         "message_error": {
             "required": "الحقل المطلوب",
             "email": "بريد إلكتروني غير صالح",
-            "confirm_password": "كلمات مرور متباينة",
+            "password_confirmation": "كلمات مرور متباينة",
             "number": "الرجاء إدخال الأرقام فقط",
             "max": "الحد الأقصى لعدد الكاراكتتار",
             "type": "الرجاء إدخال الرسائل فقط"

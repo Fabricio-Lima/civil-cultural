@@ -19,11 +19,9 @@
   background-size: contain;
 }
 
-/* ------------ PRINCIPAL ------------ */
-
-.main_container {
-  padding: 0 !important;
-  position: relative;
+.instruction {
+  margin-top: 0.6rem;
+  font-size: 14px;
 
   &.light {
     color: var(--gray-500);
@@ -51,39 +49,10 @@
   }
 }
 
-.float_label {
-  font-size: 0.94em;
+.eye_btn_container {
+  position: absolute;
+  top: 1.5em;
+  right: 1px;
 
-  &.light {
-    color: var(--gray-600);
-  }
-
-  &.dark {
-    color: var(--gray-200);
-  }
-
-  & > label {
-    bottom: -0.8rem;
-    padding-left: 0.5rem !important;
-    padding-right: 0.5rem !important;
-  }
-}
-
-.instruction {
-  margin-top: 0.6rem;
-  font-size: 13px;
-  float: right;
-
-  &.light {
-    color: var(--gray-500);
-  }
-
-  &.dark {
-    color: var(--gray-50);
-  }
-}
-
-.form_link {
-  font-size: 0.86em;
-  font-weight: 500;
+  z-index: 100;
 }

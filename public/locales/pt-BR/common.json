@@ -10,7 +10,7 @@
     "forms": {
         "password": "Senha",
         "name": "Nome",
-        "confirm_password": "Confirme a senha",
+        "password_confirmation": "Confirme a senha",
         "phone_cell": "Celular",
         "landline": "Telefone fixo",
         "personal_identification": "Identificação pessoal",
@@ -22,7 +22,7 @@
         "message_error": {
             "required": ":FIELD obrigatório",
             "email": "Email inválido",
-            "confirm_password": "Senhas divergentes",
+            "password_confirmation": "Senhas divergentes",
             "number": "Por favor, insira apenas número",
             "max": "No máximo :NUM caracteres",
             "type": "Por favor, digite apenas letras"
@@ -50,6 +50,14 @@
         "register": {
             "title": "Registro",
             "link_login": "Logar-se"
+        },
+        "forgot_password": {
+            "title": "Esqueceu a senha",
+            "message_info": "Você recebe-rá por e-mail um link para trocar a senha"
+        },
+        "reset_password": {
+            "title": "Redefinir senha",
+            "message_info": "Escolha uma nova senha para ser redefinida"
         }
     }
 }

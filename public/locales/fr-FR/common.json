@@ -10,7 +10,7 @@
     "forms": {
         "password": "Mot de passe",
         "name": "Nom",
-        "confirm_password": "Confirmer le mot de passe",
+        "password_confirmation": "Confirmer le mot de passe",
         "phone_cell": "Téléphone portable",
         "landline": "Ligne fixe",
         "personal_identification": "Identification personnelle",
@@ -22,7 +22,7 @@
         "message_error": {
             "required": "Champ requis",
             "email": "Email invalide",
-            "confirm_password": "Mots de passe divergents",
+            "password_confirmation": "Mots de passe divergents",
             "number": "Veuillez n'entrer que des chiffres",
             "max": "Nombre maximal de caractères",
             "type": "Veuillez saisir uniquement des lettres"

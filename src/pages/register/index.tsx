@@ -1,18 +1,16 @@
 /* ----------- RESOURCES ----------- */
+import { useState, useEffect, useMemo } from 'react'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 import { useTheme } from 'Hooks/useTheme'
-import Head from 'next/head'
-import Link from 'next/link'
-import { useState, useEffect } from 'react'
-import { useForm } from 'react-hook-form'
 import axios from 'axios'
+import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { Layout } from 'Utils/Layout'
-import MainLayout from 'Layouts/MainLayout'
 
 /* ----------- COMPONENTS ----------- */
+import Head from 'next/head'
+import Link from 'next/link'
 import Button from 'Components/Button'
 import Input from 'Components/Input'
 import AlertError from 'Components/AlertError'
@@ -37,16 +35,14 @@ import styles from 'Pages/register/styles.module.scss'
 
 
 
-function Register() {
-    let schema
+export default function Register({ locale }) {
     const { theme } = useTheme()
     const [countries, setCountries] = useState<CountryProps[]>([])
     const [showPassword, setShowPassword] = useState<boolean>(false)
     const { t } = useTranslation()
 
-
-    if (!schema) {
-        schema = yup.object({
+    let validators = useMemo(() => {
+        return yup.object({
             name: yup
                 .string()
                 .required(t('forms.message_error.required').replace(':FIELD', t('forms.name')))
@@ -60,10 +56,10 @@ function Register() {
                 .string()
                 .required(t('forms.message_error.required').replace(':FIELD', t('forms.password')))
                 .trim(),
-            currentPassword: yup
+            password_confirmation: yup
                 .string()
-                .required(t('forms.message_error.required').replace(':FIELD', t('forms.confirm_password')))
-                .oneOf([yup.ref('password')], 'Senhas divergentes')
+                .required(t('forms.message_error.required').replace(':FIELD', t('forms.password_confirmation')))
+                .oneOf([yup.ref('password')], t('forms.message_error.password_confirmation'))
                 .trim(),
             phone_cell: yup
                 .string()
@@ -101,14 +97,14 @@ function Register() {
                 .required(t('forms.message_error.required').replace(':FIELD', t('forms.address')))
                 .trim()
         })
+    }, [])
 
-    }
 
     const {
         register,
         handleSubmit,
         formState: { errors }
-    } = useForm({ mode: 'onChange', resolver: yupResolver(schema) })
+    } = useForm({ mode: 'onChange', resolver: yupResolver(validators) })
 
 
     const submit = (data) => console.table(data)
@@ -124,9 +120,14 @@ function Register() {
 
     return (
         <Col className={`${styles.containerRegister} ${styles[theme]} row p-0 m-0 col-12 py-3`}>
-            <Col className="d-none d-xxl-block d-xl-block d-lg-block col-6 h-full"></Col>
+            <Head>
+                <title>{t('pages.register.title')} | Civil Cultural</title>
+            </Head>
+
+            <Col className="d-none d-xxl-block d-xl-block d-lg-block col-6 h-full" />
+
             <Col className="col-11 mx-auto mx-lg-0 col-lg-6 col-md-10 col-sm-12">
-                <Form className='col-11 mx-auto'>
+                <Form className='col-11 mx-auto' onSubmit={handleSubmit(submit)}>
                     <Form.Group className="row p-0 m-0 mb-4">
                         <FloatingLabel
                             className={`${styles.floatLabel} ${styles[theme]}`}
@@ -184,6 +185,7 @@ function Register() {
                                     {showPassword ? <AiFillEyeInvisible className={styles.iconEyeInvisible} /> : <AiFillEye className={styles.iconEye} />}
                                 </span>
                             </FloatingLabel>
+
                             <Col className='col-12 mx-auto mt-2'>
                                 {errors.password && (<AlertError text={errors.password.message} />)}
                             </Col>
@@ -192,19 +194,19 @@ function Register() {
                         <Col className='col-12 col-md-6 mb-4 mb-md-0'>
                             <FloatingLabel
                                 className={`${styles.floatLabel} ${styles[theme]}`}
-                                label={t('forms.confirm_password')}
+                                label={t('forms.password_confirmation')}
                             >
                                 <Input
                                     type={showPassword ? 'text' : 'password'}
-                                    placeholder={t('forms.confirm_password')}
-                                    aria-label={t('forms.confirm_password')}
+                                    placeholder={t('forms.password_confirmation')}
+                                    aria-label={t('forms.password_confirmation')}
                                     aria-required='true'
-                                    {...register('currentPassword', { required: true })}
+                                    {...register('password_confirmation', { required: true })}
 
                                 />
                             </FloatingLabel>
                             <Col className='col-12 mx-auto mt-2'>
-                                {errors.currentPassword && (<AlertError text={errors.currentPassword.message} />)}
+                                {errors.password_confirmation && (<AlertError text={errors.password_confirmation.message} />)}
                             </Col>
                         </Col>
                     </Form.Group>
@@ -322,7 +324,7 @@ function Register() {
                                 aria-label='Cep'
                                 aria-required='false'
                                 onKeyPress={(e) => /[\d]+/.test(e.key) || e.preventDefault()}
-                                {...register('cep', { required: false, max: 8 })}
+                                {...register('cep', { required: false, max: 8, pattern: /^[0-9]{8}$/ })}
                             />
                         </FloatingLabel>
                         <Col className='col-12 mx-auto mt-2'>
@@ -367,9 +369,10 @@ function Register() {
                     </Form.Group>
 
                     <Form.Group className="mx-auto d-grid gap-1 mb-4">
-                        <Button type="button" className='text-uppercase' onClick={handleSubmit(submit)}> Cadastrar </Button>
+                        <Button type="button" className='text-uppercase'> Cadastrar </Button>
                     </Form.Group>
                 </Form>
+
                 <Col className='col-12 mt-2 text-center'>
                     <Link href='/login'>
                         <a className={`${styles.formLink} link-primary`}>{t('pages.register.link_login')}</a>
@@ -387,7 +390,3 @@ export async function getStaticProps({ locale }) {
         }
     }
 }
-
-export default Layout(
-    Register
-)

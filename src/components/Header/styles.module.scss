@@ -38,103 +38,6 @@
   vertical-align: middle;
 }
 /** ----------------------------- */
-/* ----------- SWITCH ----------- */
-.switchContainer {
-  width: 3.3rem;
-  height: 1.68rem;
-  position: relative;
-  border-radius: 15px 15px;
-  overflow: hidden;
-  border: 1px solid #A0C8FF60;
-
-  &.light {
-    background-color: #00000080;
-  }
-
-  &.dark {
-    background-color: var(--grau-400);
-  }
-}
-
-.inputCheck {
-  display: block;
-  width: 100%;
-  height: 100%;
-
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1500;
-
-  opacity: 0;
-  cursor: pointer;
-}
-
-.stateSwitch {
-  display: block;
-  width: 40%;
-  height: 82%;
-  background: #c0c0c0;
-  border-radius: 100%;
-  transition: transform 0.3s ease;
-  transform: translateX(0);
-
-  position: absolute;
-  z-index: 2;
-  left: 3px;
-  top: 2.55px;
-
-  background: linear-gradient(var(--purple-400), var(--purple-300));
-
-  &.activeSwitch {
-    transform: translateX(118%);
-  }
-
-  &::after {
-    content: "";
-
-    position: absolute;
-    left: 15%;
-    top: 18%;
-    border-radius: inherit;
-    width: 70%;
-    height: 70%;
-
-    background: linear-gradient(31deg, var(--purple-600), var(--purple-300));
-  }
-}
-
-.flexSwitch {
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 0;
-
-  display: flex;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
-  justify-items: center;
-  flex-wrap: nowrap;
-  vertical-align: middle;
-}
-
-.containerMoon {
-  background: transparent;
-  height: 100%;
-  width: 100%;
-}
-
-.containerSun {
-  background: transparent;
-  height: 100%;
-  width: 100%;
-}
-
-.span {
-  margin: 0 auto;
-  font-size: 1em;
-}
 
 /* DROPDOWN */
 .dropdownMenuContainer {
@@ -238,7 +141,7 @@
 /** ----------------------------- */
 
 /* ICON NAVBAR  */
-.boxIconMenu {
+.box_icon_menu {
   width: 45px;
   height: 45px;
   display: flex;
@@ -262,7 +165,7 @@
   }
 }
 
-.iconMenu {
+.icon_menu {
   font-size: 1.5rem;
   vertical-align: middle;
 
@@ -275,7 +178,7 @@
   }
 
   &.open {
-    color: var(--blue-300);
+    color: var(--blue-200);
   }
 }
 /** ----------------------------- */

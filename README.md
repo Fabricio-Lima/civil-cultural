@@ -2,25 +2,13 @@
 
 <h2 align='center'>Civil Cultural</h2>
 
-<p>O objetivo do projeto civil cultural é acabar com esta situação tão negativa, em grande medida.</p>
+  <p>O objetivo do projeto civil cultural, é oferecer um projeto de propriedade pública e acabar em grande parte com um dos vazios existentes, em conteúdos informativos e de comunicação importantes, que acontece na internet.</p>
 
-<p> As grandes redes sociais mundiais atuais são todas privadas. São regidas praticamente sobre as leis do estado da Califórnia e do país dos Estados Unidos da América, alem de regras de n estados a pedido </p>
+  <p>Cumprirá as leis próprias oficiais de cada estado/país que o portal representará, em possíveis centenas de outros portais, do mesmo princípio. Tem a gestão controlada por administradores e criação de publicações (artigos e noticias via links, e conversas dos utilizadores em salas de escrita) com gestão profissional, em cada área. Também terá sócios/donos, que darão propostas e ideias para aplicarem no projeto. Na parte das conversas do chat/bate-papo, terão salas em temas de assuntos populares.</p>
 
-<p>Todas elas são dirigidas, em qualidade na maior parte da informação cultural atual, por amadores nas matérias e inteligência artificial.</p>
+  <p>O sistema vai oferecer grande parte do conhecimento sério popular e um sistema único em conversas construtivas, com controle de qualidade. Com memorial das melhores conversas.</p>
 
-<p>Nenhuma dá um sistema de conversas em grandes grupos, com boa qualidade garantida no seu conteúdo.</p>
-
-<p> O objetivo, ao oferecer um enorme projeto de propriedade pública, é acabar, em grande parte, com os vazios existentes.</p>
-
-<p>Cumprirá as leis próprias oficiais do estado que o portal represente, entre centenas de outros portais com o mesmo princípio. Tem a gestão controlada somente por profissionais de cada área, e com o conteúdo bem gerido em boa qualidade pelo menos, na parte das conversas do chat, poderá incluir peritos também.</p>
-
-<p> Vai oferecer a informação em todas as línguas possíveis, para deficiência auditiva, visual e analfabetos. Alem de um sistema protegido para ser usado por crianças (em principio desde os 8 anos). </p>
-
-<p> Vai oferecer a grande parte do conhecimento sério popular atual (links de artigos e noticias) e um sistema único em infinitas conversas construtivas. Com memorial das melhores conversas. </p>
-
-<p> Este poderá ser o último grande projeto no qual os humanos têm, pelo menos, a maior parte do controle sobre a informação dada. Já que a inteligência artificial é cada vez mais dominante com o tempo.</p>
-
-<p>Quase todos gostaram da ideia do projeto. E se você gosta da ideia e queira contribuir entre contato por e-mail <span>astro-unity@hushmail.com</span> ou entre no nosso grupo do <a href='https://discord.gg/GnrGP3Q35B'>discord</a></p> 
+<p>Quer contribuir ou ficar atualizado sobre o projeto, entre na nossa comunidade <a href='https://discord.gg/GnrGP3Q35B'>discord</a>.</p> 
 
 
 <a href='https://github.com/Civil-Cultural/apiCivilCultural/blob/master/LICENCE.MD'>© 2021 Civil Cultural</a>

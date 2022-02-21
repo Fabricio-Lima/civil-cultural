@@ -71,7 +71,6 @@ export default function Login() {
         success && success.fire()
     }
 
-
     return (
         <Col className={`${styles.container_login} ${styles[theme]} col-12 p-0 m-0 row h-full`}>
             <Head>

@@ -1,125 +1,145 @@
 /* ----------- RESOURCES ----------- */
-import { useTheme } from 'Hooks/useTheme'
-import { useTranslation } from 'next-i18next'
-import Image from 'next/image'
+import { useTheme } from "Hooks/useTheme";
+import { useTranslation } from "next-i18next";
+
+/* ----------- ICONS ----------- */
+import { IoHome, IoNewspaperSharp } from "react-icons/io5";
+
+import {
+  MdOutlineArticle,
+  MdOutlineLightMode,
+  MdDarkMode,
+} from "react-icons/md";
 
 /* ----------- COMPONENTS ----------- */
-import { IoClose } from 'react-icons/io5'
-import {
-  Col,
-  Nav,
-  Offcanvas,
-} from 'react-bootstrap'
+import Image from "next/image";
+import Switch from "Components/Switch";
+import NextLink from "next/link";
+import Logo from "Components/Logo";
+import { Col, Nav } from "react-bootstrap";
 
 /* ----------- STYLES ----------- */
-import styles from 'Components/Sidebar/styles.module.scss'
-
+import styles from "Components/Sidebar/styles.module.scss";
 
 interface SidebarState {
   active: boolean;
-  setClose: () => void;
+  handleClose: () => void;
 }
 
+export default function Sidebar({ active, handleClose }: SidebarState) {
+  const { theme } = useTheme();
+  const { t } = useTranslation();
 
-export default function Sidebar({ active, setClose }: SidebarState) {
-  const { theme } = useTheme()
-  const { t } = useTranslation()
+  const links = [
+    {
+      text: "Inicio",
+      href: "/",
+      Icon: IoHome,
+    },
+    {
+      text: "Notícias",
+      href: "/#",
+      Icon: IoNewspaperSharp,
+    },
+    {
+      text: "Artigos",
+      href: "/#",
+      Icon: MdOutlineArticle,
+    },
+  ];
+
+  const linksCategory = [
+    {
+      text: "Política",
+      href: "/#",
+    },
+    {
+      text: "Economia",
+      href: "/#",
+    },
+    {
+      text: "Cultura",
+      href: "/#",
+    },
+    {
+      text: "Educação",
+      href: "/#",
+    },
+    {
+      text: "Saúde",
+      href: "/#",
+    },
+    {
+      text: "Empreendedorismo",
+      href: "/#",
+    },
+    {
+      text: "Financias",
+      href: "/#",
+    },
+    {
+      text: "Ciência",
+      href: "/#",
+    },
+    {
+      text: "Tecnologia",
+      href: "/#",
+    },
+    {
+      text: "Esporte",
+      href: "/#",
+    },
+    {
+      text: "Entretenimento",
+      href: "/#",
+    },
+  ];
 
   return (
-    <nav className={styles.sidebar}>
-      <header>
-        <div className={styles.image_text}>
-          <span className="image">
-            <img src="logo.png" alt="" />
-          </span>
+    <Col
+      className={`${styles.sidebar_container} ${
+        styles[theme]
+      } d-none d-lg-flex  ${active ? styles.active : styles.inactive}`}
+    >
+      <Col
+        className={`${styles.sidebar_header} col-auto d-flex align-items-center`}
+      >
+        <Logo width={26} height={26} />
+        <h4 className={`${styles.logo_title} ${styles[theme]}`}>
+          Civil Cultural
+        </h4>
+      </Col>
 
-          <div className={`${styles.text} ${styles.logo_text}`}>
-            <span className="name">Projeto civil cultural</span>
-            <span className="profession">Web developer</span>
-          </div>
-        </div>
+      <Col
+        className={`${styles.sidebar_body} ${styles[theme]} flex-grow-1 col-auto`}
+      >
+        <Nav className="d-flex flex-column mt-4 gap-1">
+          {links.map(({ href, text, Icon }, i) => (
+            <NextLink href={href} key={i}>
+              <Nav.Link href={href} className={i == 1 ? styles.active : ""}>
+                {Icon && <Icon className="me-2" />} {text}
+              </Nav.Link>
+            </NextLink>
+          ))}
+        </Nav>
+      </Col>
 
-        <i className={`${styles.bx} ${styles.bx_chevron_right} ${styles.toggle}`}></i>
-      </header>
-
-      <div className={`${styles.menu_bar}`}>
-        <div className={styles.menu}>
-
-          <li className={styles.search_box}>
-            <i className={`${styles.bx} ${styles.bx_search} ${styles.icon}`}></i>
-            <input type="text" placeholder="Search..." />
-          </li>
-
-          <ul className={styles.menu_links}>
-            <li className={styles.nav_link}>
-              <a href="#">
-                <i className={`${styles.bx} ${styles.bx_home_alt} ${styles.icon}`} ></i>
-                <span className={`${styles.text} ${styles.nav_text}`}>Dashboard</span>
-              </a>
-            </li>
-
-            <li className={styles.nav_link}>
-              <a href="#">
-                <i className='bx bx-bar-chart-alt-2 icon' ></i>
-                <span className="text nav-text">Revenue</span>
-              </a>
-            </li>
-
-            <li className={styles.nav_link}>
-              <a href="#">
-                <i className='bx bx-bell icon'></i>
-                <span className="text nav-text">Notifications</span>
-              </a>
-            </li>
-
-            <li className={styles.nav_link}>
-              <a href="#">
-                <i className='bx bx-pie-chart-alt icon' ></i>
-                <span className="text nav-text">Analytics</span>
-              </a>
-            </li>
-
-            <li className={styles.nav_link}>
-              <a href="#">
-                <i className='bx bx-heart icon' ></i>
-                <span className="text nav-text">Likes</span>
-              </a>
-            </li>
-
-            <li className={styles.nav_link}>
-              <a href="#">
-                <i className='bx bx-wallet icon' ></i>
-                <span className="text nav-text">Wallets</span>
-              </a>
-            </li>
-
-          </ul>
-        </div>
-
-        <div className="bottom-content">
-          <li className="">
-            <a href="#">
-              <i className='bx bx-log-out icon' ></i>
-              <span className="text nav-text">Logout</span>
-            </a>
-          </li>
-
-          <li className="mode">
-            <div className="sun-moon">
-              <i className='bx bx-moon icon moon'></i>
-              <i className='bx bx-sun icon sun'></i>
-            </div>
-            <span className="mode-text text">Dark mode</span>
-
-            <div className="toggle-switch">
-              <span className="switch"></span>
-            </div>
-          </li>
-
-        </div>
-      </div>
-
-    </nav>
-
-  )
+      <Col className={`${styles.sidebar_footer} col-auto`}>
+        <Col className={`${styles.theme_mode} ${styles[theme]}`}>
+          {theme == "light" ? (
+            <>
+              <MdOutlineLightMode />
+              <span>Light</span>
+            </>
+          ) : (
+            <>
+              <MdDarkMode />
+              <span>Dark</span>
+            </>
+          )}
+          <Switch className="ms-2" />
+        </Col>
+      </Col>
+    </Col>
+  );
 }

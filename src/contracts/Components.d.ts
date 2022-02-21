@@ -25,3 +25,8 @@ export interface LabelProps extends FloatingLabelProps {
   className?: string;
   text?: string;
 }
+
+export interface SwitchProps {
+  className?: string;
+  styles?: object;
+}

@@ -1,4 +1,4 @@
-.layoutContainer {
+.layout_container {
   body,
   &.light {
     background-color: var(--light) !important;
@@ -10,6 +10,10 @@
   }
 }
 
-.divHeader {
+.main {
+  position: relative;
+}
+
+.div_header {
   height: 5.5rem;
 }

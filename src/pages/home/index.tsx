@@ -18,11 +18,11 @@ function CardPostLoad() {
 
   return (
     <Card
-      className={`${styles.cardContainer} ${styles[theme]} col-11 col-md-11 col-lg-10 px-0 mx-auto`}
+      className={`${styles.cardContainer} ${styles[theme]} col-12 col-lg-10 col-md-11 mx-md-auto px-0`}
     >
       <Row className="col-12">
-        <Col className="col-10 px-0">
-          <Card.Body>
+        <Col className="col-12 col-md-10 px-0">
+          <Card.Body className="px-2 px-md-4">
             <Placeholder
               className={`${styles.cardTextDate} ${styles[theme]}`}
               animation="glow"
@@ -44,7 +44,8 @@ function CardPostLoad() {
             </Placeholder>
           </Card.Body>
         </Col>
-        <Col className="col-2 p-0 m-0 d-flex justify-content-center align-content-center">
+
+        <Col className="col-2 p-0 m-0 d-none d-md-flex justify-content-center align-content-center">
           <Placeholder
             className={styles.boxImg}
             style={{ width: "95%" }}
@@ -89,18 +90,18 @@ const Home = () => {
   const cardTest = Array(4).fill("teste");
 
   return (
-    <>
-      <Col className="col-11 col-lg-auto col-sm-8 mx-auto border-1 border-secondary">
+    <Col className="d-flex my-2 justify-content-between">
+      <Col className="col-10 col-lg-7 mx-auto mx-lg-0 px-0 border-1 border-secondary">
         {
           /* COMPONENTE CARD */
           cardTest.map((x, i) => (
             <Card
               key={i}
-              className={`${styles.cardContainer} ${styles[theme]} col-11 col-md-11 col-lg-10 px-0 mx-auto`}
+              className={`${styles.cardContainer} ${styles[theme]} col-12 col-lg-10 col-md-11 mx-md-auto px-0`}
             >
               <Row className="col-12">
-                <Col className="col-10 px-0">
-                  <Card.Body>
+                <Col className="col-12 col-md-10 px-0">
+                  <Card.Body className="px-3 px-md-4">
                     <Card.Text
                       className={`${styles.cardTextDate} ${styles[theme]}`}
                     >
@@ -123,7 +124,8 @@ const Home = () => {
                     </Card.Text>
                   </Card.Body>
                 </Col>
-                <Col className="col-2 p-0 m-0 d-flex justify-content-center align-content-center">
+
+                <Col className="col-2 p-0 m-0 d-none d-md-flex justify-content-center align-content-center">
                   <Col className={styles.boxImg}>
                     <Image
                       src="https://img.freepik.com/psd-gratuitas/maos-segurando-um-jornal-de-negocios-com-modelo-de-maquete-de-espaco-de-copia-na-mesa-preta-topview_185216-128.jpg?size=626&ext=jpg"
@@ -142,7 +144,7 @@ const Home = () => {
         <CardPostLoad />
       </Col>
 
-      <Col className="col-4 col-lg-3 d-none d-md-block d-lg-block">
+      <Col className="col-3 off-set-4 col-lg-3 d-none d-lg-block">
         <section className={`${styles.sectionOthers} ${styles[theme]}`}>
           <Col
             className={`${styles.boxTitleMenu} ${styles[theme]} col-11 mx-auto`}
@@ -246,7 +248,7 @@ const Home = () => {
           </Col>
         </section>
       </Col>
-    </>
+    </Col>
   );
 };
 

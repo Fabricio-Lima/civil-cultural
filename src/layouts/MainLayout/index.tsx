@@ -21,7 +21,7 @@ export default function MainLayout({ children, title }: LayoutProps) {
   return (
     <div className={`${styles.layout_container} ${styles[theme]}`}>
       <Head>
-        <title>{title ? `${title} | Civil Cultural` : "Civil cultural"}</title>
+        <title>{title ? `${title} - Civil Cultural` : "Civil cultural"}</title>
       </Head>
 
       <Header

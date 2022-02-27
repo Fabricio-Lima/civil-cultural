@@ -26,14 +26,14 @@ export default function Switch({ className }: SwitchProps) {
   return (
     <button
       type="button"
-      className={`${styles.button} btn remove-bg-image ${className}`}
+      className={`${styles.button} btn remove-bg-image remove-focus border-0 ${className}`}
       onClick={alternateTheme}
     >
       <div className={styles.toggle_switch}>
         <input
           type="checkbox"
           className={styles.input_check}
-          checked={checked}
+          defaultChecked={checked}
         />
         <span className={`${styles.switch} ${styles[theme]}`}></span>
       </div>

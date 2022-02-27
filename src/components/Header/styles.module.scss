@@ -1,7 +1,7 @@
 /* -----------  MEDIA QUERY ----------- */
 
 // Styles global Header
-.headerContainer {
+.header_container {
   grid-area: header;
   position: fixed;
   width: 100%;
@@ -9,24 +9,21 @@
   margin: 0;
   padding: 0;
   top: 0;
-  z-index: 1000;
+  z-index: 2000;
 
   &.light {
-    box-shadow: 0 0 10px rgba(50, 50, 50, 0.3);
+    box-shadow: 0 0 10px #33333347;
     background-color: var(--light);
   }
 
   &.dark {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 10px #0000004d;
     background-color: var(--dark);
   }
 }
 
-.flexContainer {
-  display: flex;
+.flex_container {
   width: 100%;
-  justify-content: space-between;
-  align-items: center;
   padding: 0 0.5rem;
 }
 
@@ -37,9 +34,26 @@
   font-size: 1.1rem;
   vertical-align: middle;
 }
-/** ----------------------------- */
 
-/* DROPDOWN */
+/* ------------ LOGO ------------ */
+.logo_title {
+  font-size: 2em;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  line-height: 0.7em;
+  margin-left: 0.5rem;
+  margin-bottom: 0;
+
+  &.light {
+    color: var(--gray-500);
+  }
+
+  &.dark {
+    color: var(--gray-100);
+  }
+}
+
+/* ------------ DROPDOWN ------------ */
 .dropdownMenuContainer {
   padding: 0.2rem;
 }
@@ -141,7 +155,7 @@
 /** ----------------------------- */
 
 /* ICON NAVBAR  */
-.box_icon_menu {
+.button_icon_menu {
   width: 45px;
   height: 45px;
   display: flex;
@@ -150,9 +164,11 @@
   border-radius: 4em;
   padding: .3em;
   cursor: pointer;
+  background-color: transparent !important;
+  border: 0 !important;
 
   &:hover {
-    background: #3478d418;
+    background-color: #3478d418 !important;
   }
 }
 

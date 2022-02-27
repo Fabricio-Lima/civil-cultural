@@ -1,12 +1,86 @@
+/* ----------- MEDIAS QUERYs ----------- */
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 220px) and (max-width: 992px) {
+  .sidebar_container {
+    
+    &.show {
+      width: 100%;
+      animation: show-sidebar .2s normal ease-in-out;
+      position: sticky !important;
+      top: 4.5em;
+      z-index: 1000;
+      overflow-y: scroll;
+    }
+
+    &.hidden {
+      display: none !important;
+    }
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .sidebar_container {
+    transition: width 0.2s ease-in-out;
+
+    &.light {
+      box-shadow: 7px 0 15px #33333317;
+    }
+
+    &.dark {
+      box-shadow: 7px 0 15px #00000021;
+    }
+
+    &.show {
+      width: 15%;
+    }
+
+    &.hidden {
+      width: 5.6%;
+
+      & .nav_item {
+        text-align: center;
+      }
+
+      & .nav_item svg {
+        margin: 0 !important;
+      }
+
+      & .button_action svg {
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+
+      & .nav_item span,
+      & .button_action span,
+      & .theme_mode .mode_info {
+        display: none;
+      }
+    }
+  }
+}
+
+// X-Large devices (large desktops, 1200px and up)
+/* @media (min-width: 1200px) {
+} */
+
+// XX-Large devices (larger desktops, 1400px and up)
+/* @media (min-width: 1400px) {
+} */
+
 /* ----------- SIDEBAR CONTAINER ----------- */
 .sidebar_container {
   min-height: 100vh;
-  width: 15%;
   padding: 0;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 
   display: flex;
+  flex: 0 0 auto;
   flex-direction: column;
 
   &.light {
@@ -16,13 +90,13 @@
   &.dark {
     background-color: var(--dark);
   }
-
-  &.inactive {
-    width: 80px;
-  }
 }
 
 /* ----------- SIDEBAR HEADER ----------- */
+.sidebar_header {
+  margin-top: .8em;
+}
+
 .logo_title {
   font-size: 1.7em;
   font-weight: 600;
@@ -43,28 +117,31 @@
 /* ----------- SIDEBAR BODY ----------- */
 
 .sidebar_body {
-  & a {
+  & .nav_item {
     font-weight: 500;
     font-size: 1rem;
     padding: 0.4rem 0.5rem;
     border-radius: 5px;
 
-    &.active {
+    &.active_link {
       background: #a0c8ff50;
     }
+
+    /* &.inactive_link {
+    } */
   }
 
   &.light {
-    & a,
-    & div a svg {
+    & .nav_item,
+    & .nav_item svg {
       color: var(--gray-600);
       fill: var(--gray-600);
     }
   }
 
   &.dark {
-    & div a,
-    & div a svg {
+    & .nav_item,
+    & .nav_item svg {
       color: var(--gray-100);
       fill: var(--gray-100);
     }
@@ -76,25 +153,49 @@
   margin-bottom: 0.5rem;
 }
 
-.theme_mode {
+.item_footer {
   display: flex;
-  justify-content: center;
   align-items: center;
+
+  font-weight: 600;
+  font-size: 1.7rem;
   padding: 0.5rem 0.5rem;
   border-radius: 5px;
 
-  & span {
-    margin-left: 0.5rem;
+  &.light,
+  &.light .button_action {
+    color: var(--gray-600);
   }
 
-  & span,
-  & svg {
-    font-weight: 600;
-    font-size: 0.9rem;
+  &.dark,
+  &.dark .button_action {
+    color: var(--gray-100);
   }
+}
+
+.button_action {
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  padding: 0 !important;
 
   & svg {
+    display: inline-block;
+    fill: currentColor;
+  }
+}
+
+.theme_mode {
+  justify-content: space-evenly;
+  font-size: 0.9rem;
+
+  & .mode_info svg {
     vertical-align: middle;
+    font-size: 16px;
+    margin-right: 0.4rem;
   }
 
   &.light {
@@ -106,25 +207,4 @@
     background-color: var(--gray-600);
     color: var(--blue-100);
   }
-}
-
-/* ----------- MEDIAS ----------- */
-// Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) {
-}
-
-// Medium devices (tablets, 768px and up)
-@media (min-width: 768px) {
-}
-
-// Large devices (desktops, 992px and up)
-@media (min-width: 992px) {
-}
-
-// X-Large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {
-}
-
-// XX-Large devices (larger desktops, 1400px and up)
-@media (min-width: 1400px) {
 }

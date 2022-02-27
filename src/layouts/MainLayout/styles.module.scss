@@ -1,5 +1,10 @@
 .layout_container {
   body,
+  & {
+    min-height: 100vh;
+  }
+
+  body,
   &.light {
     background-color: var(--light) !important;
   }
@@ -15,5 +20,5 @@
 }
 
 .div_header {
-  height: 5.5rem;
+  height: 4.6rem;
 }

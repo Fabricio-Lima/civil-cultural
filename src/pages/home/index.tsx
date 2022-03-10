@@ -8,6 +8,7 @@ import { Layout } from 'utils/Layout'
 /* ----------- COMPONENTS ----------- */
 import MainLayout from 'Layouts/MainLayout'
 import { Row, Col, Placeholder, Card, ListGroup } from 'react-bootstrap'
+import InputSearch from 'Components/InputSearch'
 
 /* ----------- STYLES ----------- */
 import styles from 'Pages/home/styles.module.scss'
@@ -195,6 +196,7 @@ const Home = () => {
             <h3 className={`${styles.titleMenu} ${styles[theme]}`}>
               {t("pages.home.menu_category")}
             </h3>
+            <InputSearch className={`col-12 `}/>
           </Col>
           <Col className="col-11 mx-auto py-2 d-flex flex-wrap gap-1">
             <span className={`${styles.badgeCategories} ${styles[theme]}`}>

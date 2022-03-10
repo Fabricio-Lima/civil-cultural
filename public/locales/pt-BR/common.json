@@ -10,7 +10,7 @@
   "forms": {
     "password": "Senha",
     "name": "Nome",
-    "password_confirmation": "Confirme a senha",
+    "password_confirmation": "Confirme a password",
     "phone_cell": "Celular",
     "landline": "Telefone fixo",
     "personal_identification": "Identificação pessoal",

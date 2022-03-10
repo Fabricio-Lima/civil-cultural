@@ -84,10 +84,14 @@ function CardTopicsLoad() {
   );
 }
 
+let titleHome: string = "";
+
 const Home = () => {
   const { theme } = useTheme();
   const { t } = useTranslation();
   const cardTest = Array(4).fill("teste");
+
+  titleHome = t("pages.home.title");
 
   return (
     <Col className="d-flex my-2 justify-content-between">
@@ -252,12 +256,6 @@ const Home = () => {
   );
 };
 
-
-
-export default Layout(
-  Home,
-  MainLayout,
-  {
-    title: 'Home'
-  }
-)
+export default Layout(Home, MainLayout, {
+  title: titleHome,
+});

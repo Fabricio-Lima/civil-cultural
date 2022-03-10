@@ -1,11 +1,16 @@
+
+@import 'styles/utils';
 /* ----------- MEDIAS QUERYs ----------- */
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 220px) and (max-width: 992px) {
   .sidebar_container {
-    
+    width: 100%;
+    min-height: 100vh;
+    transition:
+      opacity 0.2s ease-in-out,
+      width 0.2s ease-in-out;
+
     &.show {
-      width: 100%;
-      animation: show-sidebar .2s normal ease-in-out;
       position: sticky !important;
       top: 4.5em;
       z-index: 1000;
@@ -13,7 +18,10 @@
     }
 
     &.hidden {
-      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+      padding: 0 !important;
+      overflow: hidden;
     }
   }
 }
@@ -25,6 +33,7 @@
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
   .sidebar_container {
+    max-height: 89vh;
     transition: width 0.2s ease-in-out;
 
     &.light {
@@ -74,7 +83,6 @@
 
 /* ----------- SIDEBAR CONTAINER ----------- */
 .sidebar_container {
-  min-height: 100vh;
   padding: 0;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -94,7 +102,7 @@
 
 /* ----------- SIDEBAR HEADER ----------- */
 .sidebar_header {
-  margin-top: .8em;
+  margin-top: 0.8em;
 }
 
 .logo_title {

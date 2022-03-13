@@ -1,6 +1,5 @@
 .body {
   padding: 0 !important;
-  height: 100vh !important;
 
   &.light {
     background-color: var(--light);
@@ -32,6 +31,11 @@
 .edit_icon {
   width: 20px;
   height: 20px;
+}
+
+.blue_edit_button {
+  transition: all 0.2s;
+  color: var(--blue-600);
 }
 
 .profile_container_img {

@@ -28,7 +28,7 @@ function Profile() {
         <section className={`col-md-4 ${styles.profile_container} ${styles[theme]}`}>
           <div className={`border ${styles.profile_container_card}`}>
            <span onClick={() => setEditMode(!editMode)}>
-              <AiFillEdit className={`${styles.edit_icon}`}/>
+              <AiFillEdit className={`${styles.edit_icon} ${!editMode ? styles.blue_edit_button : ""}`}/>
            </span>
             <div className={`d-flex justify-content-center ${styles.profile_container_img}`}>
               <img
@@ -47,6 +47,16 @@ function Profile() {
                 />
               </FloatingLabel>
             </div>
+            <div className={`d-flex justify-content-center ${styles.profile_container_location}`}>
+               <span className={styles.location_icon}><MdLocationPin/></span>
+               <FloatingLabel label={t('forms.country')} className={`${styles.profile_container_label} ${styles[theme]}`}>
+                  <Input disabled={editMode}
+                  placeholder={t('forms.country')}
+                  aria-label={t('forms.country')}
+                  className={`${styles.profile_location}`}
+                  />
+               </FloatingLabel>
+            </div> 
             <div className={`d-flex justify-content-center ${styles.profile_container_location}`}>
                <span className={styles.location_icon}><MdLocationPin/></span>
                <FloatingLabel label={t('forms.state')} className={`${styles.profile_container_label} ${styles[theme]}`}>
@@ -70,7 +80,7 @@ function Profile() {
           </div>
         </section>
         <section className={`col-md-8 container ${styles.infos_container} ${styles[theme]}`}>
-          <div className={`row justify-content-center`}>
+          <div className={`row justify-content-center ${styles[theme]}`}>
             <div className={`col-md-8 ${styles.campo}`}>
               <FloatingLabel className={`${styles.campo_label} ${styles[theme]}`} label='E-mail'>
                 <Input disabled={editMode}
@@ -81,18 +91,7 @@ function Profile() {
               </FloatingLabel>
             </div>
           </div>
-          <div className={`row justify-content-center`}>
-            <div className={`col-md-8 ${styles.campo}`}>
-              <FloatingLabel className={`${styles.campo_label} ${styles[theme]}`} label='E-mail'>
-                <Input disabled={editMode}
-                placeholder='E-mail'
-                aria-label='E-mail'
-                className={styles.campo_input}
-                />
-              </FloatingLabel>
-            </div>
-          </div>
-          <div className={`row justify-content-center`}>
+          <div className={`row justify-content-center ${styles[theme]}`}>
             <div className={`col-md-8 ${styles.campo}`}>
               <FloatingLabel className={`${styles.campo_label} ${styles[theme]}`} 
               label={t('forms.phone_cell')}>
@@ -104,7 +103,7 @@ function Profile() {
               </FloatingLabel>
             </div>
           </div>
-          <div className={`row justify-content-center`}>
+          <div className={`row justify-content-center ${styles[theme]}`}>
             <div className={`col-md-8 ${styles.campo}`}>
               <FloatingLabel className={`${styles.campo_label} ${styles[theme]}`} 
               label={t('forms.landline')}>
@@ -177,4 +176,5 @@ export async function getStaticProps({ locale }) {
   }
 }
 
+// 
 //add descansar mouse no botao de edit e estilizar, pondo fundo

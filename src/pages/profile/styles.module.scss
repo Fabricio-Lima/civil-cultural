@@ -1,6 +1,5 @@
 .body {
   padding: 0 !important;
-  height: 100vh !important;
 
   &.light {
     background-color: var(--light);
@@ -11,18 +10,15 @@
   }
 }
 
-// @media only screen and (min-width: 993px) {ss
-//   .body {
-//     left: 5rem;
-//   }
-// }
+@media only screen and (min-width: 993px) {
+  .body {
+    margin-left: 1em;
+  }
+}
+
 // ------------------------------------------- CARD ------------------------------------------
 .profile_container {
   padding: 1.3em;
-}
-
-.edit-icon {
-  background-color: green;
 }
 
 .profile_container_card {
@@ -32,7 +28,17 @@
   padding: 2em;
 }
 
-.profile_img {
+.edit_icon {
+  width: 20px;
+  height: 20px;
+}
+
+.blue_edit_button {
+  transition: all 0.2s;
+  color: var(--blue-600);
+}
+
+.profile_container_img {
   margin-bottom: 2em;
 }
 
@@ -79,8 +85,25 @@
 .campo_label {
   font-size: 1.4em;
   padding-top: 1.5em;
+
+  &.light {
+    color: var(--gray-500);
+  }
+
+  &.dark {
+    color: var(--gray-50);
+  }
 }
 
 .campo_input {
   font-size: 0.8em;
+}
+
+.save_button_contaier {
+  margin-top: 1.5em;
+}
+
+.save_button {
+  width: 100%;
+  transition: all 0.2s;
 }

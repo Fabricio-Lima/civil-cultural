@@ -7,14 +7,14 @@ Essa documentação é um guia para rodar a aplicação no ambiente local. E tam
 > Usamos o yarn para gerenciar os pacotes nesse projeto.
 
 <div align='center'>
-    <img src='./doc/yarn-install.png'/>
+    <img width='80%' src='./doc/yarn-install.png'/>
 </div>
 
 
 ### Executando a aplicação no modo desenvolvimento
 
 <div align='center'>
-    <img src='./doc/yarn-dev.png'/>
+    <img width='80%' src='./doc/yarn-dev.png'/>
 </div>
 
 Obs: Use boas práticas nesse projeto. Use as cores padrões definida no arquivo `src/styles/global.scss` crie variáveis ou mixin do sass no arquivo `src/styles/_utils.scss` leia mais sobre nesse [link](https://tecmedia.com.br/semantica-performance-e-boas-praticas-no-codigo-front-end/).

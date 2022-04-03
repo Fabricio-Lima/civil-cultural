@@ -13,7 +13,6 @@
     &.show {
       position: sticky !important;
       top: 4.5em;
-      z-index: 1000;
       overflow-y: scroll;
     }
 
@@ -27,14 +26,16 @@
 }
 
 // Medium devices (tablets, 768px and up)
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
 }
-
+ */
+ 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
   .sidebar_container {
-    max-height: 89vh;
+    min-height: 89vh;
     transition: width 0.2s ease-in-out;
+    position: fixed !important;
 
     &.light {
       box-shadow: 7px 0 15px #33333317;
@@ -90,6 +91,7 @@
   display: flex;
   flex: 0 0 auto;
   flex-direction: column;
+  z-index: 1000;
 
   &.light {
     background-color: var(--light);
